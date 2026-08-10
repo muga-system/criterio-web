@@ -1,0 +1,10 @@
+{
+  "name": "criterio-web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Aplicación educativa para aprender criterio web mediante práctica guiada.",
+  "engines": {
+    "node": ">=24.14.0 <25",
+    "npm": ">=11"
+  }
+}
