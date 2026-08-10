@@ -1,0 +1,33 @@
+@layer tokens {
+  :root {
+    color-scheme: light;
+
+    --color-background: #f4f5f7;
+    --color-surface: #fff;
+    --color-text: #17191d;
+    --color-text-muted: #5e6570;
+    --color-border: #d6d9de;
+    --color-accent: #ff5353;
+    --color-focus: #9b1c1c;
+    --font-sans: inter, ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "SFMono-Regular", consolas, "Liberation Mono", monospace;
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --content-width: 48rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+
+      --color-background: #070b13;
+      --color-surface: #0c0e17;
+      --color-text: #d9d9d9;
+      --color-text-muted: #a3a3a9;
+      --color-border: rgb(163 163 169 / 28%);
+      --color-focus: #ff7a7a;
+    }
+  }
+}
