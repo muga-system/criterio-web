@@ -60,6 +60,14 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   await expect(scrollbar).toBeVisible();
   await expect(page.locator(".app-sidebar-frame .app-scrollbar")).toBeHidden();
   await expect(page.locator(".app-workspace-frame .app-scroll-icon")).toHaveCount(2);
+  await expect(page.locator(".app-workspace-frame .app-scrollbar")).toHaveCSS(
+    "border-left-width",
+    "1px",
+  );
+  await expect(page.locator(".app-workspace-frame .app-scroll-track")).toHaveCSS(
+    "border-left-width",
+    "0px",
+  );
   await expect(scrollbar).toHaveAttribute("aria-valuemax", /[1-9]/);
   await expect(page.locator(".app-workspace-frame .app-scroll-thumb")).toHaveCSS(
     "border-radius",

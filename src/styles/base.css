@@ -424,7 +424,8 @@
     display: flex;
     width: 1rem;
     flex-direction: column;
-    padding-block: 0.5rem;
+    padding-block: 0;
+    border-inline-start: 1px solid var(--color-border);
     background: var(--app-scrollbar-surface);
     user-select: none;
   }
@@ -473,8 +474,8 @@
     position: relative;
     flex: 1;
     min-height: 2.5rem;
-    margin-block: 0.25rem;
-    border-inline-start: 1px solid var(--color-border);
+    margin-block: 0;
+    border-inline-start: 0;
     cursor: pointer;
   }
 

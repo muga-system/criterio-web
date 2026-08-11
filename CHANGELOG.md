@@ -23,6 +23,7 @@ registra en `Unreleased`.
 - Reemplazo del scrollbar nativo por un control propio con track, thumb, flechas y arrastre.
 - Ajuste de los extremos del scrollbar con iconos tipo Lucide y ocultamiento automático cuando no
   hay overflow.
+- Continuidad de la línea del track desde el extremo superior hasta el inferior del scrollbar.
 
 ### Documentado
 
