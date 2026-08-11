@@ -20,6 +20,10 @@ registra en `Unreleased`.
 - Migración de la shell y las rutas principales a Astro con integración React preparada para islas.
 - Reemplazo de la shell HTML mínima por páginas Astro con navegación y vistas placeholder.
 
+### Documentado
+
+- Definición del modelo pedagógico inicial y del criterio de finalización de módulos.
+
 ### Eliminado
 
 - Entry point y router manual de Vite usados por la shell inicial.

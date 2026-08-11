@@ -44,6 +44,7 @@ npm ci
 - `src/layouts/`: shell y layout compartido de la aplicación.
 - `src/pages/`: páginas Astro correspondientes a las rutas principales.
 - `src/styles/`: capas CSS, tokens y estilos base.
+- `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
 - `e2e/`: recorridos end-to-end.
 
 Astro renderiza las páginas y el contenido estático. React queda integrado para futuras islas
