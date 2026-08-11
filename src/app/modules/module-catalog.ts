@@ -29,6 +29,21 @@ export const moduleCatalog = [
       { id: "practica-integradora", title: "Práctica integradora" },
     ],
   },
+  {
+    id: "css-composicion-03",
+    path: "/modulos/css-composicion-03",
+    title: "Módulo 03 · Componer sin pelear con la estructura",
+    summary:
+      "Aprender a aplicar cascada, layout y responsive sin trasladar al CSS las responsabilidades del HTML.",
+    lessonCount: 3,
+    status: "Contenido inicial",
+    lessons: [
+      { id: "leccion-01", title: "Lección 01 · Cascada y conflictos" },
+      { id: "leccion-02", title: "Lección 02 · Flujo, Flexbox y Grid" },
+      { id: "leccion-03", title: "Lección 03 · Composición responsive" },
+      { id: "practica-integradora", title: "Práctica integradora" },
+    ],
+  },
 ] as const;
 
 export type ModuleSummary = (typeof moduleCatalog)[number];

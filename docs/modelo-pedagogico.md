@@ -109,9 +109,9 @@ cuando se escriban los primeros contenidos:
 6. **DOM y eventos.** Relación entre estado, interacción y representación de la interfaz.
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
-El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los primeros
-dos módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión de estas
-unidades.
+El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los
+primeros tres módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
+de estas unidades.
 
 ## Límites de esta definición
 
@@ -129,6 +129,5 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contrato del [Módulo 03 · Componer sin pelear con la estructura](./modulo-03-css-composicion.md)
-y el contenido publicado de los Módulos 01 y 02. Después se podrá escribir el contenido de CSS sin
-agregar todavía persistencia ni una herramienta interactiva.
+Revisar el contenido publicado de los Módulos 01, 02 y 03. Después se podrá decidir si el Módulo 03
+necesita una práctica interactiva antes de definir el contrato de JavaScript en el navegador.

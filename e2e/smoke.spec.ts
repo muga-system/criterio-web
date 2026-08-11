@@ -74,7 +74,7 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 
-  await expect(page.locator(".app-module-card")).toHaveCount(2);
+  await expect(page.locator(".app-module-card")).toHaveCount(3);
   await page
     .getByRole("link", { name: "Abrir Módulo 02 · Estructurar antes de decorar", exact: true })
     .click();
@@ -92,5 +92,31 @@ test("abre el segundo módulo desde el catálogo", async ({ page }) => {
       name: "Lección 01 · Significado antes que apariencia",
       exact: true,
     }),
+  ).toBeVisible();
+});
+
+test("abre el tercer módulo desde el catálogo", async ({ page }) => {
+  await page.goto("/modulos");
+
+  await page
+    .getByRole("link", {
+      name: "Abrir Módulo 03 · Componer sin pelear con la estructura",
+      exact: true,
+    })
+    .click();
+
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/css-composicion-03");
+  await expect(
+    page.getByRole("heading", {
+      name: "Módulo 03 · Componer sin pelear con la estructura",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Módulos", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(
+    page.getByRole("heading", { name: "Lección 01 · Cascada y conflictos", exact: true }),
   ).toBeVisible();
 });

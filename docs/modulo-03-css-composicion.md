@@ -1,10 +1,9 @@
 # Módulo 03 · Componer sin pelear con la estructura
 
-Estado: contrato pedagógico v0 para revisión. No crea todavía una ruta ni contenido publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento define la siguiente unidad curricular después de HTML semántico. El módulo deberá
-enseñar a aplicar estilos y composición visual sin trasladar al CSS las responsabilidades que ya
-corresponden al HTML.
+Este documento define la unidad curricular y el contenido publicado después de HTML semántico. La
+ruta está disponible en `src/pages/modulos/css-composicion-03.md`.
 
 ## Identidad
 
@@ -100,9 +99,19 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 ## Forma de contenido
 
-La primera versión puede publicarse como contenido estático de Astro, con ejemplos de HTML y CSS,
-comparaciones de layout y fichas de verificación. No se propone una isla React hasta que una práctica
-requiera edición, comparación o validación dentro de la aplicación.
+La primera versión se publica como contenido estático de Astro, con ejemplos de HTML y CSS,
+comparaciones de layout y fichas de verificación. No se agrega una isla React porque las prácticas
+actuales no requieren edición, comparación ni validación dentro de la aplicación.
+
+## Decisión de implementación v0
+
+La práctica integradora permanece como actividad guiada de análisis y escritura fuera de la
+aplicación. No se agrega una isla React ni persistencia porque el objetivo actual es comprobar si el
+estudiante puede explicar una decisión de composición antes de convertirla en una herramienta
+editable.
+
+La decisión se revisará cuando exista evidencia de que editar, comparar o validar CSS dentro de la
+aplicación mejora la comprensión o la verificación del criterio.
 
 ## Límites de esta definición
 
