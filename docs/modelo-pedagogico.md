@@ -128,5 +128,5 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el orden curricular y seleccionar el primer módulo. Después se podrá definir el contrato de
-contenido de ese módulo y crear la primera ruta específica con una práctica mínima verificable.
+Revisar el contrato del [Módulo 01 · Observar antes de construir](./modulo-01-observar-antes-de-construir.md).
+Después se podrá escribir su contenido y decidir si la primera práctica necesita una isla React.

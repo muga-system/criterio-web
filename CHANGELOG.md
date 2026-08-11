@@ -23,6 +23,7 @@ registra en `Unreleased`.
 ### Documentado
 
 - Definición del modelo pedagógico inicial y del criterio de finalización de módulos.
+- Contrato pedagógico preliminar del Módulo 01: Observar antes de construir.
 
 ### Eliminado
 
