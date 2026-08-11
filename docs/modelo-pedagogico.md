@@ -129,5 +129,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado de los Módulos 01, 02, 03, 04 y 05. Después se podrá decidir si el
-Módulo 05 necesita una práctica interactiva antes de definir el contrato de DOM y eventos.
+Revisar el contrato del [Módulo 06 · Conectar estado y representación](./modulo-06-dom-eventos.md)
+y el contenido publicado de los Módulos 01, 02, 03, 04 y 05. Después se podrá evaluar la primera
+isla React sin agregar todavía persistencia ni transferencia portable.
