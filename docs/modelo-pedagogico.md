@@ -129,5 +129,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado de los Módulos 01 y 02. Después se podrá decidir si el Módulo 02
-necesita una práctica interactiva antes de definir el contrato de CSS y composición.
+Revisar el contrato del [Módulo 03 · Componer sin pelear con la estructura](./modulo-03-css-composicion.md)
+y el contenido publicado de los Módulos 01 y 02. Después se podrá escribir el contenido de CSS sin
+agregar todavía persistencia ni una herramienta interactiva.

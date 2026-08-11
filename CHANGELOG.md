@@ -30,6 +30,8 @@ registra en `Unreleased`.
   Módulo 01.
 - Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
   Módulo 02.
+- Decisión de mantener la práctica integradora del Módulo 02 como actividad estática en esta fase.
+- Contrato pedagógico preliminar del Módulo 03: Componer sin pelear con la estructura.
 
 ### Eliminado
 

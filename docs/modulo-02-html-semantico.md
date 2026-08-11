@@ -103,6 +103,15 @@ La primera versión se publica como contenido estático de Astro, con ejemplos H
 revisión. No se agrega una isla React porque las prácticas actuales no requieren edición, validación
 ni comparación dentro de la aplicación.
 
+## Decisión de implementación v0
+
+La práctica integradora permanece como actividad guiada de análisis y escritura fuera de la
+aplicación. No se agrega una isla React ni persistencia porque el objetivo actual es comprobar si el
+estudiante puede justificar una estructura HTML antes de convertirla en una herramienta editable.
+
+La decisión se revisará cuando exista evidencia de que editar, comparar o validar la estructura
+dentro de la aplicación mejora la comprensión o la verificación del criterio.
+
 ## Límites de esta definición
 
 Este contrato no decide todavía:
