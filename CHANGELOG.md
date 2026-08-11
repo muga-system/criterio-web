@@ -20,6 +20,7 @@ registra en `Unreleased`.
 - Migración de la shell y las rutas principales a Astro con integración React preparada para islas.
 - Reemplazo de la shell HTML mínima por páginas Astro con navegación y vistas placeholder.
 - Shell fijada al viewport con sidebar estable y desplazamiento interno del workspace.
+- Reemplazo del scrollbar nativo por un control propio con track, thumb, flechas y arrastre.
 
 ### Documentado
 

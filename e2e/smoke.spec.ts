@@ -41,7 +41,7 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
 test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   await page.goto("/modulos");
 
-  const metrics = await page.locator(".app-workspace").evaluate((workspace) => ({
+  const metrics = await page.locator("#workspace-scroll-viewport").evaluate((workspace) => ({
     bodyScrollHeight: document.body.scrollHeight,
     documentScrollHeight: document.documentElement.scrollHeight,
     sidebarWidth: document.querySelector<HTMLElement>(".app-sidebar")?.offsetWidth ?? 0,
@@ -54,6 +54,47 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   expect(metrics.documentScrollHeight).toBe(metrics.viewportHeight);
   expect(metrics.sidebarWidth).toBe(240);
   expect(metrics.workspaceScrollHeight).toBeGreaterThan(metrics.workspaceClientHeight);
+
+  const scrollbar = page.getByRole("scrollbar", { name: "Área de trabajo" });
+
+  await expect(scrollbar).toBeVisible();
+  await expect(scrollbar).toHaveAttribute("aria-valuemax", /[1-9]/);
+  await expect(page.locator(".app-workspace-frame .app-scroll-thumb")).toHaveCSS(
+    "border-radius",
+    "0px",
+  );
+
+  const workspace = page.locator("#workspace-scroll-viewport");
+  const scrollTopBeforeArrow = await workspace.evaluate((element) => element.scrollTop);
+
+  await page.getByRole("button", { name: "Desplazar Área de trabajo hacia abajo" }).click();
+  await expect
+    .poll(() =>
+      page.locator("#workspace-scroll-viewport").evaluate((workspace) => workspace.scrollTop),
+    )
+    .toBeGreaterThan(scrollTopBeforeArrow);
+
+  const scrollTopBeforeDrag = await workspace.evaluate((element) => element.scrollTop);
+  const thumb = page.locator(".app-workspace-frame .app-scroll-thumb");
+  const thumbBounds = await thumb.boundingBox();
+
+  if (thumbBounds === null) {
+    throw new Error("No se encontró el thumb del scrollbar del workspace.");
+  }
+
+  await page.mouse.move(
+    thumbBounds.x + thumbBounds.width / 2,
+    thumbBounds.y + thumbBounds.height / 2,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    thumbBounds.x + thumbBounds.width / 2,
+    thumbBounds.y + thumbBounds.height / 2 + 120,
+  );
+  await page.mouse.up();
+  await expect
+    .poll(() => workspace.evaluate((element) => element.scrollTop))
+    .toBeGreaterThan(scrollTopBeforeDrag);
 });
 
 test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {

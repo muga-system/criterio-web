@@ -1,5 +1,6 @@
 ---
 import { appRoutes, type AppRoute } from "../app/navigation/routes";
+import CustomScrollbar from "../components/CustomScrollbar.astro";
 import "../styles/base.css";
 import "../styles/layers.css";
 import "../styles/reset.css";
@@ -33,54 +34,65 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
         <p class="app-topbar-context"><span>Entorno local</span><span>Fase 1</span></p>
       </header>
       <div class="app-layout">
-        <aside class="app-sidebar app-scrollable">
-          <div>
-            <p class="app-sidebar-label">Navegación principal</p>
-            <nav aria-label="Navegación principal">
-              <ul class="app-nav-list">
-                {
-                  appRoutes.map((navigationRoute, index) => {
-                    const isActive = navigationRoute.path === activeNavigationPath;
-
-                    return (
-                      <li>
-                        <a
-                          class:list={["app-nav-link", { "is-active": isActive }]}
-                          href={navigationRoute.path}
-                          aria-current={isActive ? "page" : undefined}
-                        >
-                          <span class="app-nav-index" aria-hidden="true">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                          <span>{navigationRoute.label}</span>
-                        </a>
-                      </li>
-                    );
-                  })
-                }
-              </ul>
-            </nav>
-          </div>
-          <p class="app-sidebar-note">Aprender criterio web mediante práctica guiada.</p>
-        </aside>
-        <main
-          class="app-workspace app-scrollable"
-          id="workspace"
-          tabindex="-1"
-          aria-label={showWorkspaceHeader ? undefined : route.label}
-          aria-labelledby={showWorkspaceHeader ? "workspace-title" : undefined}
+        <CustomScrollbar
+          id="sidebar-scroll-viewport"
+          label="Navegación principal"
+          class="app-sidebar-frame"
         >
-          {
-            showWorkspaceHeader && (
-              <header class="app-workspace-header">
-                <p class="app-workspace-kicker">{route.eyebrow}</p>
-                <h1 id="workspace-title">{route.title}</h1>
-                <p class="app-workspace-description">{route.description}</p>
-              </header>
-            )
-          }
-          <slot />
-        </main>
+          <aside class="app-sidebar">
+            <div>
+              <p class="app-sidebar-label">Navegación principal</p>
+              <nav aria-label="Navegación principal">
+                <ul class="app-nav-list">
+                  {
+                    appRoutes.map((navigationRoute, index) => {
+                      const isActive = navigationRoute.path === activeNavigationPath;
+
+                      return (
+                        <li>
+                          <a
+                            class:list={["app-nav-link", { "is-active": isActive }]}
+                            href={navigationRoute.path}
+                            aria-current={isActive ? "page" : undefined}
+                          >
+                            <span class="app-nav-index" aria-hidden="true">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span>{navigationRoute.label}</span>
+                          </a>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              </nav>
+            </div>
+            <p class="app-sidebar-note">Aprender criterio web mediante práctica guiada.</p>
+          </aside>
+        </CustomScrollbar>
+        <CustomScrollbar
+          id="workspace-scroll-viewport"
+          label="Área de trabajo"
+          class="app-workspace-frame"
+        >
+          <main
+            class="app-workspace"
+            tabindex="-1"
+            aria-label={showWorkspaceHeader ? undefined : route.label}
+            aria-labelledby={showWorkspaceHeader ? "workspace-title" : undefined}
+          >
+            {
+              showWorkspaceHeader && (
+                <header class="app-workspace-header">
+                  <p class="app-workspace-kicker">{route.eyebrow}</p>
+                  <h1 id="workspace-title">{route.title}</h1>
+                  <p class="app-workspace-description">{route.description}</p>
+                </header>
+              )
+            }
+            <slot />
+          </main>
+        </CustomScrollbar>
       </div>
     </div>
   </body>
