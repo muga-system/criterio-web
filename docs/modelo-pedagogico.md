@@ -129,6 +129,10 @@ de código.
 
 ## Siguiente bloque
 
-Revisar la isla React experimental del Módulo 06 y definir el contrato del Módulo 07 sobre pruebas.
-La persistencia y la transferencia portable quedan fuera hasta que la práctica demuestre qué
-evidencia necesita guardar.
+El contrato pedagógico v0 del Módulo 07 sobre pruebas quedó definido en
+[`docs/modulo-07-pruebas.md`](./modulo-07-pruebas.md). La isla React experimental del Módulo 06 se
+mantiene local, sin persistencia, y ya tiene cobertura de navegación e interacción.
+
+El próximo trabajo es revisar la progresión del contrato y, si resulta coherente, publicar el
+contenido inicial del Módulo 07. La persistencia y la transferencia portable quedan fuera hasta que
+la práctica demuestre qué evidencia necesita guardar.

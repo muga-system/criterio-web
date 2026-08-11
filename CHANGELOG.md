@@ -59,6 +59,7 @@ registra en `Unreleased`.
   reservarla como candidata para una isla React.
 - Primera isla React experimental para la práctica local del Módulo 06, con estado efímero y
   navegación verificable entre sus tres lecciones.
+- Contrato pedagógico preliminar del Módulo 07: Verificar antes de cerrar.
 
 ### Eliminado
 
