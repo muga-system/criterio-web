@@ -44,6 +44,21 @@ export const moduleCatalog = [
       { id: "practica-integradora", title: "Práctica integradora" },
     ],
   },
+  {
+    id: "javascript-navegador-04",
+    path: "/modulos/javascript-navegador-04",
+    title: "Módulo 04 · Hacer explícito el comportamiento",
+    summary:
+      "Aprender a representar datos, tomar decisiones y organizar funciones antes de conectar JavaScript con la interfaz.",
+    lessonCount: 3,
+    status: "Contenido inicial",
+    lessons: [
+      { id: "leccion-01", title: "Lección 01 · Datos que representan una situación" },
+      { id: "leccion-02", title: "Lección 02 · Decisiones y casos límite" },
+      { id: "leccion-03", title: "Lección 03 · Funciones y estado explícito" },
+      { id: "practica-integradora", title: "Práctica integradora" },
+    ],
+  },
 ] as const;
 
 export type ModuleSummary = (typeof moduleCatalog)[number];

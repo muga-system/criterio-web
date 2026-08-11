@@ -1,10 +1,9 @@
 # Módulo 04 · Hacer explícito el comportamiento
 
-Estado: contrato pedagógico v0 para revisión. No crea todavía una ruta ni contenido publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento define la siguiente unidad curricular después de CSS y composición. El módulo deberá
-enseñar a representar datos, tomar decisiones y organizar funciones antes de conectar JavaScript
-con el DOM o con eventos.
+Este documento define la unidad curricular y el contenido publicado después de CSS y composición. La
+ruta está disponible en `src/pages/modulos/javascript-navegador-04.md`.
 
 ## Identidad
 
@@ -103,9 +102,18 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 ## Forma de contenido
 
-La primera versión puede publicarse como contenido estático de Astro, con ejemplos de JavaScript,
-tablas de datos y ejercicios de razonamiento. No se propone una isla React hasta que una práctica
-requiera ejecución, comparación o validación dentro de la aplicación.
+La primera versión se publica como contenido estático de Astro, con ejemplos de JavaScript, tablas
+de datos y ejercicios de razonamiento. No se agrega una isla React porque las prácticas actuales no
+requieren ejecución, comparación ni validación dentro de la aplicación.
+
+## Decisión de implementación v0
+
+La práctica integradora permanece como actividad guiada de análisis y escritura fuera de la
+aplicación. No se agrega una isla React ni persistencia porque el objetivo actual es comprobar si el
+estudiante puede modelar un comportamiento antes de conectarlo con una interfaz.
+
+La decisión se revisará cuando exista evidencia de que ejecutar, comparar o validar JavaScript dentro
+de la aplicación mejora la comprensión o la verificación del criterio.
 
 ## Límites de esta definición
 

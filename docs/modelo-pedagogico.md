@@ -110,7 +110,7 @@ cuando se escriban los primeros contenidos:
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
 El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los
-primeros tres módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
+primeros cuatro módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
 de estas unidades.
 
 ## Límites de esta definición
@@ -129,6 +129,5 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contrato del [Módulo 04 · Hacer explícito el comportamiento](./modulo-04-javascript-navegador.md)
-y el contenido publicado de los Módulos 01, 02 y 03. Después se podrá escribir el contenido de
-JavaScript sin agregar todavía DOM, persistencia ni una herramienta interactiva.
+Revisar el contenido publicado de los Módulos 01, 02, 03 y 04. Después se podrá decidir si el
+Módulo 04 necesita una práctica interactiva antes de definir el contrato de TypeScript.
