@@ -58,6 +58,8 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   const scrollbar = page.getByRole("scrollbar", { name: "Área de trabajo" });
 
   await expect(scrollbar).toBeVisible();
+  await expect(page.locator(".app-sidebar-frame .app-scrollbar")).toBeHidden();
+  await expect(page.locator(".app-workspace-frame .app-scroll-icon")).toHaveCount(2);
   await expect(scrollbar).toHaveAttribute("aria-valuemax", /[1-9]/);
   await expect(page.locator(".app-workspace-frame .app-scroll-thumb")).toHaveCSS(
     "border-radius",

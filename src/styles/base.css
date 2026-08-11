@@ -424,9 +424,14 @@
     display: flex;
     width: 1rem;
     flex-direction: column;
-    padding-block: 0.25rem;
+    padding-block: 0.5rem;
     background: var(--app-scrollbar-surface);
     user-select: none;
+  }
+
+  .app-scroll-frame[data-scrollable="false"] > .app-scrollbar,
+  .app-sidebar-frame:not([data-scrollable="true"]) > .app-scrollbar {
+    display: none;
   }
 
   .app-scrollbar button {
@@ -439,9 +444,14 @@
     color: var(--color-text-muted);
     background: transparent;
     cursor: pointer;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    line-height: 1;
+    line-height: 0;
+  }
+
+  .app-scroll-icon {
+    display: block;
+    width: 0.875rem;
+    height: 0.875rem;
+    overflow: visible;
   }
 
   :where(.app-scrollbar button:disabled) {
@@ -463,6 +473,7 @@
     position: relative;
     flex: 1;
     min-height: 2.5rem;
+    margin-block: 0.25rem;
     border-inline-start: 1px solid var(--color-border);
     cursor: pointer;
   }
