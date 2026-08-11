@@ -55,6 +55,10 @@ isla con estado efímero; las futuras islas se agregarán únicamente cuando una
 estado o comportamiento de cliente. La arquitectura se ampliará por capacidades en las fases
 siguientes.
 
+La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icono. Las nuevas piezas
+visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual
+sobrio y evitando SVG manuales duplicados.
+
 ## Versionado y releases
 
 El proyecto se encuentra en desarrollo previo a su primera release y mantiene la versión `0.0.0`

@@ -1,4 +1,6 @@
 ---
+import { ChevronDown, ChevronUp } from "@lucide/astro";
+
 interface Props {
   class?: string;
   id: string;
@@ -20,14 +22,7 @@ const { class: className = "", id, label, viewportClass = "" } = Astro.props;
       data-scroll-step="-1"
       type="button"
     >
-      <svg aria-hidden="true" class="app-scroll-icon" fill="none" viewBox="0 0 24 24">
-        <path
-          d="m18 15-6-6-6 6"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
-      </svg>
+      <ChevronUp aria-hidden="true" class="app-scroll-icon" />
     </button>
     <div
       aria-controls={id}
@@ -49,14 +44,7 @@ const { class: className = "", id, label, viewportClass = "" } = Astro.props;
       data-scroll-step="1"
       type="button"
     >
-      <svg aria-hidden="true" class="app-scroll-icon" fill="none" viewBox="0 0 24 24">
-        <path
-          d="m6 9 6 6 6-6"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
-      </svg>
+      <ChevronDown aria-hidden="true" class="app-scroll-icon" />
     </button>
   </div>
 </div>

@@ -14,6 +14,7 @@ registra en `Unreleased`.
 - Prettier, Stylelint y scripts de validación.
 - Vitest, Vitest Browser Mode y Playwright.
 - Smoke E2E inicial para Chromium, Firefox y WebKit.
+- Integración de `@lucide/astro` para la iconografía de interfaz.
 
 ### Cambiado
 
@@ -26,6 +27,7 @@ registra en `Unreleased`.
 - Continuidad de la línea del track desde el extremo superior hasta el inferior del scrollbar.
 - Ajuste del thumb para tocar la línea, separadores para las zonas de control y botones cuadrados.
 - Extensión del thumb al ancho completo del track para eliminar el espacio lateral restante.
+- Reemplazo de los SVG manuales del scrollbar por componentes `ChevronUp` y `ChevronDown` de Lucide.
 
 ### Documentado
 
