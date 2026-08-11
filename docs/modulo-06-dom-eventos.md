@@ -1,6 +1,6 @@
 # Módulo 06 · Conectar estado y representación
 
-Estado: contrato pedagógico v0 con contenido inicial publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado e isla React local experimental.
 
 Este documento define la unidad curricular y el contenido publicado después de TypeScript. La ruta
 está disponible en `src/pages/modulos/dom-eventos-06.md`.
@@ -20,9 +20,9 @@ El DOM es una representación de un estado, no el lugar donde deberían quedar e
 reglas de una aplicación. Los eventos aportan entradas; el modelo decide qué cambia; una función de
 render vuelve a representar el resultado.
 
-Esta unidad conecta las decisiones de JavaScript y TypeScript con una interfaz real. También es la
-primera candidata para una isla React, pero el contrato se mantiene independiente del framework para
-que el estudiante pueda entender primero el comportamiento del navegador.
+Esta unidad conecta las decisiones de JavaScript y TypeScript con una interfaz real. También incorpora
+una primera isla React local para hacer visible ese flujo, pero el contrato se mantiene independiente
+del framework para que el estudiante pueda entender primero el comportamiento del navegador.
 
 ## Resultado de aprendizaje
 
@@ -85,9 +85,9 @@ Debe entregar:
 5. la función que representa el nuevo resultado;
 6. una verificación con teclado, evento repetido y estado inicial.
 
-La práctica no pedirá persistencia, transferencia portable, red ni un componente complejo. Puede
-ser una candidata para una isla React en una etapa posterior, pero primero debe demostrarse el flujo
-con un modelo pequeño y verificable.
+La práctica no pedirá persistencia, transferencia portable, red ni un componente complejo. La isla
+experimental demuestra el flujo con un modelo pequeño y verificable, sin convertir todavía ese
+estado en progreso del producto.
 
 ## Criterio de finalización
 
@@ -104,22 +104,23 @@ No se asignan puntos ni una calificación numérica en esta versión.
 ## Forma de contenido
 
 La primera versión se publica como contenido estático de Astro, con ejemplos de DOM y eventos. La
-práctica integradora es la primera candidata del recorrido para una isla React, siempre que una
-implementación posterior mantenga separado el estado de la representación y no introduzca
-persistencia antes de definirla.
+práctica integradora se acompaña de una isla React experimental que mantiene separado el estado de la
+representación y no introduce persistencia.
 
 ## Decisión de implementación v0
 
-El contenido y la práctica permanecen estáticos en esta fase. La práctica integradora queda
-identificada como candidata para una isla React, pero no se implementa todavía porque primero hay que
-revisar el flujo de estado, sus límites locales y la evidencia de que la interacción mejora el
-aprendizaje.
+El contenido explicativo permanece estático en Astro. La práctica integradora se implementa en
+`src/components/PracticeNavigator.tsx` y se monta con `client:load` desde
+`src/layouts/ModuleLayout.astro`. Usa estado local de React para avanzar entre tres lecciones,
+actualiza la representación desde ese estado y se reinicia al recargar la página. No persiste datos,
+no exporta progreso y no produce todavía un estado de finalización del producto. Esta decisión queda
+abierta a revisión después de observar la práctica y definir la evidencia pedagógica que deberá
+conservarse.
 
 ## Límites de esta definición
 
 Este contrato no decide todavía:
 
-- la implementación concreta de la isla React;
 - el esquema de estado que se persistirá;
 - IndexedDB, exportación o tokens portables;
 - eventos complejos, delegación avanzada o asincronía;

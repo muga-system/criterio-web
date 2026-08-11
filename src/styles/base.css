@@ -375,6 +375,68 @@
     font-family: var(--font-mono);
   }
 
+  .app-practice-card {
+    margin-block: var(--space-4) 0;
+    padding: var(--space-2);
+    border: 1px solid var(--color-accent);
+    background: var(--color-surface);
+  }
+
+  .app-practice-card h2 {
+    margin-block: 0 var(--space-1);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .app-practice-card > p:not(.app-placeholder-label) {
+    max-width: 60ch;
+    color: var(--color-text-muted);
+  }
+
+  .app-practice-progress {
+    display: block;
+    width: 100%;
+    height: 0.75rem;
+    accent-color: var(--color-accent);
+  }
+
+  .app-practice-status {
+    margin-block: var(--space-1) var(--space-2);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .app-practice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .app-practice-actions button {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-background);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  .app-practice-actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  .app-practice-actions button:hover:not(:disabled) {
+    background: var(--color-focus);
+  }
+
+  .app-practice-actions .app-practice-reset {
+    background: transparent;
+    color: var(--color-text);
+  }
+
   .app-module-list-header p:last-child,
   .app-placeholder p:last-child {
     max-width: 60ch;

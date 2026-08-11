@@ -1,10 +1,13 @@
 ---
 import { appRoutes } from "../app/navigation/routes";
 import { moduleCatalog } from "../app/modules/module-catalog";
+import PracticeNavigator from "../components/PracticeNavigator";
 import AppLayout from "./AppLayout.astro";
 
 const route = appRoutes[1];
-const module = moduleCatalog.find((entry) => entry.path === Astro.url.pathname) ?? moduleCatalog[0];
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const module = moduleCatalog.find((entry) => entry.path === currentPath) ?? moduleCatalog[0];
+const hasInteractivePractice = module.id === "dom-eventos-06";
 ---
 
 <AppLayout route={route} showWorkspaceHeader={false}>
@@ -26,5 +29,6 @@ const module = moduleCatalog.find((entry) => entry.path === Astro.url.pathname) 
     <article class="module-content">
       <slot />
     </article>
+    {hasInteractivePractice && <PracticeNavigator client:load />}
   </div>
 </AppLayout>

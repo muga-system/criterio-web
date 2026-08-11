@@ -129,5 +129,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado de los Módulos 01, 02, 03, 04, 05 y 06. Después se podrá evaluar la
-primera isla React sin agregar todavía persistencia ni transferencia portable.
+Revisar la isla React experimental del Módulo 06 y definir el contrato del Módulo 07 sobre pruebas.
+La persistencia y la transferencia portable quedan fuera hasta que la práctica demuestre qué
+evidencia necesita guardar.

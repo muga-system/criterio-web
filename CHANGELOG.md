@@ -48,6 +48,8 @@ registra en `Unreleased`.
   Módulo 06.
 - Decisión de mantener la práctica integradora del Módulo 06 como actividad estática en esta fase y
   reservarla como candidata para una isla React.
+- Primera isla React experimental para la práctica local del Módulo 06, con estado efímero y
+  navegación verificable entre sus tres lecciones.
 
 ### Eliminado
 

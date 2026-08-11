@@ -7,9 +7,10 @@ que sostiene los mismos criterios que explica.
 ## Estado
 
 La Fase 1 está completada: el repositorio tiene la base técnica, la configuración de calidad, los
-tests automatizados iniciales, una shell Astro con navegación principal y el contenido estático
-inicial de los Módulos 01, 02, 03, 04, 05 y 06. La persistencia, las prácticas interactivas y el
-motor de aprendizaje todavía no forman parte de esta fase.
+tests automatizados iniciales, una shell Astro con navegación principal, el contenido estático
+inicial de los Módulos 01, 02, 03, 04, 05 y 06, y una primera isla React experimental para la
+práctica del Módulo 06. La persistencia, la transferencia portable y el motor de aprendizaje
+todavía no forman parte de esta fase.
 
 ## Requisitos
 
@@ -48,10 +49,11 @@ npm ci
 - `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
 - `e2e/`: recorridos end-to-end.
 
-Astro renderiza las páginas y el contenido estático, incluido el Módulo 01 publicado como Markdown.
-React queda integrado para futuras islas interactivas, que se agregarán únicamente cuando una
-capacidad necesite estado o comportamiento de cliente. La arquitectura se ampliará por capacidades
-en las fases siguientes.
+Astro renderiza las páginas y el contenido estático, incluido el contenido de los seis módulos
+publicados como Markdown. React se usa en la práctica local experimental del Módulo 06, montada como
+isla con estado efímero; las futuras islas se agregarán únicamente cuando una capacidad necesite
+estado o comportamiento de cliente. La arquitectura se ampliará por capacidades en las fases
+siguientes.
 
 ## Versionado y releases
 
