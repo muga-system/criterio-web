@@ -105,11 +105,20 @@ No necesita una isla React hasta que una práctica demuestre que la interacción
 real. Si una futura versión permite completar la ficha dentro de la aplicación, esa interfaz será
 una candidata para React.
 
+## Decisión de implementación v0
+
+La práctica integradora permanece como actividad guiada de lectura y escritura fuera de la
+aplicación. No se agrega una isla React ni persistencia porque el objetivo actual es comprobar si la
+secuencia de análisis se entiende, no convertir la ficha en un formulario.
+
+La decisión se revisará cuando exista evidencia de uso que permita evaluar si una interfaz dentro de
+la aplicación mejora la comprensión o la verificación del criterio.
+
 ## Decisiones todavía abiertas
 
 - texto definitivo de las situaciones y ejemplos;
 - cantidad de ejercicios por lección;
-- si la ficha se completa dentro de la interfaz o se responde como revisión guiada;
+- si una futura versión de la ficha se completa dentro de la interfaz;
 - evidencia exacta que guardará el progreso;
 - relación entre este módulo y el comienzo de HTML semántico.
 

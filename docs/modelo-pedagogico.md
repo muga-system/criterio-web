@@ -128,6 +128,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado del [Módulo 01 · Observar antes de construir](./modulo-01-observar-antes-de-construir.md)
-y decidir si su práctica integradora necesita una interfaz interactiva. Después se podrá definir el
-contrato y el contenido del módulo de HTML semántico.
+Revisar el contrato del [Módulo 02 · Estructurar antes de decorar](./modulo-02-html-semantico.md)
+junto con el contenido publicado del Módulo 01. Después se podrá escribir el contenido del Módulo
+02 sin agregar todavía persistencia ni una herramienta interactiva.
