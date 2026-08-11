@@ -9,9 +9,15 @@
     text-rendering: optimizelegibility;
   }
 
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
   body {
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 0;
     margin: 0;
     background: var(--color-background);
   }
@@ -21,7 +27,11 @@
   }
 
   .app-shell {
-    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 4.5rem minmax(0, 1fr);
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
     background: var(--color-background);
   }
 
@@ -29,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 4.5rem;
+    height: 4.5rem;
     padding: 0 var(--space-4);
     border-block-end: 1px solid var(--color-border);
     background: var(--color-shell);
@@ -73,7 +83,8 @@
   .app-layout {
     display: grid;
     grid-template-columns: 15rem minmax(0, 1fr);
-    min-height: calc(100vh - 4.5rem);
+    min-height: 0;
+    overflow: hidden;
   }
 
   .app-sidebar {
@@ -81,9 +92,12 @@
     flex-direction: column;
     justify-content: space-between;
     gap: var(--space-4);
+    min-height: 0;
     padding: var(--space-4) var(--space-2);
     border-inline-end: 1px solid var(--color-border);
     background: var(--color-shell);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .app-sidebar-label,
@@ -153,8 +167,12 @@
 
   .app-workspace {
     min-width: 0;
+    min-height: 0;
     padding: clamp(var(--space-3), 6vw, 5rem);
     background: var(--color-background);
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
   }
 
   .app-workspace-header,
@@ -460,9 +478,11 @@
 
     .app-layout {
       grid-template-columns: 1fr;
+      grid-template-rows: minmax(0, auto) minmax(0, 1fr);
     }
 
     .app-sidebar {
+      max-height: 12rem;
       gap: var(--space-2);
       padding: var(--space-2);
       border-inline-end: 0;

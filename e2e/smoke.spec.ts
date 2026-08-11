@@ -38,6 +38,24 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
   );
 });
 
+test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
+  await page.goto("/modulos");
+
+  const metrics = await page.locator(".app-workspace").evaluate((workspace) => ({
+    bodyScrollHeight: document.body.scrollHeight,
+    documentScrollHeight: document.documentElement.scrollHeight,
+    sidebarWidth: document.querySelector<HTMLElement>(".app-sidebar")?.offsetWidth ?? 0,
+    viewportHeight: window.innerHeight,
+    workspaceClientHeight: workspace.clientHeight,
+    workspaceScrollHeight: workspace.scrollHeight,
+  }));
+
+  expect(metrics.bodyScrollHeight).toBe(metrics.viewportHeight);
+  expect(metrics.documentScrollHeight).toBe(metrics.viewportHeight);
+  expect(metrics.sidebarWidth).toBe(240);
+  expect(metrics.workspaceScrollHeight).toBeGreaterThan(metrics.workspaceClientHeight);
+});
+
 test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {
   await page.goto("/modulos");
 
