@@ -129,5 +129,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado de los Módulos 01, 02, 03 y 04. Después se podrá decidir si el
-Módulo 04 necesita una práctica interactiva antes de definir el contrato de TypeScript.
+Revisar el contrato del [Módulo 05 · Hacer visibles los contratos](./modulo-05-typescript.md) y el
+contenido publicado de los Módulos 01, 02, 03 y 04. Después se podrá escribir el contenido de
+TypeScript sin agregar todavía DOM, persistencia ni una herramienta interactiva.
