@@ -33,7 +33,7 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
         <p class="app-topbar-context"><span>Entorno local</span><span>Fase 1</span></p>
       </header>
       <div class="app-layout">
-        <aside class="app-sidebar">
+        <aside class="app-sidebar app-scrollable">
           <div>
             <p class="app-sidebar-label">Navegación principal</p>
             <nav aria-label="Navegación principal">
@@ -64,7 +64,7 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
           <p class="app-sidebar-note">Aprender criterio web mediante práctica guiada.</p>
         </aside>
         <main
-          class="app-workspace"
+          class="app-workspace app-scrollable"
           id="workspace"
           tabindex="-1"
           aria-label={showWorkspaceHeader ? undefined : route.label}

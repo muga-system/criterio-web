@@ -172,7 +172,48 @@
     background: var(--color-background);
     overflow: hidden auto;
     overscroll-behavior: contain;
+  }
+
+  .app-scrollable {
+    scrollbar-color: var(--color-border-strong) transparent;
     scrollbar-gutter: stable;
+    scrollbar-width: thin;
+  }
+
+  .app-scrollable::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+
+  .app-scrollable::-webkit-scrollbar-track {
+    margin-block: 0.75rem;
+    background: transparent;
+    box-shadow: inset 1px 0 0 var(--color-border);
+  }
+
+  .app-scrollable::-webkit-scrollbar-thumb {
+    min-height: 3rem;
+    border: 0.1875rem solid transparent;
+    border-radius: 0;
+    background-color: var(--color-border-strong);
+    background-clip: padding-box;
+  }
+
+  .app-scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-muted);
+  }
+
+  .app-scrollable::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-accent);
+  }
+
+  .app-scrollable::-webkit-scrollbar-button {
+    display: block;
+    height: 0.5rem;
+    background: transparent;
+  }
+
+  .app-scrollable::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   .app-workspace-header,
