@@ -1,10 +1,10 @@
 # Modelo pedagógico inicial
 
-Estado: definición base para la siguiente fase de Criterio Web.
+Estado: definición base con el Módulo 01 publicado como primera prueba del modelo.
 
-Este documento define la estructura de aprendizaje antes de crear contenidos concretos o rutas
-individuales de módulos. El código y los contenidos futuros deben respetar este límite hasta que
-una decisión posterior lo modifique explícitamente.
+Este documento define la estructura de aprendizaje que guía el contenido publicado y las unidades
+futuras. El código y los contenidos deben respetar este límite hasta que una decisión posterior lo
+modifique explícitamente.
 
 ## Objetivo
 
@@ -116,7 +116,7 @@ módulo se publica como prueba del modelo; las rutas siguientes esperan la revis
 
 Este documento no decide todavía:
 
-- el contenido textual de cada módulo;
+- el contenido textual de los módulos siguientes ni las ampliaciones del Módulo 01;
 - la cantidad final de lecciones;
 - el formato exacto de los ejercicios;
 - el esquema técnico de IndexedDB;
@@ -128,5 +128,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contrato del [Módulo 01 · Observar antes de construir](./modulo-01-observar-antes-de-construir.md).
-Después se podrá escribir su contenido y decidir si la primera práctica necesita una isla React.
+Revisar el contenido publicado del [Módulo 01 · Observar antes de construir](./modulo-01-observar-antes-de-construir.md)
+y decidir si su práctica integradora necesita una interfaz interactiva. Después se podrá definir el
+contrato y el contenido del módulo de HTML semántico.

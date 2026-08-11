@@ -7,9 +7,9 @@ que sostiene los mismos criterios que explica.
 ## Estado
 
 La Fase 1 está completada: el repositorio tiene la base técnica, la configuración de calidad, los
-tests automatizados iniciales y una shell Astro con navegación principal y vistas placeholder.
-El contenido curricular, la persistencia y el motor de aprendizaje todavía no forman parte de esta
-fase.
+tests automatizados iniciales, una shell Astro con navegación principal y el contenido estático
+inicial del Módulo 01. La persistencia, las prácticas interactivas y el motor de aprendizaje todavía
+no forman parte de esta fase.
 
 ## Requisitos
 
@@ -40,16 +40,18 @@ npm ci
 ## Estructura actual
 
 - `src/app/navigation/`: modelo de rutas y etiquetas de navegación.
+- `src/app/modules/`: catálogo mínimo de módulos publicados.
 - `src/components/`: componentes Astro y futuras islas React.
 - `src/layouts/`: shell y layout compartido de la aplicación.
-- `src/pages/`: páginas Astro correspondientes a las rutas principales.
+- `src/pages/`: páginas Astro de la shell y contenido publicado de los módulos.
 - `src/styles/`: capas CSS, tokens y estilos base.
 - `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
 - `e2e/`: recorridos end-to-end.
 
-Astro renderiza las páginas y el contenido estático. React queda integrado para futuras islas
-interactivas, que se agregarán únicamente cuando una capacidad necesite estado o comportamiento de
-cliente. La arquitectura se ampliará por capacidades en las fases siguientes.
+Astro renderiza las páginas y el contenido estático, incluido el Módulo 01 publicado como Markdown.
+React queda integrado para futuras islas interactivas, que se agregarán únicamente cuando una
+capacidad necesite estado o comportamiento de cliente. La arquitectura se ampliará por capacidades
+en las fases siguientes.
 
 ## Versionado y releases
 
