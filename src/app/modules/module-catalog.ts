@@ -14,6 +14,21 @@ export const moduleCatalog = [
       { id: "practica-integradora", title: "Práctica integradora" },
     ],
   },
+  {
+    id: "html-semantico-02",
+    path: "/modulos/html-semantico-02",
+    title: "Módulo 02 · Estructurar antes de decorar",
+    summary:
+      "Aprender a expresar regiones, jerarquías y relaciones del contenido con HTML semántico antes de aplicar estilos.",
+    lessonCount: 3,
+    status: "Contenido inicial",
+    lessons: [
+      { id: "leccion-01", title: "Lección 01 · Significado antes que apariencia" },
+      { id: "leccion-02", title: "Lección 02 · Regiones y agrupaciones" },
+      { id: "leccion-03", title: "Lección 03 · Títulos, texto y listas" },
+      { id: "practica-integradora", title: "Práctica integradora" },
+    ],
+  },
 ] as const;
 
 export type ModuleSummary = (typeof moduleCatalog)[number];

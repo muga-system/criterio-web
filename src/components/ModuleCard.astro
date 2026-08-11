@@ -17,6 +17,8 @@ const { module } = Astro.props;
   <p>{module.summary}</p>
   <div class="app-module-card-footer">
     <span>{module.lessonCount} lecciones</span>
-    <a href={module.path}>Abrir módulo <span aria-hidden="true">→</span></a>
+    <a href={module.path} aria-label={`Abrir ${module.title}`}>
+      Abrir módulo <span aria-hidden="true">→</span>
+    </a>
   </div>
 </article>

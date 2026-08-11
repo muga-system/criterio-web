@@ -1,10 +1,9 @@
 # Módulo 02 · Estructurar antes de decorar
 
-Estado: contrato pedagógico v0 para revisión. No crea todavía una ruta ni contenido publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento define la siguiente unidad curricular a partir del modelo probado en el Módulo 01.
-El módulo deberá enseñar a traducir una necesidad de contenido en una estructura HTML que conserve
-su significado antes de aplicar estilos.
+Este documento define la unidad curricular y el contenido publicado a partir del modelo probado en
+el Módulo 01. La ruta está disponible en `src/pages/modulos/html-semantico-02.md`.
 
 ## Identidad
 
@@ -29,8 +28,8 @@ comprobar que esa decisión sigue siendo comprensible antes de agregar CSS.
 Al terminar el módulo, el estudiante debería poder:
 
 - distinguir significado estructural de apariencia visual;
-- elegir elementos como `main`, `header`, `nav`, `article`, `section` y `footer` según el contenido
-  que representan;
+- elegir elementos como `main`, `header`, `nav`, `article`, `section`, `aside` y `footer` según el
+  contenido que representan;
 - organizar títulos con una jerarquía que describa el documento, no el tamaño deseado;
 - representar agrupaciones de contenido con párrafos y listas en lugar de simularlas con saltos de
   línea o elementos genéricos;
@@ -54,7 +53,8 @@ estructura HTML, identificando qué decisiones todavía no dependen de CSS.
 posición en pantalla.
 
 El estudiante analiza un documento pequeño y decide cuándo corresponde usar `main`, `header`, `nav`,
-`article`, `section` o `footer`. La decisión deberá justificarse por el contenido que agrupa.
+`article`, `section`, `aside` o `footer`. La decisión deberá justificarse por el contenido que
+agrupa.
 
 **Práctica propuesta:** ordenar el esqueleto semántico de una página educativa con navegación,
 contenido principal, unidades independientes y cierre.
@@ -99,9 +99,9 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 ## Forma de contenido
 
-La primera versión puede permanecer como contenido estático de Astro, con ejemplos HTML y
-actividades de revisión. No se propone una isla React para este módulo hasta que una práctica
-requiera edición, validación o comparación dentro de la aplicación.
+La primera versión se publica como contenido estático de Astro, con ejemplos HTML y actividades de
+revisión. No se agrega una isla React porque las prácticas actuales no requieren edición, validación
+ni comparación dentro de la aplicación.
 
 ## Límites de esta definición
 

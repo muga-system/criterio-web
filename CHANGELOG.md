@@ -28,6 +28,8 @@ registra en `Unreleased`.
 - Contrato pedagógico preliminar del Módulo 02: Estructurar antes de decorar.
 - Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
   Módulo 01.
+- Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
+  Módulo 02.
 
 ### Eliminado
 

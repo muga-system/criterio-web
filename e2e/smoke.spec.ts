@@ -41,8 +41,13 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
 test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {
   await page.goto("/modulos");
 
-  await expect(page.getByRole("link", { name: "Abrir módulo" })).toBeVisible();
-  await page.getByRole("link", { name: "Abrir módulo" }).click();
+  const moduleLink = page.getByRole("link", {
+    name: "Abrir Módulo 01 · Observar antes de construir",
+    exact: true,
+  });
+
+  await expect(moduleLink).toBeVisible();
+  await moduleLink.click();
 
   await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01");
   await expect(
@@ -64,4 +69,28 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
   ).toHaveAttribute("href", "#leccion-01");
   await moduleContents.getByRole("link", { name: "Lección 01 · Del pedido al problema" }).click();
   await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01#leccion-01");
+});
+
+test("abre el segundo módulo desde el catálogo", async ({ page }) => {
+  await page.goto("/modulos");
+
+  await expect(page.locator(".app-module-card")).toHaveCount(2);
+  await page
+    .getByRole("link", { name: "Abrir Módulo 02 · Estructurar antes de decorar", exact: true })
+    .click();
+
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/html-semantico-02");
+  await expect(
+    page.getByRole("heading", { name: "Módulo 02 · Estructurar antes de decorar", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Módulos", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(
+    page.getByRole("heading", {
+      name: "Lección 01 · Significado antes que apariencia",
+      exact: true,
+    }),
+  ).toBeVisible();
 });

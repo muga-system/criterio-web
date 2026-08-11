@@ -109,8 +109,9 @@ cuando se escriban los primeros contenidos:
 6. **DOM y eventos.** Relación entre estado, interacción y representación de la interfaz.
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
-El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. El primer
-módulo se publica como prueba del modelo; las rutas siguientes esperan la revisión de esta unidad.
+El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los primeros
+dos módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión de estas
+unidades.
 
 ## Límites de esta definición
 
@@ -128,6 +129,5 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contrato del [Módulo 02 · Estructurar antes de decorar](./modulo-02-html-semantico.md)
-junto con el contenido publicado del Módulo 01. Después se podrá escribir el contenido del Módulo
-02 sin agregar todavía persistencia ni una herramienta interactiva.
+Revisar el contenido publicado de los Módulos 01 y 02. Después se podrá decidir si el Módulo 02
+necesita una práctica interactiva antes de definir el contrato de CSS y composición.
