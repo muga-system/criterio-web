@@ -7,10 +7,12 @@ import "../styles/tokens.css";
 
 interface Props {
   route: AppRoute;
+  showWorkspaceHeader?: boolean;
 }
 
-const { route } = Astro.props;
+const { route, showWorkspaceHeader = true } = Astro.props;
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
+const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : currentPath;
 ---
 
 <!doctype html>
@@ -38,7 +40,7 @@ const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replac
               <ul class="app-nav-list">
                 {
                   appRoutes.map((navigationRoute, index) => {
-                    const isActive = navigationRoute.path === currentPath;
+                    const isActive = navigationRoute.path === activeNavigationPath;
 
                     return (
                       <li>
@@ -61,12 +63,22 @@ const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replac
           </div>
           <p class="app-sidebar-note">Aprender criterio web mediante práctica guiada.</p>
         </aside>
-        <main class="app-workspace" id="workspace" tabindex="-1" aria-labelledby="workspace-title">
-          <header class="app-workspace-header">
-            <p class="app-workspace-kicker">{route.eyebrow}</p>
-            <h1 id="workspace-title">{route.title}</h1>
-            <p class="app-workspace-description">{route.description}</p>
-          </header>
+        <main
+          class="app-workspace"
+          id="workspace"
+          tabindex="-1"
+          aria-label={showWorkspaceHeader ? undefined : route.label}
+          aria-labelledby={showWorkspaceHeader ? "workspace-title" : undefined}
+        >
+          {
+            showWorkspaceHeader && (
+              <header class="app-workspace-header">
+                <p class="app-workspace-kicker">{route.eyebrow}</p>
+                <h1 id="workspace-title">{route.title}</h1>
+                <p class="app-workspace-description">{route.description}</p>
+              </header>
+            )
+          }
           <slot />
         </main>
       </div>

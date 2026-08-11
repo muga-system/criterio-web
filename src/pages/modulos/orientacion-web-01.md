@@ -1,11 +1,8 @@
-# Módulo 01 · Contenido inicial
+---
+layout: ../../layouts/ModuleLayout.astro
+---
 
-Estado: borrador pedagógico v0.
-
-Este documento desarrolla el contrato de [Observar antes de construir](./modulo-01-observar-antes-de-construir.md)
-sin convertirlo todavía en una ruta de la aplicación.
-
-## Apertura
+# Módulo 01 · Observar antes de construir
 
 Construir para la web no empieza escribiendo código. Empieza entendiendo qué se intenta resolver,
 qué información está disponible y cómo se va a reconocer un resultado correcto.
@@ -189,9 +186,3 @@ El criterio web no consiste en acumular herramientas. Consiste en poder explicar
 resolviendo, por qué una decisión encaja con el problema y cómo se va a comprobar el resultado.
 
 La próxima etapa será aplicar esta forma de pensar a una estructura concreta: HTML semántico.
-
-## Decisión de implementación
-
-Este borrador no necesita React. Puede publicarse como contenido estático de Astro. Una isla React
-solo tendría sentido si la ficha se convierte en una práctica interactiva con validación, estado
-local o recuperación del trabajo del estudiante.

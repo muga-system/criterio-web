@@ -1,11 +1,19 @@
 ---
+import { moduleCatalog } from "../../app/modules/module-catalog";
 import { appRoutes } from "../../app/navigation/routes";
-import PlaceholderView from "../../components/PlaceholderView.astro";
+import ModuleCard from "../../components/ModuleCard.astro";
 import AppLayout from "../../layouts/AppLayout.astro";
 
 const route = appRoutes[1];
 ---
 
 <AppLayout route={route}>
-  <PlaceholderView route={route} />
+  <section class="app-module-list" aria-labelledby="module-list-title">
+    <header class="app-module-list-header">
+      <p class="app-placeholder-label">Recorrido educativo</p>
+      <h2 id="module-list-title">Módulos disponibles</h2>
+      <p>Un primer módulo para practicar cómo observar y verificar una decisión web.</p>
+    </header>
+    {moduleCatalog.map((module) => <ModuleCard module={module} />)}
+  </section>
 </AppLayout>

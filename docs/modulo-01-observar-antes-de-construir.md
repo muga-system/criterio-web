@@ -1,9 +1,9 @@
 # Módulo 01 · Observar antes de construir
 
-Estado: contrato pedagógico v0 para revisión.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento describe el primer módulo como unidad de aprendizaje. No crea todavía una ruta
-Astro, contenido publicado, persistencia ni una isla React.
+Este documento describe el primer módulo como unidad de aprendizaje. El contenido publicado vive en
+`src/pages/modulos/orientacion-web-01.md`; todavía no incluye persistencia ni una isla React.
 
 ## Identidad
 
@@ -113,5 +113,5 @@ una candidata para React.
 - evidencia exacta que guardará el progreso;
 - relación entre este módulo y el comienzo de HTML semántico.
 
-Estas decisiones deben resolverse al escribir la primera versión de contenido, antes de crear la
+Estas decisiones deben resolverse antes de ampliar el contenido o agregar nuevas interacciones a la
 ruta individual del módulo.

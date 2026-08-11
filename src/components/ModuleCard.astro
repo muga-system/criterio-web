@@ -1,0 +1,22 @@
+---
+import type { ModuleSummary } from "../app/modules/module-catalog";
+
+interface Props {
+  module: ModuleSummary;
+}
+
+const { module } = Astro.props;
+---
+
+<article class="app-module-card">
+  <div class="app-module-card-header">
+    <p class="app-module-card-status">{module.status}</p>
+    <p class="app-module-card-index">{module.id}</p>
+  </div>
+  <h2>{module.title}</h2>
+  <p>{module.summary}</p>
+  <div class="app-module-card-footer">
+    <span>{module.lessonCount} lecciones</span>
+    <a href={module.path}>Abrir módulo <span aria-hidden="true">→</span></a>
+  </div>
+</article>

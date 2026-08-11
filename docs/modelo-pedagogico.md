@@ -109,8 +109,8 @@ cuando se escriban los primeros contenidos:
 6. **DOM y eventos.** Relación entre estado, interacción y representación de la interfaz.
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
-El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. No se
-crearán rutas individuales de módulos hasta cerrar esa revisión.
+El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. El primer
+módulo se publica como prueba del modelo; las rutas siguientes esperan la revisión de esta unidad.
 
 ## Límites de esta definición
 

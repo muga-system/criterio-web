@@ -37,3 +37,22 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
     "page",
   );
 });
+
+test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {
+  await page.goto("/modulos");
+
+  await expect(page.getByRole("link", { name: "Abrir módulo" })).toBeVisible();
+  await page.getByRole("link", { name: "Abrir módulo" }).click();
+
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01");
+  await expect(
+    page.getByRole("heading", { name: "Módulo 01 · Observar antes de construir", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Módulos", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(
+    page.getByRole("heading", { name: "Lección 01 · Del pedido al problema", exact: true }),
+  ).toBeVisible();
+});

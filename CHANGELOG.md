@@ -24,7 +24,8 @@ registra en `Unreleased`.
 
 - Definición del modelo pedagógico inicial y del criterio de finalización de módulos.
 - Contrato pedagógico preliminar del Módulo 01: Observar antes de construir.
-- Borrador de contenido inicial para las tres lecciones y la práctica integradora del Módulo 01.
+- Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
+  Módulo 01.
 
 ### Eliminado
 

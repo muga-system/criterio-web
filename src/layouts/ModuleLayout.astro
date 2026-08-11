@@ -1,0 +1,12 @@
+---
+import { appRoutes } from "../app/navigation/routes";
+import AppLayout from "./AppLayout.astro";
+
+const route = appRoutes[1];
+---
+
+<AppLayout route={route} showWorkspaceHeader={false}>
+  <article class="module-content">
+    <slot />
+  </article>
+</AppLayout>
