@@ -31,12 +31,13 @@ npm ci
 | `npm run dev`           | Iniciar el servidor de desarrollo de Astro.          |
 | `npm run build`         | Ejecutar Astro check y crear el build de producción. |
 | `npm run preview`       | Servir localmente el build de Astro.                 |
+| `npm run typecheck`     | Ejecutar Astro check sin crear el build.             |
 | `npm run check`         | Ejecutar formato, lint, Astro check, tests y build.  |
 | `npm run test:e2e`      | Ejecutar el smoke E2E en Chromium, Firefox y WebKit. |
 | `npm run test:browser`  | Ejecutar el proyecto de Vitest Browser Mode.         |
 | `npm run test:coverage` | Ejecutar tests unitarios con cobertura.              |
 
-## Estructura inicial
+## Estructura actual
 
 - `src/app/navigation/`: modelo de rutas y etiquetas de navegación.
 - `src/components/`: componentes Astro y futuras islas React.
@@ -48,6 +49,23 @@ npm ci
 Astro renderiza las páginas y el contenido estático. React queda integrado para futuras islas
 interactivas, que se agregarán únicamente cuando una capacidad necesite estado o comportamiento de
 cliente. La arquitectura se ampliará por capacidades en las fases siguientes.
+
+## Versionado y releases
+
+El proyecto se encuentra en desarrollo previo a su primera release y mantiene la versión `0.0.0`
+en `package.json`.
+
+Los cambios se registran primero en `CHANGELOG.md`, dentro de `Unreleased`. Cuando exista un hito
+publicable:
+
+1. actualizar la versión de `package.json` y `package-lock.json`,
+2. mover las entradas correspondientes de `Unreleased` a una versión fechada,
+3. crear un commit de release,
+4. crear un tag anotado con formato `vX.Y.Z`,
+5. publicar `main` y el tag en `origin`.
+
+No se crean tags para cada commit. Se reservan para versiones o hitos que puedan identificarse y
+recuperarse de forma estable.
 
 ## Licencias
 
