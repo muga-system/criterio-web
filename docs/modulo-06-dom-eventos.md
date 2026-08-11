@@ -1,10 +1,9 @@
 # Módulo 06 · Conectar estado y representación
 
-Estado: contrato pedagógico v0 para revisión. No crea todavía una ruta ni contenido publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento define la siguiente unidad curricular después de TypeScript. El módulo deberá
-enseñar a conectar un modelo explícito con el DOM y los eventos del navegador sin perder el control
-sobre el estado ni la accesibilidad de la interacción.
+Este documento define la unidad curricular y el contenido publicado después de TypeScript. La ruta
+está disponible en `src/pages/modulos/dom-eventos-06.md`.
 
 ## Identidad
 
@@ -104,10 +103,17 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 ## Forma de contenido
 
-La primera versión puede publicarse como contenido estático de Astro, con ejemplos de DOM y eventos.
-La práctica integradora es la primera candidata del recorrido para una isla React, siempre que una
+La primera versión se publica como contenido estático de Astro, con ejemplos de DOM y eventos. La
+práctica integradora es la primera candidata del recorrido para una isla React, siempre que una
 implementación posterior mantenga separado el estado de la representación y no introduzca
 persistencia antes de definirla.
+
+## Decisión de implementación v0
+
+El contenido y la práctica permanecen estáticos en esta fase. La práctica integradora queda
+identificada como candidata para una isla React, pero no se implementa todavía porque primero hay que
+revisar el flujo de estado, sus límites locales y la evidencia de que la interacción mejora el
+aprendizaje.
 
 ## Límites de esta definición
 

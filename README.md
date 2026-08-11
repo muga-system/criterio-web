@@ -8,8 +8,8 @@ que sostiene los mismos criterios que explica.
 
 La Fase 1 está completada: el repositorio tiene la base técnica, la configuración de calidad, los
 tests automatizados iniciales, una shell Astro con navegación principal y el contenido estático
-inicial de los Módulos 01, 02, 03, 04 y 05. La persistencia, las prácticas interactivas y el motor de
-aprendizaje todavía no forman parte de esta fase.
+inicial de los Módulos 01, 02, 03, 04, 05 y 06. La persistencia, las prácticas interactivas y el
+motor de aprendizaje todavía no forman parte de esta fase.
 
 ## Requisitos
 

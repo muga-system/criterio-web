@@ -110,7 +110,7 @@ cuando se escriban los primeros contenidos:
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
 El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los
-primeros cinco módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
+primeros seis módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
 de estas unidades.
 
 ## Límites de esta definición
@@ -129,6 +129,5 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contrato del [Módulo 06 · Conectar estado y representación](./modulo-06-dom-eventos.md)
-y el contenido publicado de los Módulos 01, 02, 03, 04 y 05. Después se podrá evaluar la primera
-isla React sin agregar todavía persistencia ni transferencia portable.
+Revisar el contenido publicado de los Módulos 01, 02, 03, 04, 05 y 06. Después se podrá evaluar la
+primera isla React sin agregar todavía persistencia ni transferencia portable.

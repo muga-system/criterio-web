@@ -44,6 +44,10 @@ registra en `Unreleased`.
   Módulo 05.
 - Decisión de mantener la práctica integradora del Módulo 05 como actividad estática en esta fase.
 - Contrato pedagógico preliminar del Módulo 06: Conectar estado y representación.
+- Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
+  Módulo 06.
+- Decisión de mantener la práctica integradora del Módulo 06 como actividad estática en esta fase y
+  reservarla como candidata para una isla React.
 
 ### Eliminado
 

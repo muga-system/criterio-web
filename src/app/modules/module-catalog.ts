@@ -74,6 +74,21 @@ export const moduleCatalog = [
       { id: "practica-integradora", title: "Práctica integradora" },
     ],
   },
+  {
+    id: "dom-eventos-06",
+    path: "/modulos/dom-eventos-06",
+    title: "Módulo 06 · Conectar estado y representación",
+    summary:
+      "Aprender a conectar un modelo explícito con el DOM y eventos nativos sin perder el control del estado.",
+    lessonCount: 3,
+    status: "Contenido inicial",
+    lessons: [
+      { id: "leccion-01", title: "Lección 01 · El DOM como representación" },
+      { id: "leccion-02", title: "Lección 02 · Eventos y controles nativos" },
+      { id: "leccion-03", title: "Lección 03 · Estado, actualización y render" },
+      { id: "practica-integradora", title: "Práctica integradora" },
+    ],
+  },
 ] as const;
 
 export type ModuleSummary = (typeof moduleCatalog)[number];
