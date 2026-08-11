@@ -1,10 +1,9 @@
 # Módulo 05 · Hacer visibles los contratos
 
-Estado: contrato pedagógico v0 para revisión. No crea todavía una ruta ni contenido publicado.
+Estado: contrato pedagógico v0 con contenido inicial publicado.
 
-Este documento define la siguiente unidad curricular después de JavaScript explícito. El módulo
-deberá enseñar a usar TypeScript para describir datos válidos, estrechar decisiones y detectar
-errores de contrato antes de ejecutar el programa.
+Este documento define la unidad curricular y el contenido publicado después de JavaScript explícito.
+La ruta está disponible en `src/pages/modulos/typescript-05.md`.
 
 ## Identidad
 
@@ -103,9 +102,18 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 ## Forma de contenido
 
-La primera versión puede publicarse como contenido estático de Astro, con ejemplos TypeScript,
-comparaciones con JavaScript y ejercicios de contratos. No se propone una isla React hasta que una
-práctica requiera edición, compilación o validación dentro de la aplicación.
+La primera versión se publica como contenido estático de Astro, con ejemplos TypeScript,
+comparaciones con JavaScript y ejercicios de contratos. No se agrega una isla React porque las
+prácticas actuales no requieren edición, compilación ni validación dentro de la aplicación.
+
+## Decisión de implementación v0
+
+La práctica integradora permanece como actividad guiada de análisis y escritura fuera de la
+aplicación. No se agrega una isla React ni persistencia porque el objetivo actual es comprobar si el
+estudiante puede expresar contratos antes de convertirlos en una herramienta ejecutable.
+
+La decisión se revisará cuando exista evidencia de que editar, compilar o validar TypeScript dentro
+de la aplicación mejora la comprensión o la verificación del criterio.
 
 ## Límites de esta definición
 

@@ -74,7 +74,7 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 
-  await expect(page.locator(".app-module-card")).toHaveCount(4);
+  await expect(page.locator(".app-module-card")).toHaveCount(5);
   await page
     .getByRole("link", { name: "Abrir Módulo 02 · Estructurar antes de decorar", exact: true })
     .click();
@@ -147,5 +147,31 @@ test("abre el cuarto módulo desde el catálogo", async ({ page }) => {
       name: "Lección 01 · Datos que representan una situación",
       exact: true,
     }),
+  ).toBeVisible();
+});
+
+test("abre el quinto módulo desde el catálogo", async ({ page }) => {
+  await page.goto("/modulos");
+
+  await page
+    .getByRole("link", {
+      name: "Abrir Módulo 05 · Hacer visibles los contratos",
+      exact: true,
+    })
+    .click();
+
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/typescript-05");
+  await expect(
+    page.getByRole("heading", {
+      name: "Módulo 05 · Hacer visibles los contratos",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Módulos", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(
+    page.getByRole("heading", { name: "Lección 01 · Tipos como contratos", exact: true }),
   ).toBeVisible();
 });

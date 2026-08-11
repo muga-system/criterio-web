@@ -59,6 +59,21 @@ export const moduleCatalog = [
       { id: "practica-integradora", title: "Práctica integradora" },
     ],
   },
+  {
+    id: "typescript-05",
+    path: "/modulos/typescript-05",
+    title: "Módulo 05 · Hacer visibles los contratos",
+    summary:
+      "Aprender a expresar datos y estados válidos con TypeScript para detectar errores antes de ejecutar.",
+    lessonCount: 3,
+    status: "Contenido inicial",
+    lessons: [
+      { id: "leccion-01", title: "Lección 01 · Tipos como contratos" },
+      { id: "leccion-02", title: "Lección 02 · Estados válidos y narrowing" },
+      { id: "leccion-03", title: "Lección 03 · Fronteras desconocidas" },
+      { id: "practica-integradora", title: "Práctica integradora" },
+    ],
+  },
 ] as const;
 
 export type ModuleSummary = (typeof moduleCatalog)[number];

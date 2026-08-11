@@ -40,6 +40,9 @@ registra en `Unreleased`.
   Módulo 04.
 - Decisión de mantener la práctica integradora del Módulo 04 como actividad estática en esta fase.
 - Contrato pedagógico preliminar del Módulo 05: Hacer visibles los contratos.
+- Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
+  Módulo 05.
+- Decisión de mantener la práctica integradora del Módulo 05 como actividad estática en esta fase.
 
 ### Eliminado
 
