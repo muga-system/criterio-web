@@ -129,5 +129,6 @@ de código.
 
 ## Siguiente bloque
 
-Revisar el contenido publicado de los Módulos 01, 02 y 03. Después se podrá decidir si el Módulo 03
-necesita una práctica interactiva antes de definir el contrato de JavaScript en el navegador.
+Revisar el contrato del [Módulo 04 · Hacer explícito el comportamiento](./modulo-04-javascript-navegador.md)
+y el contenido publicado de los Módulos 01, 02 y 03. Después se podrá escribir el contenido de
+JavaScript sin agregar todavía DOM, persistencia ni una herramienta interactiva.
