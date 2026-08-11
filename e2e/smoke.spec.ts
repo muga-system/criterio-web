@@ -68,6 +68,18 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
     "border-left-width",
     "0px",
   );
+  await expect(page.locator(".app-workspace-frame .app-scrollbar button").first()).toHaveCSS(
+    "height",
+    "16px",
+  );
+  await expect(page.locator(".app-workspace-frame .app-scrollbar button").first()).toHaveCSS(
+    "border-bottom-width",
+    "1px",
+  );
+  await expect(page.locator(".app-workspace-frame .app-scrollbar button").last()).toHaveCSS(
+    "border-top-width",
+    "1px",
+  );
   await expect(scrollbar).toHaveAttribute("aria-valuemax", /[1-9]/);
   await expect(page.locator(".app-workspace-frame .app-scroll-thumb")).toHaveCSS(
     "border-radius",
@@ -86,6 +98,8 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
 
   const scrollTopBeforeDrag = await workspace.evaluate((element) => element.scrollTop);
   const thumb = page.locator(".app-workspace-frame .app-scroll-thumb");
+  await expect(thumb).toHaveCSS("left", "0px");
+  await expect(thumb).toHaveCSS("right", "0px");
   const thumbBounds = await thumb.boundingBox();
 
   if (thumbBounds === null) {

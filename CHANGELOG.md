@@ -24,6 +24,8 @@ registra en `Unreleased`.
 - Ajuste de los extremos del scrollbar con iconos tipo Lucide y ocultamiento automático cuando no
   hay overflow.
 - Continuidad de la línea del track desde el extremo superior hasta el inferior del scrollbar.
+- Ajuste del thumb para tocar la línea, separadores para las zonas de control y botones cuadrados.
+- Extensión del thumb al ancho completo del track para eliminar el espacio lateral restante.
 
 ### Documentado
 
