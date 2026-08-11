@@ -1,0 +1,11 @@
+---
+import { appRoutes } from "../../app/navigation/routes";
+import PlaceholderView from "../../components/PlaceholderView.astro";
+import AppLayout from "../../layouts/AppLayout.astro";
+
+const route = appRoutes[1];
+---
+
+<AppLayout route={route}>
+  <PlaceholderView route={route} />
+</AppLayout>

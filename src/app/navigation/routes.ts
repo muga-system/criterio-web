@@ -49,7 +49,3 @@ export const appRoutes = [
 ] as const;
 
 export type AppRoute = (typeof appRoutes)[number];
-
-export function resolveRoute(pathname: string): AppRoute {
-  return appRoutes.find((route) => route.path === pathname) ?? appRoutes[0];
-}

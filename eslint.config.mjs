@@ -9,7 +9,7 @@ const typedConfigs = tseslint.configs.recommendedTypeChecked.map((config) => ({
 
 export default tseslint.config(
   {
-    ignores: ["coverage", "dist", "node_modules", "playwright-report", "test-results"],
+    ignores: [".astro", "coverage", "dist", "node_modules", "playwright-report", "test-results"],
   },
   eslint.configs.recommended,
   ...typedConfigs,

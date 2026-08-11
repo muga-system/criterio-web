@@ -7,8 +7,9 @@ que sostiene los mismos criterios que explica.
 ## Estado
 
 La Fase 1 está completada: el repositorio tiene la base técnica, la configuración de calidad, los
-tests automatizados iniciales y una shell HTML mínima. El contenido curricular, la navegación, la
-persistencia y el motor de aprendizaje todavía no forman parte de esta fase.
+tests automatizados iniciales y una shell Astro con navegación principal y vistas placeholder.
+El contenido curricular, la persistencia y el motor de aprendizaje todavía no forman parte de esta
+fase.
 
 ## Requisitos
 
@@ -27,23 +28,26 @@ npm ci
 
 | Comando                 | Propósito                                            |
 | ----------------------- | ---------------------------------------------------- |
-| `npm run dev`           | Iniciar el servidor de desarrollo.                   |
-| `npm run build`         | Crear el build de producción.                        |
-| `npm run preview`       | Servir localmente el build.                          |
-| `npm run check`         | Ejecutar formato, lint, typecheck, tests y build.    |
+| `npm run dev`           | Iniciar el servidor de desarrollo de Astro.          |
+| `npm run build`         | Ejecutar Astro check y crear el build de producción. |
+| `npm run preview`       | Servir localmente el build de Astro.                 |
+| `npm run check`         | Ejecutar formato, lint, Astro check, tests y build.  |
 | `npm run test:e2e`      | Ejecutar el smoke E2E en Chromium, Firefox y WebKit. |
 | `npm run test:browser`  | Ejecutar el proyecto de Vitest Browser Mode.         |
 | `npm run test:coverage` | Ejecutar tests unitarios con cobertura.              |
 
 ## Estructura inicial
 
-- `src/app/`: composición inicial de la aplicación y shell.
+- `src/app/navigation/`: modelo de rutas y etiquetas de navegación.
+- `src/components/`: componentes Astro y futuras islas React.
+- `src/layouts/`: shell y layout compartido de la aplicación.
+- `src/pages/`: páginas Astro correspondientes a las rutas principales.
 - `src/styles/`: capas CSS, tokens y estilos base.
 - `e2e/`: recorridos end-to-end.
-- `upload/`: material de planificación local; no forma parte de la aplicación.
 
-La arquitectura se ampliará por capacidades en las fases siguientes. No se agregan features de
-aprendizaje ni persistencia antes de cerrar la navegación y el shell accesible.
+Astro renderiza las páginas y el contenido estático. React queda integrado para futuras islas
+interactivas, que se agregarán únicamente cuando una capacidad necesite estado o comportamiento de
+cliente. La arquitectura se ampliará por capacidades en las fases siguientes.
 
 ## Licencias
 

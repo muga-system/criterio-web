@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("muestra la shell inicial de Criterio Web", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page).toHaveTitle("Criterio Web");
+  await expect(page).toHaveTitle("Inicio · Criterio Web");
   await expect(page.getByRole("heading", { name: "Inicio" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Navegación principal" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Inicio", exact: true })).toHaveAttribute(

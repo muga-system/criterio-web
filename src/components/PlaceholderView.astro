@@ -1,0 +1,15 @@
+---
+import type { AppRoute } from "../app/navigation/routes";
+
+interface Props {
+  route: AppRoute;
+}
+
+const { route } = Astro.props;
+---
+
+<section class="app-placeholder" aria-labelledby="placeholder-title">
+  <p class="app-placeholder-label">Vista placeholder</p>
+  <h2 id="placeholder-title">{route.placeholderTitle}</h2>
+  <p>{route.placeholderDescription}</p>
+</section>
