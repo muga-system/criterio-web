@@ -1,12 +1,30 @@
 ---
 import { appRoutes } from "../app/navigation/routes";
+import { moduleCatalog } from "../app/modules/module-catalog";
 import AppLayout from "./AppLayout.astro";
 
 const route = appRoutes[1];
+const module = moduleCatalog.find((entry) => entry.path === Astro.url.pathname) ?? moduleCatalog[0];
 ---
 
 <AppLayout route={route} showWorkspaceHeader={false}>
-  <article class="module-content">
-    <slot />
-  </article>
+  <div class="module-page">
+    <a class="module-back-link" href="/modulos">← Volver a módulos</a>
+    <nav class="module-contents" aria-labelledby="module-contents-title">
+      <p class="app-placeholder-label">Recorrido</p>
+      <h2 id="module-contents-title">En este módulo</h2>
+      <ol>
+        {
+          module.lessons.map((lesson) => (
+            <li>
+              <a href={`#${lesson.id}`}>{lesson.title}</a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <article class="module-content">
+      <slot />
+    </article>
+  </div>
 </AppLayout>

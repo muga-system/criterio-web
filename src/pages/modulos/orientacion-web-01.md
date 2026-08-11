@@ -17,7 +17,7 @@ La secuencia no pretende volver burocrático un trabajo pequeño. Sirve para evi
 frecuentes: resolver otra cosa distinta de la que hacía falta y declarar terminado un cambio sin
 comprobarlo.
 
-## Lección 01 · Del pedido al problema
+<h2 id="leccion-01">Lección 01 · Del pedido al problema</h2>
 
 ### Idea principal
 
@@ -62,7 +62,7 @@ Pedidos de práctica:
 La respuesta está encaminada si no convierte automáticamente el pedido en código. Debe distinguir
 lo observado de lo supuesto y dejar visible qué información falta.
 
-## Lección 02 · Evidencia y criterio
+<h2 id="leccion-02">Lección 02 · Evidencia y criterio</h2>
 
 ### Idea principal
 
@@ -103,7 +103,7 @@ Elegí una pantalla conocida y registrá:
 El criterio es útil si otra persona puede imaginar cómo revisarlo sin tener que adivinar qué quiso
 decir quien lo escribió.
 
-## Lección 03 · Decisión y verificación
+<h2 id="leccion-03">Lección 03 · Decisión y verificación</h2>
 
 ### Idea principal
 
@@ -147,7 +147,7 @@ Elegí una de estas alternativas para el ejemplo anterior:
 Justificá la elección con el criterio, escribí una consecuencia y proponé una verificación. La
 actividad no busca adivinar una respuesta única: busca que la decisión sea defendible y comprobable.
 
-## Práctica integradora
+<h2 id="practica-integradora">Práctica integradora</h2>
 
 ### Situación
 

@@ -190,7 +190,7 @@
   }
 
   .app-module-list,
-  .module-content {
+  .module-page {
     width: min(100%, 48rem);
   }
 
@@ -265,10 +265,53 @@
     text-transform: none;
   }
 
+  .module-back-link {
+    display: inline-block;
+    margin-block-start: var(--space-3);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .module-back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .module-contents {
+    margin-block-start: var(--space-3);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+  }
+
+  .module-contents h2 {
+    margin-block: 0 var(--space-1);
+    font-size: 1.25rem;
+    line-height: 1.1;
+  }
+
+  .module-contents ol {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding-inline-start: 1.25rem;
+  }
+
+  .module-contents a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
   .app-module-card-footer a {
     color: var(--color-text);
     font-weight: 700;
     text-decoration: none;
+  }
+
+  .module-contents a:hover {
+    color: var(--color-accent);
   }
 
   .app-module-card-footer a:hover {
@@ -276,6 +319,7 @@
   }
 
   .module-content {
+    width: 100%;
     margin-block-start: var(--space-3);
   }
 

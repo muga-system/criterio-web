@@ -55,4 +55,13 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
   await expect(
     page.getByRole("heading", { name: "Lección 01 · Del pedido al problema", exact: true }),
   ).toBeVisible();
+
+  const moduleContents = page.getByRole("navigation", { name: "En este módulo" });
+
+  await expect(moduleContents).toBeVisible();
+  await expect(
+    moduleContents.getByRole("link", { name: "Lección 01 · Del pedido al problema" }),
+  ).toHaveAttribute("href", "#leccion-01");
+  await moduleContents.getByRole("link", { name: "Lección 01 · Del pedido al problema" }).click();
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01#leccion-01");
 });
