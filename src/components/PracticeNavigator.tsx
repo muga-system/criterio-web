@@ -169,7 +169,8 @@ export default function PracticeNavigator(): ReactElement {
       <h2 id="practice-navigator-title">Práctica local: avanzar por lecciones</h2>
       <p id="practice-navigator-description">
         Esta interacción registra el inicio, el cierre de cada lección y la verificación final. El
-        avance se conserva en este navegador, sin sincronización ni exportación todavía.
+        avance se conserva en este navegador, sin sincronización, y puede exportarse desde Importar
+        / Exportar.
       </p>
       <progress
         className="app-practice-progress"

@@ -3,6 +3,7 @@ import {
   CONTENT_VERSION,
   COURSE_ID,
   PROGRESS_SCHEMA_VERSION,
+  checkProgressSnapshotCompatibility,
   completeLesson,
   createEmptyProgressSnapshot,
   deriveModuleProgressStatus,
@@ -240,6 +241,25 @@ describe("progress-model", () => {
     });
 
     expect(validateProgressSnapshot(snapshot)).toEqual({ valid: true, snapshot });
+  });
+
+  it("distingue un snapshot migrable de uno inválido", () => {
+    const snapshot = validSnapshot(createModuleProgress());
+
+    expect(checkProgressSnapshotCompatibility(snapshot)).toEqual({
+      status: "compatible",
+      snapshot,
+    });
+    expect(checkProgressSnapshotCompatibility({ ...snapshot, schemaVersion: 2 })).toEqual({
+      status: "migration_required",
+      errors: ["schemaVersion: 2 requiere migración antes de incorporarse (se admite 1)"],
+    });
+    expect(
+      checkProgressSnapshotCompatibility({ ...snapshot, updatedAt: "fecha-inválida" }),
+    ).toEqual({
+      status: "invalid",
+      errors: ["updatedAt: debe ser una fecha ISO canónica"],
+    });
   });
 
   it("rechaza versiones, módulos y estados que no pertenecen al contrato", () => {

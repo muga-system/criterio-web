@@ -46,4 +46,18 @@ describe("progress-transfer", () => {
       error: "El payload del token no tiene un formato base64url válido.",
     });
   });
+
+  it("informa cuando el snapshot del token requiere una migración", () => {
+    const futureSnapshot = JSON.stringify({ ...snapshot, contentVersion: 2 });
+    const payload = btoa(futureSnapshot)
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/u, "");
+
+    expect(decodeProgressToken(`${PROGRESS_TOKEN_PREFIX}.${payload}`)).toEqual({
+      valid: false,
+      error:
+        "El snapshot del token requiere migración: contentVersion: 2 requiere migración antes de incorporarse (se admite 1)",
+    });
+  });
 });

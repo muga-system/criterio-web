@@ -153,6 +153,12 @@ que una evidencia quedó obsoleta. La futura interfaz deberá distinguir entre:
 La migración debe ser una transformación explícita y comprobable. No se resolverá descartando campos
 desconocidos de forma silenciosa.
 
+La implementación actual ya clasifica la entrada en tres estados: `compatible` cuando puede usarse
+sin transformación, `migration_required` cuando declara una versión positiva distinta de la actual,
+e `invalid` cuando no cumple la forma o las invariantes del contrato. La v1 no registra migradores
+porque todavía no existe una versión histórica que transformar: los snapshots de versión futura se
+rechazan sin modificar el almacenamiento local.
+
 ## Token portable v1
 
 El formato textual actual es `CRITERIO1.<payload-base64url>`. El payload es el JSON UTF-8 del
@@ -179,4 +185,5 @@ Las transiciones puras para registrar inicio y cierre de lecciones y práctica e
 `src/app/progress/progress-model.ts`, conectadas a acciones explícitas de la isla
 `src/components/PracticeNavigator.tsx`, persistidas por `src/app/progress/progress-store.ts` y
 transferibles desde `src/app/progress/progress-transfer.ts`. El siguiente bloque podrá revisar
-migraciones y evaluar si una futura versión necesita merge explícito entre snapshots válidos.
+migraciones concretas cuando cambie el contrato y evaluar si una futura versión necesita merge
+explícito entre snapshots válidos.

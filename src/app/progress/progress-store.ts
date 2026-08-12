@@ -1,4 +1,9 @@
-import { COURSE_ID, validateProgressSnapshot, type ProgressSnapshot } from "./progress-model";
+import {
+  COURSE_ID,
+  checkProgressSnapshotCompatibility,
+  validateProgressSnapshot,
+  type ProgressSnapshot,
+} from "./progress-model";
 
 export const PROGRESS_DATABASE_NAME = "criterio-web-progress";
 export const PROGRESS_DATABASE_VERSION = 1;
@@ -131,15 +136,21 @@ export const loadProgressSnapshot = (): Promise<ProgressSnapshot | null> =>
       return null;
     }
 
-    const validation = validateProgressSnapshot(storedSnapshot);
+    const compatibility = checkProgressSnapshotCompatibility(storedSnapshot);
 
-    if (!validation.valid) {
+    if (compatibility.status === "migration_required") {
       throw new ProgressStoreError(
-        `El progreso guardado no es compatible: ${validation.errors.join("; ")}`,
+        `El progreso guardado requiere migración: ${compatibility.errors.join("; ")}`,
       );
     }
 
-    return validation.snapshot;
+    if (compatibility.status === "invalid") {
+      throw new ProgressStoreError(
+        `El progreso guardado no es válido: ${compatibility.errors.join("; ")}`,
+      );
+    }
+
+    return compatibility.snapshot;
   });
 
 export const saveProgressSnapshot = (snapshot: ProgressSnapshot): Promise<void> =>

@@ -1,4 +1,8 @@
-import { validateProgressSnapshot, type ProgressSnapshot } from "./progress-model";
+import {
+  checkProgressSnapshotCompatibility,
+  validateProgressSnapshot,
+  type ProgressSnapshot,
+} from "./progress-model";
 
 export const PROGRESS_TOKEN_PREFIX = "CRITERIO1";
 
@@ -73,16 +77,23 @@ export const decodeProgressToken = (token: string): ProgressTokenDecodeResult =>
 
   try {
     const candidate: unknown = JSON.parse(decodeBase64Url(payload));
-    const validation = validateProgressSnapshot(candidate);
+    const compatibility = checkProgressSnapshotCompatibility(candidate);
 
-    if (!validation.valid) {
+    if (compatibility.status === "migration_required") {
       return {
         valid: false,
-        error: `El snapshot del token no es compatible: ${validation.errors.join("; ")}`,
+        error: `El snapshot del token requiere migración: ${compatibility.errors.join("; ")}`,
       };
     }
 
-    return { valid: true, snapshot: validation.snapshot };
+    if (compatibility.status === "invalid") {
+      return {
+        valid: false,
+        error: `El snapshot del token no es válido: ${compatibility.errors.join("; ")}`,
+      };
+    }
+
+    return { valid: true, snapshot: compatibility.snapshot };
   } catch (error) {
     return { valid: false, error: getErrorMessage(error) };
   }

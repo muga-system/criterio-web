@@ -32,6 +32,11 @@ export type ProgressSnapshot = {
 export type ProgressValidationResult =
   { valid: true; snapshot: ProgressSnapshot } | { valid: false; errors: string[] };
 
+export type ProgressCompatibilityResult =
+  | { status: "compatible"; snapshot: ProgressSnapshot }
+  | { status: "migration_required"; errors: string[] }
+  | { status: "invalid"; errors: string[] };
+
 export type ProgressTransitionResult =
   { ok: true; snapshot: ProgressSnapshot } | { ok: false; error: string };
 
@@ -40,6 +45,28 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 
 const isPositiveInteger = (value: unknown): value is number =>
   typeof value === "number" && Number.isInteger(value) && value > 0;
+
+const getMigrationVersionErrors = (value: unknown): string[] => {
+  if (!isRecord(value)) {
+    return [];
+  }
+
+  const errors: string[] = [];
+
+  if (isPositiveInteger(value.schemaVersion) && value.schemaVersion !== PROGRESS_SCHEMA_VERSION) {
+    errors.push(
+      `schemaVersion: ${value.schemaVersion} requiere migración antes de incorporarse (se admite ${PROGRESS_SCHEMA_VERSION})`,
+    );
+  }
+
+  if (isPositiveInteger(value.contentVersion) && value.contentVersion !== CONTENT_VERSION) {
+    errors.push(
+      `contentVersion: ${value.contentVersion} requiere migración antes de incorporarse (se admite ${CONTENT_VERSION})`,
+    );
+  }
+
+  return errors;
+};
 
 const isIsoDate = (value: unknown): value is string => {
   if (typeof value !== "string") {
@@ -376,4 +403,20 @@ export const validateProgressSnapshot = (value: unknown): ProgressValidationResu
       modules: parsedModules,
     },
   };
+};
+
+export const checkProgressSnapshotCompatibility = (value: unknown): ProgressCompatibilityResult => {
+  const migrationErrors = getMigrationVersionErrors(value);
+
+  if (migrationErrors.length > 0) {
+    return { status: "migration_required", errors: migrationErrors };
+  }
+
+  const validation = validateProgressSnapshot(value);
+
+  if (!validation.valid) {
+    return { status: "invalid", errors: validation.errors };
+  }
+
+  return { status: "compatible", snapshot: validation.snapshot };
 };
