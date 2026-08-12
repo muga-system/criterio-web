@@ -25,16 +25,18 @@ catálogo ni la composición de las vistas.
 
 ## Mapa inicial de assets
 
-| Archivo                       | Uso actual                 |
-| ----------------------------- | -------------------------- |
-| `plantilla-narrativa-uno.png` | Escena principal de Inicio |
-| `modulo-01-documentacion.png` | Módulo 01                  |
-| `modulo-02-html.png`          | Módulo 02                  |
-| `modulo-03-css.png`           | Módulo 03                  |
-| `modulo-04-javascript.png`    | Módulo 04                  |
-| `modulo-05-typescript.png`    | Módulo 05                  |
-| `modulo-06-dom.png`           | Módulo 06                  |
-| `modulo-07-pruebas.png`       | Módulo 07                  |
+| Archivo                         | Uso actual                 |
+| ------------------------------- | -------------------------- |
+| `plantilla-narrativa-uno.png`   | Escena principal de Inicio |
+| `modulo-01-documentacion.png`   | Módulo 01                  |
+| `modulo-02-html.png`            | Módulo 02                  |
+| `modulo-03-css.png`             | Módulo 03                  |
+| `modulo-04-javascript.png`      | Módulo 04                  |
+| `modulo-05-typescript.png`      | Módulo 05                  |
+| `modulo-06-dom.png`             | Módulo 06                  |
+| `modulo-07-pruebas.png`         | Módulo 07                  |
+| `progreso-validaciones.png`     | Vista Progreso             |
+| `transferencia-publicacion.png` | Vista Importar / Exportar  |
 
 El resto de las muestras queda reservado para futuras vistas, lecciones y estados donde su
 contenido visual aporte información específica.

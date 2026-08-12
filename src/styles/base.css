@@ -385,6 +385,32 @@
     width: min(100%, 48rem);
   }
 
+  .module-visual,
+  .app-section-visual {
+    margin: var(--space-3) 0 0;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+  }
+
+  .module-visual img,
+  .app-section-visual img {
+    display: block;
+    width: 100%;
+    height: clamp(10rem, 26vw, 15rem);
+    object-fit: cover;
+  }
+
+  .module-visual figcaption,
+  .app-section-visual figcaption {
+    padding: 0.55rem 0.7rem;
+    border-block-start: 1px solid var(--color-border-strong);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
   .app-module-list {
     margin-block-start: var(--space-4);
   }
@@ -625,6 +651,11 @@
     max-width: 60ch;
     margin: 0;
     color: var(--color-text-muted);
+  }
+
+  .app-section-visual {
+    max-width: 32rem;
+    margin-block: var(--space-2);
   }
 
   .app-progress-error {

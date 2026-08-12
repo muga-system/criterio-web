@@ -146,6 +146,14 @@ export default function ProgressOverview(): ReactElement {
     >
       <p className="app-placeholder-label">Snapshot local</p>
       <h2 id="progress-overview-title">Estado del recorrido</h2>
+      <figure className="app-section-visual">
+        <img
+          src="/assets/pixeles/progreso-validaciones.png"
+          alt="Escena pixel-art de validaciones y señales de progreso"
+          decoding="async"
+        />
+        <figcaption>La evidencia orienta el siguiente paso</figcaption>
+      </figure>
       <p className="app-progress-intro">
         El avance se calcula desde las evidencias guardadas en este navegador. No representa una
         calificación ni se sincroniza con un servicio externo.

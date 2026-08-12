@@ -12,7 +12,12 @@ const { class: className = "", id, label, viewportClass = "" } = Astro.props;
 ---
 
 <div class:list={["app-scroll-frame", className]} data-scroll-frame>
-  <div class:list={["app-scroll-viewport", viewportClass]} data-scroll-viewport id={id}>
+  <div
+    class:list={["app-scroll-viewport", viewportClass]}
+    data-scroll-viewport
+    id={id}
+    tabindex="0"
+  >
     <slot />
   </div>
   <div

@@ -12,6 +12,7 @@ registra en `Unreleased`.
 - Incorporación inicial de assets pixel-art en Inicio y en las tarjetas de los siete módulos.
 - Documentación de la dirección visual y del criterio para reemplazar posteriormente los PNG por
   versiones sin fondo.
+- Viewports del scrollbar custom accesibles por teclado en Safari y el resto de navegadores.
 
 ## [0.1.0] - 2026-08-12
 

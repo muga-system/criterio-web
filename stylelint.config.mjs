@@ -4,7 +4,7 @@ export default {
     "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: ["theme"],
+        ignoreAtRules: ["theme", "utility"],
       },
     ],
     "custom-property-pattern": null,

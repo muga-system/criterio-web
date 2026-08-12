@@ -14,6 +14,10 @@ const requiredLessons = module.lessons.filter((lesson) => lesson.id !== "practic
 
 <AppLayout route={route} showWorkspaceHeader={false}>
   <div class="module-page">
+    <figure class="module-visual">
+      <img src={module.image} alt={module.imageAlt} decoding="async" />
+      <figcaption>{module.id} · mapa visual del módulo</figcaption>
+    </figure>
     <a class="module-back-link" href="/modulos">← Volver a módulos</a>
     <nav class="module-contents" aria-labelledby="module-contents-title">
       <p class="app-placeholder-label">Recorrido</p>
