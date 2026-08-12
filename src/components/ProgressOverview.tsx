@@ -53,7 +53,7 @@ const getPracticeLabel = (module: ModuleSummary, snapshot: ProgressSnapshot): st
 
 export default function ProgressOverview(): ReactElement {
   const [isReady, setIsReady] = useState(false);
-  const [snapshot, setSnapshot] = useState<ProgressSnapshot>(createInitialSnapshot);
+  const [snapshot, setSnapshot] = useState<ProgressSnapshot | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect((): (() => void) => {
@@ -81,10 +81,13 @@ export default function ProgressOverview(): ReactElement {
     };
   }, []);
 
-  const moduleStatuses = moduleCatalog.map((module) => ({
-    module,
-    status: getModuleProgressStatus(module, snapshot),
-  }));
+  const moduleStatuses =
+    snapshot === null
+      ? []
+      : moduleCatalog.map((module) => ({
+          module,
+          status: getModuleProgressStatus(module, snapshot),
+        }));
   const completedModules = moduleStatuses.filter(({ status }) => status === "completed").length;
   const inProgressModules = moduleStatuses.filter(({ status }) => status === "in_progress").length;
 
@@ -92,6 +95,7 @@ export default function ProgressOverview(): ReactElement {
     <section
       className="app-progress-overview"
       aria-labelledby="progress-overview-title"
+      data-progress-error={error !== null ? "true" : "false"}
       data-progress-ready={isReady ? "true" : "false"}
     >
       <p className="app-placeholder-label">Snapshot local</p>
@@ -105,55 +109,59 @@ export default function ProgressOverview(): ReactElement {
           {error}
         </p>
       )}
-      <div className="app-progress-summary" aria-label="Resumen del progreso">
-        <div className="app-progress-stat">
-          <span>Módulos completados</span>
-          <strong>{completedModules}</strong>
-        </div>
-        <div className="app-progress-stat">
-          <span>En progreso</span>
-          <strong>{inProgressModules}</strong>
-        </div>
-        <div className="app-progress-stat">
-          <span>Disponibles</span>
-          <strong>{moduleCatalog.length}</strong>
-        </div>
-      </div>
-      <ul className="app-progress-list">
-        {moduleStatuses.map(({ module, status }) => {
-          const completedLessons = getCompletedLessonCount(module, snapshot);
+      {snapshot !== null && error === null && (
+        <>
+          <div className="app-progress-summary" aria-label="Resumen del progreso">
+            <div className="app-progress-stat">
+              <span>Módulos completados</span>
+              <strong>{completedModules}</strong>
+            </div>
+            <div className="app-progress-stat">
+              <span>En progreso</span>
+              <strong>{inProgressModules}</strong>
+            </div>
+            <div className="app-progress-stat">
+              <span>Disponibles</span>
+              <strong>{moduleCatalog.length}</strong>
+            </div>
+          </div>
+          <ul className="app-progress-list">
+            {moduleStatuses.map(({ module, status }) => {
+              const completedLessons = getCompletedLessonCount(module, snapshot);
 
-          return (
-            <li
-              className={`app-progress-card is-${status}`}
-              data-module-id={module.id}
-              data-progress-status={status}
-              key={module.id}
-            >
-              <div className="app-progress-card-header">
-                <p className="app-progress-card-status">{statusLabels[status]}</p>
-                <p className="app-progress-card-index">{module.id}</p>
-              </div>
-              <h3>
-                <a href={module.path}>{module.title}</a>
-              </h3>
-              <p className="app-progress-card-meta">
-                {completedLessons} de {module.lessonCount} lecciones ·{" "}
-                {getPracticeLabel(module, snapshot)}
-              </p>
-              <progress
-                className="app-progress-card-progress"
-                value={completedLessons}
-                max={module.lessonCount}
-                aria-label={`${module.title}: ${completedLessons} de ${module.lessonCount} lecciones`}
-              />
-              <a className="app-progress-card-link" href={module.path}>
-                Ver módulo <span aria-hidden="true">→</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+              return (
+                <li
+                  className={`app-progress-card is-${status}`}
+                  data-module-id={module.id}
+                  data-progress-status={status}
+                  key={module.id}
+                >
+                  <div className="app-progress-card-header">
+                    <p className="app-progress-card-status">{statusLabels[status]}</p>
+                    <p className="app-progress-card-index">{module.id}</p>
+                  </div>
+                  <h3>
+                    <a href={module.path}>{module.title}</a>
+                  </h3>
+                  <p className="app-progress-card-meta">
+                    {completedLessons} de {module.lessonCount} lecciones ·{" "}
+                    {getPracticeLabel(module, snapshot)}
+                  </p>
+                  <progress
+                    className="app-progress-card-progress"
+                    value={completedLessons}
+                    max={module.lessonCount}
+                    aria-label={`${module.title}: ${completedLessons} de ${module.lessonCount} lecciones`}
+                  />
+                  <a className="app-progress-card-link" href={module.path}>
+                    Ver módulo <span aria-hidden="true">→</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
     </section>
   );
 }

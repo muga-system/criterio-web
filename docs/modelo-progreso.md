@@ -163,6 +163,9 @@ Una práctica con un error de progreso bloquea nuevas transiciones para no sobre
 incompatible por accidente. `Reiniciar` funciona como recuperación explícita y elimina el snapshot
 local solo después de una acción intencional.
 
+La vista global es de solo lectura: si no puede cargar el snapshot, conserva el error visible y no
+presenta el snapshot vacío inicial como si fuera el estado real del recorrido.
+
 ## Token portable v1
 
 El formato textual actual es `CRITERIO1.<payload-base64url>`. El payload es el JSON UTF-8 del

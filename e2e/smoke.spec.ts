@@ -435,13 +435,30 @@ test("bloquea la práctica si el snapshot local requiere migración", async ({ p
   await expect(practice).toHaveAttribute("data-progress-advance-disabled", "true");
   await expect(practice.getByRole("button", { name: "Siguiente lección" })).toBeDisabled();
 
-  const reset = practice.getByRole("button", { name: "Reiniciar" });
+  await page.goto("http://127.0.0.1:4173/progreso");
+  const overview = page.getByRole("region", { name: "Estado del recorrido" });
+
+  await expect(overview).toHaveAttribute("data-progress-ready", "true");
+  await expect(overview).toHaveAttribute("data-progress-error", "true");
+  await expect(overview.getByRole("alert")).toHaveText(/requiere migración/);
+  await expect(overview.locator(".app-progress-summary")).toHaveCount(0);
+  await expect(overview.locator(".app-progress-card")).toHaveCount(0);
+
+  await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
+  const recoverablePractice = page.getByRole("region", {
+    name: "Práctica local: avanzar por lecciones",
+  });
+  await expect(recoverablePractice).toHaveAttribute("data-progress-ready", "true");
+
+  const reset = recoverablePractice.getByRole("button", { name: "Reiniciar" });
 
   await expect(reset).toBeEnabled();
   await reset.click();
-  await expect(practice.getByRole("alert")).toHaveCount(0);
-  await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
-  await expect(practice.getByRole("button", { name: "Siguiente lección" })).toBeEnabled();
+  await expect(recoverablePractice.getByRole("alert")).toHaveCount(0);
+  await expect(recoverablePractice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(
+    recoverablePractice.getByRole("button", { name: "Siguiente lección" }),
+  ).toBeEnabled();
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {
