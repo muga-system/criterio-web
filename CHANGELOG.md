@@ -30,6 +30,7 @@ registra en `Unreleased`.
   cargarlos o importarlos.
 - Bloqueo de nuevas transiciones cuando la práctica no puede cargar su snapshot local y recuperación
   mediante reinicio explícito.
+- Reinicio global confirmado desde Progreso para repetir el recorrido local desde cero.
 - El overview de progreso deja de mostrar un estado vacío ficticio cuando falla la lectura local.
 - La transferencia permite recuperar un snapshot ilegible mediante una importación válida y
   confirmada explícitamente.

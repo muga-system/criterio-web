@@ -175,8 +175,10 @@ Una práctica con un error de progreso bloquea nuevas transiciones para no sobre
 incompatible por accidente. `Reiniciar` funciona como recuperación explícita y elimina el snapshot
 local solo después de una acción intencional.
 
-La vista global es de solo lectura: si no puede cargar el snapshot, conserva el error visible y no
-presenta el snapshot vacío inicial como si fuera el estado real del recorrido.
+La vista global no inventa estados: si no puede cargar el snapshot, conserva el error visible y no
+presenta el snapshot vacío inicial como si fuera el estado real del recorrido. También ofrece un
+reinicio global explícito y confirmado para borrar el snapshot local y volver a probar el recorrido
+desde cero; no elimina contenidos ni afecta otros navegadores.
 
 ## Token portable v1
 

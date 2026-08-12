@@ -330,6 +330,51 @@ test("permite registrar el cierre de una lección estática y conservarlo", asyn
   );
 });
 
+test("permite reiniciar el recorrido completo desde Progreso", async ({ page }) => {
+  await page.goto("http://127.0.0.1:4173/progreso");
+  await seedProgressSnapshot(page, {
+    schemaVersion: 1,
+    courseId: "criterio-web",
+    contentVersion: 1,
+    updatedAt: "2026-08-12T00:00:00.000Z",
+    modules: {
+      "orientacion-web-01": {
+        lessons: { "leccion-01": "completed" },
+        practice: { started: false, verified: false },
+      },
+    },
+  });
+  await page.reload();
+
+  const overview = page.getByRole("region", { name: "Estado del recorrido" });
+  const moduleCard = overview.locator('[data-module-id="orientacion-web-01"]');
+
+  await expect(moduleCard).toHaveAttribute("data-progress-status", "in_progress");
+  await overview.getByRole("button", { name: "Reiniciar progreso local" }).click();
+
+  const resetDialog = overview.getByRole("dialog", { name: "¿Eliminar el progreso local?" });
+
+  await expect(resetDialog).toBeVisible();
+  await resetDialog.getByRole("button", { name: "Cancelar" }).click();
+  await expect(resetDialog).toBeHidden();
+  await expect(moduleCard).toHaveAttribute("data-progress-status", "in_progress");
+
+  await overview.getByRole("button", { name: "Reiniciar progreso local" }).click();
+  await resetDialog.getByRole("button", { name: "Reiniciar progreso local" }).click();
+
+  await expect(overview.getByRole("status")).toHaveText(
+    "Progreso local reiniciado. El recorrido vuelve a estar sin iniciar.",
+  );
+  await expect(moduleCard).toHaveAttribute("data-progress-status", "not_started");
+
+  await page.reload();
+  await expect(
+    page
+      .getByRole("region", { name: "Estado del recorrido" })
+      .locator('[data-module-id="orientacion-web-01"]'),
+  ).toHaveAttribute("data-progress-status", "not_started");
+});
+
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 

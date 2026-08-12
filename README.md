@@ -71,6 +71,8 @@ estado derivado y Importar / Exportar permite moverlo sin backend.
 La primera versión no califica respuestas ni transforma las prácticas externas en formularios. La
 interfaz registra cierres explícitos de lecciones y reserva la interacción local para la práctica del
 Módulo 06, donde el criterio pedagógico necesita observar estado, eventos y representación.
+Desde Progreso también se puede reiniciar de forma explícita el snapshot local para repetir el
+recorrido de prueba.
 
 ## Versionado y releases
 
