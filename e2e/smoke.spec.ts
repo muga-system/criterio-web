@@ -56,10 +56,22 @@ test("muestra la shell inicial de Criterio Web", async ({ page }) => {
   );
 });
 
-test("mantiene las rutas principales sin violaciones de accesibilidad", async ({ page }) => {
-  test.setTimeout(90_000);
+test("mantiene las rutas publicadas sin violaciones de accesibilidad", async ({ page }) => {
+  test.setTimeout(120_000);
 
-  const routes = ["/", "/modulos", "/progreso", "/transferencia", "/modulos/dom-eventos-06"];
+  const routes = [
+    "/",
+    "/modulos",
+    "/progreso",
+    "/transferencia",
+    "/modulos/orientacion-web-01",
+    "/modulos/html-semantico-02",
+    "/modulos/css-composicion-03",
+    "/modulos/javascript-navegador-04",
+    "/modulos/typescript-05",
+    "/modulos/dom-eventos-06",
+    "/modulos/pruebas-07",
+  ];
 
   for (const route of routes) {
     await page.goto(route);
