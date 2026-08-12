@@ -93,9 +93,10 @@ El futuro modelo de progreso comenzará con tres estados simples:
 - `in_progress`: existe avance, pero falta completar el criterio de cierre;
 - `completed`: el criterio de cierre fue verificado.
 
-El estado deberá poder reconstruirse desde datos locales y exportarse junto con una versión del
+El estado se reconstruye desde datos locales y deberá poder exportarse junto con una versión del
 modelo de contenidos. El contrato mínimo de evidencia está definido en
-[`docs/modelo-progreso.md`](./modelo-progreso.md); todavía no se implementa persistencia.
+[`docs/modelo-progreso.md`](./modelo-progreso.md); la persistencia local ya se implementó para la
+práctica del Módulo 06 y la transferencia portable queda pendiente.
 
 ## Orden curricular inicial
 

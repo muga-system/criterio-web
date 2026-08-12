@@ -29,10 +29,10 @@ export const appRoutes = [
     eyebrow: "Estado local",
     title: "Progreso",
     description:
-      "Consultá el estado de avance local de tu recorrido cuando esa lógica esté disponible.",
-    placeholderTitle: "El progreso todavía no se registra",
+      "Consultá el estado de avance local de tu recorrido y la evidencia registrada por cada módulo.",
+    placeholderTitle: "Estado local del recorrido",
     placeholderDescription:
-      "La persistencia y los indicadores de avance se incorporarán después de definir el modelo de aprendizaje.",
+      "El avance se guarda en este navegador y se puede revisar módulo por módulo.",
   },
   {
     id: "transfer",

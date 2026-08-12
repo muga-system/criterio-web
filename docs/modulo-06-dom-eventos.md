@@ -86,8 +86,8 @@ Debe entregar:
 6. una verificación con teclado, evento repetido y estado inicial.
 
 La práctica no pedirá persistencia, transferencia portable, red ni un componente complejo. La isla
-experimental demuestra el flujo con un modelo pequeño y verificable, sin convertir todavía ese
-estado en progreso del producto.
+experimental demuestra el flujo con un modelo pequeño y verificable. La aplicación registra esa
+evidencia local, pero la persistencia no forma parte del problema que debe resolver el estudiante.
 
 ## Criterio de finalización
 
@@ -105,7 +105,8 @@ No se asignan puntos ni una calificación numérica en esta versión.
 
 La primera versión se publica como contenido estático de Astro, con ejemplos de DOM y eventos. La
 práctica integradora se acompaña de una isla React experimental que mantiene separado el estado de la
-representación y no introduce persistencia.
+representación; la aplicación persiste la evidencia mínima del recorrido fuera del ejercicio
+pedagógico.
 
 ## Decisión de implementación v0
 

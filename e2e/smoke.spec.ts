@@ -313,18 +313,34 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await expect(persistedPractice.getByRole("status")).toHaveText("Lección 3 de 3 · Completada");
   await expect(persistedPractice).toHaveAttribute("data-practice-completed", "true");
 
-  await persistedPractice.getByRole("button", { name: "Reiniciar" }).click();
-  await expect(persistedPractice.getByRole("status")).toHaveText("Lección 1 de 3");
-  await expect(persistedPractice).toHaveAttribute("data-practice-completed", "false");
+  await page.goto("http://127.0.0.1:4173/progreso");
+  const overview = page.getByRole("region", { name: "Estado del recorrido" });
 
-  await page.reload();
+  await expect(overview).toHaveAttribute("data-progress-ready", "true");
+  await expect(overview.locator(".app-progress-card")).toHaveCount(7);
+  await expect(overview.locator('[data-module-id="dom-eventos-06"]')).toHaveAttribute(
+    "data-progress-status",
+    "completed",
+  );
+
+  await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
   const resetPractice = page.getByRole("region", {
     name: "Práctica local: avanzar por lecciones",
   });
 
   await expect(resetPractice).toHaveAttribute("data-progress-ready", "true");
+  await resetPractice.getByRole("button", { name: "Reiniciar" }).click();
   await expect(resetPractice.getByRole("status")).toHaveText("Lección 1 de 3");
   await expect(resetPractice).toHaveAttribute("data-practice-completed", "false");
+
+  await page.reload();
+  const clearedPractice = page.getByRole("region", {
+    name: "Práctica local: avanzar por lecciones",
+  });
+
+  await expect(clearedPractice).toHaveAttribute("data-progress-ready", "true");
+  await expect(clearedPractice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(clearedPractice).toHaveAttribute("data-practice-completed", "false");
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {

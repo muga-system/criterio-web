@@ -142,5 +142,5 @@ Este contrato no decide todavía:
 
 ## Próximo paso
 
-Revisar la evidencia que produzcan las prácticas antes de diseñar la persistencia del progreso y la
-transferencia portable.
+Revisar la evidencia que produzcan las prácticas antes de ampliar la persistencia del progreso y
+diseñar la transferencia portable.

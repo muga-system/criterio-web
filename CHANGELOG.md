@@ -19,6 +19,7 @@ registra en `Unreleased`.
 - Transiciones puras e idempotentes para iniciar y completar lecciones y prácticas.
 - Conexión de la isla React del Módulo 06 con las transiciones de progreso en memoria.
 - Persistencia local del progreso mediante IndexedDB, con validación al cargar y limpieza al reiniciar.
+- Vista global de progreso con estados derivados y enlaces a los siete módulos publicados.
 
 ### Cambiado
 

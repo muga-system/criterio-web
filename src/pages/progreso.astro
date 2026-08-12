@@ -1,11 +1,11 @@
 ---
 import { appRoutes } from "../app/navigation/routes";
-import PlaceholderView from "../components/PlaceholderView.astro";
+import ProgressOverview from "../components/ProgressOverview";
 import AppLayout from "../layouts/AppLayout.astro";
 
 const route = appRoutes[2];
 ---
 
 <AppLayout route={route}>
-  <PlaceholderView route={route} />
+  <ProgressOverview client:load />
 </AppLayout>
