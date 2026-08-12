@@ -976,7 +976,7 @@
   }
 
   .app-module-list-header p:last-child,
-  .app-placeholder p:last-child {
+  :where(.app-placeholder p:not(.app-placeholder-label)) {
     max-width: 60ch;
     margin-block: 0;
     color: var(--color-text-muted);
