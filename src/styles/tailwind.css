@@ -1,0 +1,16 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-cw-background: var(--color-background);
+  --color-cw-surface: var(--color-surface);
+  --color-cw-surface-raised: var(--color-surface-raised);
+  --color-cw-text: var(--color-text);
+  --color-cw-muted: var(--color-text-muted);
+  --color-cw-border: var(--color-border);
+  --color-cw-border-strong: var(--color-border-strong);
+  --color-cw-accent: var(--color-accent);
+  --color-cw-focus: var(--color-focus);
+  --font-cw-sans: var(--font-sans);
+  --font-cw-mono: var(--font-mono);
+}

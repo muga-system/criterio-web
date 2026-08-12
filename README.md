@@ -48,6 +48,7 @@ npm ci
 - `src/layouts/`: shell y layout compartido de la aplicación.
 - `src/pages/`: páginas Astro de la shell y contenido publicado de los módulos.
 - `src/styles/`: capas CSS, tokens y estilos base.
+- `src/styles/tailwind.css`: utilidades Tailwind 4 y puente con los tokens visuales del proyecto.
 - `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
 - `e2e/`: recorridos end-to-end.
 
@@ -61,6 +62,10 @@ necesite estado o comportamiento de cliente.
 La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icono. Las nuevas piezas
 visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual
 sobrio y evitando SVG manuales duplicados.
+
+Tailwind 4 se usa de forma gradual mediante el plugin oficial de Vite. La shell, el reset, el
+scrollbar custom y las reglas estructurales permanecen en CSS propio; las nuevas composiciones
+visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI.
 
 ## Recorrido inicial
 

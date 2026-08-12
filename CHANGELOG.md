@@ -7,7 +7,8 @@ registra en `Unreleased`.
 
 ## [Unreleased]
 
-Todavía no hay cambios posteriores a `v0.1.0`.
+- Integración gradual de Tailwind CSS 4 mediante el plugin oficial de Vite, sin reemplazar el CSS
+  estructural de la shell.
 
 ## [0.1.0] - 2026-08-12
 
