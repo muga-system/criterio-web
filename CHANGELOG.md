@@ -18,6 +18,7 @@ registra en `Unreleased`.
 - Tipos estrictos y funciones puras para validar snapshots y derivar el estado de progreso.
 - Transiciones puras e idempotentes para iniciar y completar lecciones y prácticas.
 - Conexión de la isla React del Módulo 06 con las transiciones de progreso en memoria.
+- Persistencia local del progreso mediante IndexedDB, con validación al cargar y limpieza al reiniciar.
 
 ### Cambiado
 

@@ -8,6 +8,11 @@ import {
   type ProgressSnapshot,
   type ProgressTransitionResult,
 } from "../app/progress/progress-model";
+import {
+  clearProgressSnapshot,
+  loadProgressSnapshot,
+  saveProgressSnapshot,
+} from "../app/progress/progress-store";
 
 const moduleId = "dom-eventos-06";
 const totalLessons = 3;
@@ -17,6 +22,16 @@ const initialUpdatedAt = "1970-01-01T00:00:00.000Z";
 const createInitialSnapshot = (): ProgressSnapshot => createEmptyProgressSnapshot(initialUpdatedAt);
 
 const getCurrentLessonId = (lesson: number): string => lessonIds[lesson - 1] ?? lessonIds[0];
+
+const getCurrentLessonNumber = (snapshot: ProgressSnapshot): number => {
+  const lessons = snapshot.modules[moduleId]?.lessons;
+  const completedLessons = lessonIds.filter((lessonId) => lessons?.[lessonId] === "completed");
+
+  return Math.min(completedLessons.length + 1, totalLessons);
+};
+
+const getErrorMessage = (error: unknown, fallback: string): string =>
+  error instanceof Error && error.message !== "" ? error.message : fallback;
 
 function advancePractice(
   snapshot: ProgressSnapshot,
@@ -49,17 +64,54 @@ function advancePractice(
 }
 
 export default function PracticeNavigator(): ReactElement {
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
   const [currentLesson, setCurrentLesson] = useState(1);
   const [progress, setProgress] = useState<ProgressSnapshot>(createInitialSnapshot);
   const [error, setError] = useState<string | null>(null);
   const isComplete = progress.modules[moduleId]?.practice.verified === true;
+  const isAdvanceDisabled = isReady && (isBusy || isComplete);
 
-  useEffect((): void => {
-    setIsHydrated(true);
+  useEffect((): (() => void) => {
+    let isCancelled = false;
+
+    void loadProgressSnapshot()
+      .then((storedProgress) => {
+        if (isCancelled) {
+          return;
+        }
+
+        const nextProgress = storedProgress ?? createInitialSnapshot();
+
+        setProgress(nextProgress);
+        setCurrentLesson(getCurrentLessonNumber(nextProgress));
+      })
+      .catch((loadError: unknown) => {
+        if (!isCancelled) {
+          setError(
+            getErrorMessage(
+              loadError,
+              "No se pudo cargar el progreso local. La práctica no está disponible.",
+            ),
+          );
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsReady(true);
+        }
+      });
+
+    return (): void => {
+      isCancelled = true;
+    };
   }, []);
 
-  function advance(): void {
+  async function advance(): Promise<void> {
+    if (!isReady || isBusy || isComplete) {
+      return;
+    }
+
     const result = advancePractice(progress, currentLesson, new Date().toISOString());
 
     if (!result.ok) {
@@ -67,15 +119,43 @@ export default function PracticeNavigator(): ReactElement {
       return;
     }
 
-    setError(null);
-    setProgress(result.snapshot);
-    setCurrentLesson((lesson) => Math.min(lesson + 1, totalLessons));
+    setIsBusy(true);
+
+    try {
+      await saveProgressSnapshot(result.snapshot);
+      setError(null);
+      setProgress(result.snapshot);
+      setCurrentLesson((lesson) => Math.min(lesson + 1, totalLessons));
+    } catch (saveError: unknown) {
+      setError(
+        getErrorMessage(saveError, "No se pudo guardar el progreso local. Intentá nuevamente."),
+      );
+    } finally {
+      setIsBusy(false);
+    }
   }
 
-  function reset(): void {
-    setProgress(createInitialSnapshot());
-    setCurrentLesson(1);
-    setError(null);
+  async function reset(): Promise<void> {
+    if (!isReady || isBusy) {
+      return;
+    }
+
+    setIsBusy(true);
+
+    try {
+      await clearProgressSnapshot();
+      const nextProgress = createInitialSnapshot();
+
+      setProgress(nextProgress);
+      setCurrentLesson(getCurrentLessonNumber(nextProgress));
+      setError(null);
+    } catch (clearError: unknown) {
+      setError(
+        getErrorMessage(clearError, "No se pudo reiniciar el progreso local. Intentá nuevamente."),
+      );
+    } finally {
+      setIsBusy(false);
+    }
   }
 
   return (
@@ -83,12 +163,13 @@ export default function PracticeNavigator(): ReactElement {
       className="app-practice-card"
       aria-labelledby="practice-navigator-title"
       data-practice-completed={isComplete ? "true" : "false"}
+      data-progress-ready={isReady ? "true" : "false"}
     >
       <p className="app-placeholder-label">Isla React · estado local</p>
       <h2 id="practice-navigator-title">Práctica local: avanzar por lecciones</h2>
       <p id="practice-navigator-description">
         Esta interacción registra el inicio, el cierre de cada lección y la verificación final. El
-        avance se pierde al recargar la página.
+        avance se conserva en este navegador, sin sincronización ni exportación todavía.
       </p>
       <progress
         className="app-practice-progress"
@@ -109,12 +190,12 @@ export default function PracticeNavigator(): ReactElement {
         <button
           type="button"
           onClick={advance}
-          disabled={!isHydrated || isComplete}
+          disabled={isAdvanceDisabled ? true : undefined}
           aria-describedby="practice-navigator-description"
         >
-          {isComplete ? "Práctica completada" : "Siguiente lección"}
+          {isBusy ? "Guardando…" : isComplete ? "Práctica completada" : "Siguiente lección"}
         </button>
-        <button type="button" className="app-practice-reset" onClick={reset}>
+        <button type="button" className="app-practice-reset" onClick={reset} disabled={isBusy}>
           Reiniciar
         </button>
       </div>

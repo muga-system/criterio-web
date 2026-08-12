@@ -289,6 +289,7 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   });
 
   await expect(practice).toBeVisible();
+  await expect(practice).toHaveAttribute("data-progress-ready", "true");
   await expect(practice).toHaveAttribute("data-practice-completed", "false");
   await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
 
@@ -302,9 +303,28 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await expect(practice.getByRole("status")).toHaveText("Lección 3 de 3 · Completada");
   await expect(practice).toHaveAttribute("data-practice-completed", "true");
   await expect(practice.getByRole("button", { name: "Práctica completada" })).toBeDisabled();
-  await practice.getByRole("button", { name: "Reiniciar" }).click();
-  await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
-  await expect(practice).toHaveAttribute("data-practice-completed", "false");
+
+  await page.reload();
+  const persistedPractice = page.getByRole("region", {
+    name: "Práctica local: avanzar por lecciones",
+  });
+
+  await expect(persistedPractice).toHaveAttribute("data-progress-ready", "true");
+  await expect(persistedPractice.getByRole("status")).toHaveText("Lección 3 de 3 · Completada");
+  await expect(persistedPractice).toHaveAttribute("data-practice-completed", "true");
+
+  await persistedPractice.getByRole("button", { name: "Reiniciar" }).click();
+  await expect(persistedPractice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(persistedPractice).toHaveAttribute("data-practice-completed", "false");
+
+  await page.reload();
+  const resetPractice = page.getByRole("region", {
+    name: "Práctica local: avanzar por lecciones",
+  });
+
+  await expect(resetPractice).toHaveAttribute("data-progress-ready", "true");
+  await expect(resetPractice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(resetPractice).toHaveAttribute("data-practice-completed", "false");
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {
