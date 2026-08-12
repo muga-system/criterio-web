@@ -8,9 +8,9 @@ que sostiene los mismos criterios que explica.
 
 La Fase 1 está completada: el repositorio tiene la base técnica, la configuración de calidad, los
 tests automatizados iniciales, una shell Astro con navegación principal, el contenido estático
-inicial de los Módulos 01, 02, 03, 04, 05, 06 y 07, y una primera isla React experimental para la
-práctica del Módulo 06. La persistencia, la transferencia portable y el motor de aprendizaje
-todavía no forman parte de esta fase.
+inicial de los Módulos 01, 02, 03, 04, 05, 06 y 07, el progreso local persistido en IndexedDB, una
+vista global de avance y la transferencia portable del snapshot. El motor de aprendizaje todavía
+no forma parte de esta fase.
 
 ## Requisitos
 
@@ -42,6 +42,7 @@ npm ci
 
 - `src/app/navigation/`: modelo de rutas y etiquetas de navegación.
 - `src/app/modules/`: catálogo mínimo de módulos publicados.
+- `src/app/progress/`: contrato, persistencia IndexedDB y token portable del progreso.
 - `src/components/`: componentes Astro y futuras islas React.
 - `src/layouts/`: shell y layout compartido de la aplicación.
 - `src/pages/`: páginas Astro de la shell y contenido publicado de los módulos.
@@ -50,10 +51,11 @@ npm ci
 - `e2e/`: recorridos end-to-end.
 
 Astro renderiza las páginas y el contenido estático, incluido el contenido de los siete módulos
-publicados como Markdown. React se usa en la práctica local experimental del Módulo 06, montada como
-isla con estado efímero; las futuras islas se agregarán únicamente cuando una capacidad necesite
-estado o comportamiento de cliente. La arquitectura se ampliará por capacidades en las fases
-siguientes.
+publicados como Markdown. React se usa en la práctica del Módulo 06, la vista global de progreso y la
+transferencia portable, montadas como islas con estado de cliente. El avance se guarda localmente en
+IndexedDB y puede moverse mediante el token `CRITERIO1.` sin backend ni sincronización remota. Las
+futuras islas se agregarán únicamente cuando una capacidad necesite estado o comportamiento de
+cliente.
 
 La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icono. Las nuevas piezas
 visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual

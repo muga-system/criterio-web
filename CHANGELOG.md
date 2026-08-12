@@ -37,6 +37,7 @@ registra en `Unreleased`.
 
 ### Documentado
 
+- Actualización del README para reflejar persistencia IndexedDB, progreso global y token portable.
 - Definición del modelo pedagógico inicial y del criterio de finalización de módulos.
 - Contrato pedagógico preliminar del Módulo 01: Observar antes de construir.
 - Decisión de mantener la práctica integradora del Módulo 01 como actividad estática en esta fase.
