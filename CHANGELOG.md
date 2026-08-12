@@ -36,6 +36,7 @@ registra en `Unreleased`.
 ### Cambiado
 
 - Inicio ahora ofrece un enlace directo al catálogo de módulos publicados.
+- La shell incorpora un enlace de salto accesible hacia el workspace principal.
 - Actualizado el copy de Inicio y Módulos para reflejar los contenidos publicados y el progreso
   local disponible.
 - Alineada la página publicada del Módulo 06 con la isla React local y la persistencia ya

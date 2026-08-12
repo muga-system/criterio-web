@@ -26,6 +26,7 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
   </head>
   <body>
     <div class="app-shell">
+      <a class="app-skip-link" href="#workspace-content">Saltar al contenido principal</a>
       <header class="app-topbar">
         <a class="app-brand" href="/">
           <span class="app-brand-mark" aria-hidden="true">CW</span>
@@ -77,6 +78,7 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
         >
           <main
             class="app-workspace"
+            id="workspace-content"
             tabindex="-1"
             aria-label={showWorkspaceHeader ? undefined : route.label}
             aria-labelledby={showWorkspaceHeader ? "workspace-title" : undefined}
