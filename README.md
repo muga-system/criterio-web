@@ -61,14 +61,16 @@ backend ni sincronización remota. Las futuras islas se agregarán únicamente c
 necesite estado o comportamiento de cliente.
 
 La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icono. Las nuevas piezas
-visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual
-sobrio y evitando SVG manuales duplicados.
+visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el lenguaje técnico
+pixel-art y evitando SVG manuales duplicados.
 
 Tailwind 4 se usa de forma gradual mediante el plugin oficial de Vite. La shell, el reset, el
 scrollbar custom y las reglas estructurales permanecen en CSS propio; las nuevas composiciones
-visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI.
-Las muestras pixel-art de `PIXELES` se incorporan en `public/assets/pixeles/` tal como están, con
-fondos originales y rutas estables para permitir reemplazos posteriores.
+visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI. La
+dirección visual global se apoya en superficies rectangulares, esquinas recortadas, sombras duras,
+retícula técnica y una paleta de estados consistente. Las muestras pixel-art de `PIXELES` se
+incorporan en `public/assets/pixeles/` tal como están, con fondos originales y rutas estables para
+permitir reemplazos posteriores.
 
 ## Recorrido inicial
 

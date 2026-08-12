@@ -2,10 +2,11 @@
 
 ## Intención
 
-Criterio Web conserva una base oscura, técnica y editorial, pero incorpora una capa visual más
-cercana y memorable para personas que todavía no trabajan profesionalmente en desarrollo web. Las
-imágenes pixel-art funcionan como señales de orientación: presentan una capacidad concreta sin
-reemplazar el contenido ni convertir la interfaz en un tablero decorativo.
+Criterio Web usa una base oscura, técnica y editorial con una gramática pixel-art transversal. La
+estética no depende solamente de las ilustraciones: también aparece en la geometría de la shell,
+los marcos, la navegación, los controles, los estados y el scrollbar custom. El resultado busca ser
+más cercano y memorable para personas que todavía no trabajan profesionalmente en desarrollo web,
+sin quitarle rigor al contenido.
 
 La referencia visual inicial está en `C:\Users\dicor\OneDrive\Escritorio\PIXELES`. Los PNG se
 incorporan tal como fueron entregados, con sus fondos originales. Cuando existan versiones sin
@@ -16,12 +17,20 @@ catálogo ni la composición de las vistas.
 
 - Un recurso visual debe estar asociado a una idea, módulo o recorrido reconocible.
 - El texto sigue siendo la fuente principal de información y conserva contraste y jerarquía.
-- Los marcos, líneas y espacios respetan la shell oscura y la composición rectangular existente.
-- No se aplican degradados, sombras brillantes ni filtros para compensar el fondo original.
+- La interfaz usa superficies rectangulares, recortes de esquinas en múltiplos de 4 px, bordes
+  firmes y sombras desplazadas sin desenfoque.
+- La paleta combina azul noche, azul técnico, coral de acción, verde de validación y amarillo de
+  advertencia; cada color debe conservar una función comprensible.
+- La retícula técnica de fondo, las líneas de separación y la tipografía monoespaciada para labels
+  construyen ambiente sin competir con el contenido.
+- No se aplican degradados, sombras brillantes, bordes redondeados ni filtros para compensar el
+  fondo original de los PNG.
 - Las imágenes decorativas deben tener `alt` descriptivo cuando aportan contexto; nunca se usan
   como único medio para comunicar una instrucción.
-- El CSS propio conserva la estructura de la shell, el workspace, el scrollbar y los estados de
-  accesibilidad. Tailwind se incorpora gradualmente para composición y utilidades puntuales.
+- Los focus states, los estados disabled y el contraste se mantienen visibles dentro de la misma
+  gramática visual.
+- El CSS propio conserva la estructura de la shell, el workspace y el scrollbar. Tailwind se
+  incorpora gradualmente para composición y utilidades puntuales, usando los tokens compartidos.
 
 ## Mapa inicial de assets
 

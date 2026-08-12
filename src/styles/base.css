@@ -9,6 +9,26 @@
     text-rendering: optimizelegibility;
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-wrap: balance;
+  }
+
+  button,
+  textarea,
+  input,
+  select {
+    border-radius: 0;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   html,
   body {
     height: 100%;
@@ -20,6 +40,10 @@
     min-height: 0;
     margin: 0;
     background: var(--color-background);
+    background-image:
+      linear-gradient(90deg, rgb(77 169 255 / 3%) 1px, transparent 1px),
+      linear-gradient(rgb(77 169 255 / 3%) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
   .app-skip-link {
@@ -33,6 +57,14 @@
     font-weight: 700;
     text-decoration: none;
     transform: translateY(calc(-100% - var(--space-2)));
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      100% 0,
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      0 100%,
+      0 var(--pixel-cut)
+    );
   }
 
   :where(.app-skip-link:focus-visible) {
@@ -41,6 +73,37 @@
 
   a {
     color: inherit;
+  }
+
+  button,
+  [role="button"] {
+    position: relative;
+    clip-path: polygon(
+      var(--pixel-unit) 0,
+      calc(100% - var(--pixel-unit)) 0,
+      100% var(--pixel-unit),
+      100% calc(100% - var(--pixel-unit)),
+      calc(100% - var(--pixel-unit)) 100%,
+      var(--pixel-unit) 100%,
+      0 calc(100% - var(--pixel-unit)),
+      0 var(--pixel-unit)
+    );
+    box-shadow: 3px 3px 0 var(--color-pixel-shadow);
+  }
+
+  textarea,
+  input,
+  select {
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface-deep);
+  }
+
+  textarea:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    border-color: var(--color-focus);
+    outline: 0;
+    box-shadow: 3px 3px 0 var(--color-pixel-shadow);
   }
 
   .app-shell {
@@ -58,8 +121,9 @@
     justify-content: space-between;
     height: 4.5rem;
     padding: 0 var(--space-4);
-    border-block-end: 1px solid var(--color-border);
+    border-block-end: 2px solid var(--color-border);
     background: var(--color-shell);
+    box-shadow: 0 4px 0 var(--color-pixel-shadow);
   }
 
   .app-brand {
@@ -72,6 +136,7 @@
     letter-spacing: 0.04em;
     text-decoration: none;
     text-transform: uppercase;
+    text-shadow: 2px 2px 0 var(--color-pixel-shadow);
   }
 
   .app-brand-mark {
@@ -79,11 +144,23 @@
     width: 2rem;
     height: 2rem;
     place-items: center;
-    border: 1px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
+    background: var(--color-surface-deep);
     color: var(--color-accent);
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 700;
+    box-shadow: 3px 3px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-unit) 0,
+      calc(100% - var(--pixel-unit)) 0,
+      100% var(--pixel-unit),
+      100% calc(100% - var(--pixel-unit)),
+      calc(100% - var(--pixel-unit)) 100%,
+      var(--pixel-unit) 100%,
+      0 calc(100% - var(--pixel-unit)),
+      0 var(--pixel-unit)
+    );
   }
 
   .app-topbar-context {
@@ -111,7 +188,7 @@
     justify-content: space-between;
     gap: var(--space-4);
     padding: var(--space-4) var(--space-2);
-    border-inline-end: 1px solid var(--color-border);
+    border-inline-end: 2px solid var(--color-border);
     background: var(--color-shell);
     min-height: 100%;
   }
@@ -126,6 +203,7 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-shadow: 2px 2px 0 var(--color-pixel-shadow);
   }
 
   .app-sidebar-label {
@@ -146,7 +224,7 @@
     align-items: center;
     gap: var(--space-1);
     padding: 0.75rem var(--space-1);
-    border-inline-start: 2px solid transparent;
+    border-inline-start: 3px solid transparent;
     color: var(--color-text-muted);
     text-decoration: none;
   }
@@ -156,10 +234,12 @@
   .app-nav-link.is-active {
     color: var(--color-text);
     background: var(--color-surface-raised);
+    box-shadow: 4px 0 0 var(--color-pixel-shadow);
   }
 
   .app-nav-link.is-active {
     border-inline-start-color: var(--color-accent);
+    box-shadow: 4px 0 0 var(--color-accent);
   }
 
   .app-nav-index {
@@ -176,7 +256,7 @@
     max-width: 22ch;
     margin: 0;
     padding: var(--space-1);
-    border-block-start: 1px solid var(--color-border);
+    border-block-start: 2px solid var(--color-border);
     color: var(--color-text-muted);
     font-size: 0.8125rem;
   }
@@ -185,7 +265,7 @@
     min-width: 0;
     min-height: 0;
     padding: clamp(var(--space-3), 6vw, 5rem);
-    background: var(--color-background);
+    background: rgb(5 10 18 / 92%);
   }
 
   .app-workspace-header,
@@ -198,6 +278,7 @@
     font-size: clamp(2.25rem, 8vw, 5rem);
     line-height: 0.98;
     letter-spacing: -0.04em;
+    text-shadow: 4px 4px 0 var(--color-pixel-shadow);
   }
 
   .app-workspace-description {
@@ -205,13 +286,26 @@
     margin: 0;
     color: var(--color-text-muted);
     font-size: 1.0625rem;
+    border-inline-start: 3px solid var(--color-info);
+    padding-inline-start: var(--space-1);
   }
 
   .app-placeholder {
     margin-block-start: clamp(var(--space-4), 8vw, 7rem);
     padding: var(--space-3);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
   }
 
   .app-placeholder h2 {
@@ -228,6 +322,8 @@
     color: var(--color-text);
     font-weight: 700;
     text-decoration: none;
+    border-block-end: 2px solid var(--color-accent);
+    padding-block-end: 0.2rem;
   }
 
   :where(.app-placeholder-link:hover, .app-placeholder-link:focus-visible) {
@@ -275,6 +371,7 @@
     margin-block: 0 var(--space-1);
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     line-height: 1.05;
+    text-shadow: 3px 3px 0 var(--color-pixel-shadow);
   }
 
   .app-home-copy {
@@ -304,10 +401,13 @@
     border: 1px solid var(--color-accent);
     background: var(--color-accent);
     color: var(--color-background);
+    box-shadow: 3px 3px 0 var(--color-pixel-shadow);
   }
 
   .app-home-secondary-link {
     color: var(--color-text);
+    border-block-end: 2px solid var(--color-border-strong);
+    padding-block-end: 0.2rem;
   }
 
   :where(.app-home-primary-link:hover, .app-home-primary-link:focus-visible) {
@@ -323,6 +423,7 @@
     grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr);
     gap: var(--space-2);
     margin-block-start: var(--space-2);
+    position: relative;
   }
 
   .app-home-path ol {
@@ -338,7 +439,7 @@
     grid-template-columns: 2rem minmax(0, 1fr);
     gap: var(--space-1);
     padding-block-start: var(--space-1);
-    border-block-start: 1px solid var(--color-border);
+    border-block-start: 2px solid var(--color-border);
   }
 
   .app-home-step-index {
@@ -396,6 +497,7 @@
     font-size: 0.6875rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    background: var(--color-surface-deep);
   }
 
   .app-module-list {
@@ -404,7 +506,7 @@
 
   .app-module-list-header {
     padding-block-end: var(--space-2);
-    border-block-end: 1px solid var(--color-border);
+    border-block-end: 2px solid var(--color-accent);
   }
 
   .app-module-list-header h2 {
@@ -430,6 +532,8 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-2);
+    border-block-end: 2px solid var(--color-border);
+    padding-block-end: var(--space-1);
   }
 
   .app-module-card-status,
@@ -455,6 +559,7 @@
     margin-block: var(--space-2) var(--space-1);
     font-size: clamp(1.25rem, 3vw, 2rem);
     line-height: 1.1;
+    text-shadow: 2px 2px 0 var(--color-pixel-shadow);
   }
 
   .app-module-card > p {
@@ -465,7 +570,7 @@
 
   .app-module-card-footer {
     padding-block-start: var(--space-1);
-    border-block-start: 1px solid var(--color-border);
+    border-block-start: 2px solid var(--color-border);
   }
 
   .app-module-card-meta {
@@ -496,8 +601,19 @@
   .module-contents {
     margin-block-start: var(--space-3);
     padding: var(--space-2);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .module-contents h2 {
@@ -535,8 +651,19 @@
   .app-lesson-progress-card {
     margin-block: var(--space-4) 0;
     padding: var(--space-2);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .app-lesson-progress-card h2 {
@@ -684,7 +811,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
     margin-block: var(--space-3);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-border-strong);
   }
 
@@ -694,6 +821,7 @@
     min-width: 0;
     padding: var(--space-1);
     background: var(--color-surface);
+    border-inline-start: 1px solid var(--color-border);
   }
 
   .app-progress-stat span,
@@ -709,6 +837,8 @@
   .app-progress-stat strong {
     font-size: 1.75rem;
     line-height: 1;
+    color: var(--color-accent);
+    font-family: var(--font-display);
   }
 
   .app-progress-list {
@@ -721,8 +851,19 @@
 
   .app-progress-card {
     padding: var(--space-2);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .app-progress-card.is-completed {
@@ -770,6 +911,9 @@
     width: 100%;
     height: 0.75rem;
     accent-color: var(--color-accent);
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface-deep);
+    appearance: none;
   }
 
   :where(.app-progress-card-link) {
@@ -779,6 +923,8 @@
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
+    border-block-end: 2px solid var(--color-accent);
+    padding-block-end: 0.2rem;
   }
 
   .app-transfer-overview {
@@ -810,8 +956,19 @@
     align-content: start;
     gap: var(--space-1);
     padding: var(--space-2);
-    border: 1px solid var(--color-border-strong);
+    border: 2px solid var(--color-border-strong);
     background: var(--color-surface);
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .app-transfer-panel h3 {
@@ -837,9 +994,8 @@
     width: 100%;
     min-height: 8rem;
     padding: var(--space-1);
-    border: 1px solid var(--color-border-strong);
-    border-radius: 0;
-    background: var(--color-background);
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface-deep);
     color: var(--color-text);
     font: 0.75rem/1.45 var(--font-mono);
     resize: vertical;
@@ -875,8 +1031,9 @@
   .app-transfer-message {
     margin-block: var(--space-2) 0;
     padding: var(--space-1);
-    border-inline-start: 2px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
     background: var(--color-surface);
+    box-shadow: 3px 3px 0 var(--color-pixel-shadow);
   }
 
   .app-transfer-message.is-error {
@@ -893,12 +1050,23 @@
     width: min(calc(100% - (var(--space-3) * 2)), 38rem);
     margin: auto;
     padding: var(--space-3);
-    border: 1px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
     background: var(--color-surface);
     color: var(--color-text);
     max-height: calc(100dvh - (var(--space-3) * 2));
     overflow: auto;
     transform: translate(-50%, -50%);
+    box-shadow: 6px 6px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .app-transfer-confirmation::backdrop {
@@ -959,12 +1127,13 @@
     font-size: clamp(2rem, 7vw, 4rem);
     line-height: 1;
     letter-spacing: -0.04em;
+    text-shadow: 4px 4px 0 var(--color-pixel-shadow);
   }
 
   .module-content h2 {
     margin-block: var(--space-4) var(--space-1);
     padding-block-start: var(--space-2);
-    border-block-start: 1px solid var(--color-border);
+    border-block-start: 2px solid var(--color-accent);
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     line-height: 1.1;
   }
@@ -987,18 +1156,20 @@
   .module-content blockquote {
     margin-inline: 0;
     padding-inline: var(--space-2);
-    border-inline-start: 2px solid var(--color-accent);
+    border-inline-start: 4px solid var(--color-accent);
+    background: rgb(255 63 73 / 5%);
     color: var(--color-text);
   }
 
   .module-content pre {
     overflow-x: auto;
     padding: var(--space-2);
-    border: 1px solid var(--color-border-strong);
-    background: var(--color-surface);
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface-deep);
     color: var(--color-text);
     font-family: var(--font-mono);
     font-size: 0.875rem;
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
   }
 
   .module-content code {
@@ -1041,6 +1212,7 @@
     width: 1rem;
     border-inline-start: 1px solid var(--color-border);
     background: var(--app-scrollbar-surface);
+    box-shadow: inset 3px 0 0 var(--color-pixel-shadow);
   }
 
   .app-scrollbar {
@@ -1114,24 +1286,37 @@
     inset-block-start: 0;
     inset-inline: 0;
     min-height: 2.5rem;
-    background: var(--color-border-strong);
+    background: var(--color-pixel-highlight);
     cursor: grab;
+    box-shadow: 3px 0 0 var(--color-pixel-shadow);
   }
 
   :where(.app-scroll-thumb:hover) {
-    background: var(--color-text-muted);
+    background: var(--color-info);
   }
 
   :where(.app-scroll-thumb:active) {
     background: var(--color-accent);
     cursor: grabbing;
+    box-shadow: 1px 0 0 var(--color-pixel-shadow);
   }
 
   .app-practice-card {
     margin-block: var(--space-4) 0;
     padding: var(--space-2);
-    border: 1px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
     background: var(--color-surface);
+    box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+    clip-path: polygon(
+      var(--pixel-cut) 0,
+      calc(100% - var(--pixel-cut)) 0,
+      100% var(--pixel-cut),
+      100% calc(100% - var(--pixel-cut)),
+      calc(100% - var(--pixel-cut)) 100%,
+      var(--pixel-cut) 100%,
+      0 calc(100% - var(--pixel-cut)),
+      0 var(--pixel-cut)
+    );
   }
 
   .app-practice-card h2 {
@@ -1150,6 +1335,9 @@
     width: 100%;
     height: 0.75rem;
     accent-color: var(--color-accent);
+    appearance: none;
+    border: 2px solid var(--color-border-strong);
+    background: var(--color-surface-deep);
   }
 
   .app-practice-status {
@@ -1157,6 +1345,8 @@
     color: var(--color-text);
     font-family: var(--font-mono);
     font-size: 0.8125rem;
+    border-inline-start: 3px solid var(--color-info);
+    padding-inline-start: var(--space-1);
   }
 
   .app-practice-actions {
@@ -1199,6 +1389,24 @@
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--color-pixel-shadow);
+  }
+
+  progress::-webkit-progress-bar {
+    background: var(--color-surface-deep);
+  }
+
+  progress::-webkit-progress-value {
+    background: var(--color-accent);
+  }
+
+  progress::-moz-progress-bar {
+    background: var(--color-accent);
+  }
+
+  :where(button:not(:disabled):active, [role="button"]:active) {
+    box-shadow: 1px 1px 0 var(--color-pixel-shadow);
+    transform: translate(2px, 2px);
   }
 
   @media (width <= 48rem) {

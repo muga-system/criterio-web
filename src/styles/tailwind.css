@@ -11,23 +11,51 @@
   --color-cw-border-strong: var(--color-border-strong);
   --color-cw-accent: var(--color-accent);
   --color-cw-focus: var(--color-focus);
+  --color-cw-info: var(--color-info);
+  --color-cw-success: var(--color-success);
+  --color-cw-warning: var(--color-warning);
+  --color-cw-pixel-shadow: var(--color-pixel-shadow);
   --font-cw-sans: var(--font-sans);
+  --font-cw-display: var(--font-display);
   --font-cw-mono: var(--font-mono);
 }
 
 @utility cw-panel {
-  border: 1px solid var(--color-border-strong);
+  border: 2px solid var(--color-border-strong);
   background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+  clip-path: polygon(
+    var(--pixel-cut) 0,
+    calc(100% - var(--pixel-cut)) 0,
+    100% var(--pixel-cut),
+    100% calc(100% - var(--pixel-cut)),
+    calc(100% - var(--pixel-cut)) 100%,
+    var(--pixel-cut) 100%,
+    0 calc(100% - var(--pixel-cut)),
+    0 var(--pixel-cut)
+  );
 }
 
 @utility cw-panel-accent {
-  border: 1px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
   background: var(--color-surface);
+  box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+  clip-path: polygon(
+    var(--pixel-cut) 0,
+    calc(100% - var(--pixel-cut)) 0,
+    100% var(--pixel-cut),
+    100% calc(100% - var(--pixel-cut)),
+    calc(100% - var(--pixel-cut)) 100%,
+    var(--pixel-cut) 100%,
+    0 calc(100% - var(--pixel-cut)),
+    0 var(--pixel-cut)
+  );
 }
 
 @utility cw-media {
-  border: 1px solid var(--color-border-strong);
+  border: 2px solid var(--color-border-strong);
   background: var(--color-background);
+  box-shadow: 3px 3px 0 var(--color-pixel-shadow);
 }
 
 @utility cw-eyebrow {
