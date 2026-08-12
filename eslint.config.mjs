@@ -1,4 +1,5 @@
 import eslint from "@eslint/js";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -7,7 +8,7 @@ const typedConfigs = tseslint.configs.recommendedTypeChecked.map((config) => ({
   files: ["**/*.{ts,tsx,mts,cts}"],
 }));
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: [".astro", "coverage", "dist", "node_modules", "playwright-report", "test-results"],
   },

@@ -35,6 +35,8 @@ registra en `Unreleased`.
 
 ### Cambiado
 
+- Actualizada la composición de la configuración plana de ESLint para usar la API vigente de
+  `eslint/config`.
 - Inicio ahora ofrece un enlace directo al catálogo de módulos publicados.
 - La shell incorpora un enlace de salto accesible hacia el workspace principal.
 - Actualizado el copy de Inicio y Módulos para reflejar los contenidos publicados y el progreso
