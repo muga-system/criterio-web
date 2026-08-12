@@ -81,8 +81,8 @@ todo el repositorio en una máquina con los navegadores de Playwright disponible
 
 ## Versionado y releases
 
-El proyecto se encuentra en desarrollo previo a su primera release y mantiene la versión `0.0.0`
-en `package.json`.
+La primera release de prueba es `v0.1.0`. El producto todavía no se considera una versión pedagógica
+final: el contenido publicado y la práctica interactiva forman una base para validar el recorrido.
 
 Los cambios se registran primero en `CHANGELOG.md`, dentro de `Unreleased`. Cuando exista un hito
 publicable:

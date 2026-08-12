@@ -7,6 +7,10 @@ registra en `Unreleased`.
 
 ## [Unreleased]
 
+Todavía no hay cambios posteriores a `v0.1.0`.
+
+## [0.1.0] - 2026-08-12
+
 ### Agregado
 
 - Base Vite con TypeScript estricto y módulos ES.
