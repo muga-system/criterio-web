@@ -14,9 +14,9 @@ En este módulo vas a practicar una secuencia simple:
 estructura → evento → estado → render → verificación
 ```
 
-Esta unidad conecta JavaScript y TypeScript con una interfaz real. La práctica puede ser una futura
-candidata para una isla React, pero primero vamos a entender el flujo con herramientas nativas del
-navegador.
+Esta unidad conecta JavaScript y TypeScript con una interfaz real. La explicación usa herramientas
+nativas del navegador; la práctica integradora se acompaña al final con una isla React local que
+hace visible el mismo flujo sin reemplazar sus conceptos.
 
 <h2 id="leccion-01">Lección 01 · El DOM como representación</h2>
 
@@ -239,8 +239,9 @@ La ficha está completa cuando:
 ## Cierre
 
 Conectar estado y representación significa poder explicar qué entrada recibió la interfaz, qué dato
-cambió y por qué la vista refleja ese nuevo resultado. React podrá ayudar a organizar esa relación en
-una etapa posterior, pero no reemplaza la necesidad de comprenderla.
+cambió y por qué la vista refleja ese nuevo resultado. La isla React local muestra esa relación con
+un estado explícito y una representación derivada, pero no reemplaza la necesidad de comprenderla.
 
-La próxima etapa será decidir si esta práctica necesita una isla React y cómo mantener sus límites
-locales antes de diseñar la persistencia del progreso.
+La próxima etapa será revisar qué evidencia produce la práctica y si necesita una ampliación. La
+persistencia del recorrido pertenece a la aplicación, no al problema que la práctica propone
+resolver.
