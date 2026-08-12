@@ -19,9 +19,14 @@ import {
 import { moduleCatalog } from "../modules/module-catalog";
 
 const domModule = moduleCatalog.find((module) => module.id === "dom-eventos-06");
+const externalModule = moduleCatalog.find((module) => module.id === "orientacion-web-01");
 
 if (domModule === undefined) {
   throw new Error("No se encontró el módulo DOM y eventos para las pruebas.");
+}
+
+if (externalModule === undefined) {
+  throw new Error("No se encontró el módulo de orientación web para las pruebas.");
 }
 
 const createModuleProgress = (overrides: Partial<ModuleProgress> = {}): ModuleProgress => ({
@@ -30,13 +35,19 @@ const createModuleProgress = (overrides: Partial<ModuleProgress> = {}): ModulePr
   ...overrides,
 });
 
-const validSnapshot = (moduleProgress: ModuleProgress): ProgressSnapshot => ({
+const validSnapshotForModule = (
+  moduleId: string,
+  moduleProgress: ModuleProgress,
+): ProgressSnapshot => ({
   schemaVersion: PROGRESS_SCHEMA_VERSION,
   courseId: COURSE_ID,
   contentVersion: CONTENT_VERSION,
   updatedAt: "2026-08-12T00:00:00.000Z",
-  modules: { [domModule.id]: moduleProgress },
+  modules: { [moduleId]: moduleProgress },
 });
+
+const validSnapshot = (moduleProgress: ModuleProgress): ProgressSnapshot =>
+  validSnapshotForModule(domModule.id, moduleProgress);
 
 describe("progress-model", () => {
   it("crea un snapshot vacío con las versiones del contrato", () => {
@@ -80,6 +91,14 @@ describe("progress-model", () => {
         ),
       ),
     ).toBe(true);
+    expect(
+      hasProgressEvidence(
+        validSnapshotForModule(
+          externalModule.id,
+          createModuleProgress({ practice: { started: true, verified: false } }),
+        ),
+      ),
+    ).toBe(false);
   });
 
   it("deriva in_progress cuando existe avance sin cumplir el cierre", () => {
@@ -128,6 +147,40 @@ describe("progress-model", () => {
         }),
       ),
     ).toBe("in_progress");
+  });
+
+  it("distingue un módulo completo en lecciones con práctica externa pendiente", () => {
+    expect(
+      deriveModuleProgressStatus(
+        externalModule,
+        createModuleProgress({
+          lessons: {
+            "leccion-01": "completed",
+            "leccion-02": "completed",
+            "leccion-03": "completed",
+          },
+        }),
+      ),
+    ).toBe("external_practice_pending");
+  });
+
+  it("no registra evidencia de práctica para módulos externos", () => {
+    const snapshot = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+
+    expect(startPractice(snapshot, externalModule.id, "2026-08-12T00:01:00.000Z")).toEqual({
+      ok: false,
+      error: `modules.${externalModule.id}.practice: la práctica ocurre fuera de la aplicación`,
+    });
+    expect(verifyPractice(snapshot, externalModule.id, "2026-08-12T00:01:00.000Z")).toEqual({
+      ok: false,
+      error: `modules.${externalModule.id}.practice: la práctica ocurre fuera de la aplicación`,
+    });
+    expect(
+      deriveModuleProgressStatus(
+        externalModule,
+        createModuleProgress({ practice: { started: true, verified: true } }),
+      ),
+    ).toBe("not_started");
   });
 
   it("inicia una lección sin mutar el snapshot original", () => {

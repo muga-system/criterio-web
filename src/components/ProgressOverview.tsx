@@ -14,6 +14,7 @@ const initialUpdatedAt = "1970-01-01T00:00:00.000Z";
 const statusLabels: Record<ModuleProgressStatus, string> = {
   not_started: "Sin iniciar",
   in_progress: "En progreso",
+  external_practice_pending: "Práctica externa pendiente",
   completed: "Completado",
 };
 
@@ -94,6 +95,9 @@ export default function ProgressOverview(): ReactElement {
         }));
   const completedModules = moduleStatuses.filter(({ status }) => status === "completed").length;
   const inProgressModules = moduleStatuses.filter(({ status }) => status === "in_progress").length;
+  const externalPracticePendingModules = moduleStatuses.filter(
+    ({ status }) => status === "external_practice_pending",
+  ).length;
 
   return (
     <section
@@ -123,6 +127,10 @@ export default function ProgressOverview(): ReactElement {
             <div className="app-progress-stat">
               <span>En progreso</span>
               <strong>{inProgressModules}</strong>
+            </div>
+            <div className="app-progress-stat">
+              <span>Práctica externa pendiente</span>
+              <strong>{externalPracticePendingModules}</strong>
             </div>
             <div className="app-progress-stat">
               <span>Disponibles</span>

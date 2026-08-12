@@ -9,7 +9,8 @@ export const lessonProgressStatuses = ["not_started", "in_progress", "completed"
 
 export type LessonProgressStatus = (typeof lessonProgressStatuses)[number];
 
-export type ModuleProgressStatus = "not_started" | "in_progress" | "completed";
+export type ModuleProgressStatus =
+  "not_started" | "in_progress" | "external_practice_pending" | "completed";
 
 export type PracticeProgress = {
   started: boolean;
@@ -96,11 +97,16 @@ export const createEmptyProgressSnapshot = (updatedAt: string): ProgressSnapshot
 });
 
 export const hasProgressEvidence = (snapshot: ProgressSnapshot): boolean =>
-  Object.values(snapshot.modules).some(
-    (moduleProgress) =>
-      Object.values(moduleProgress.lessons).some((status) => status !== "not_started") ||
-      moduleProgress.practice.started,
-  );
+  Object.entries(snapshot.modules).some(([moduleId, moduleProgress]) => {
+    const hasLessonEvidence = Object.values(moduleProgress.lessons).some(
+      (status) => status !== "not_started",
+    );
+    const hasInteractivePracticeEvidence =
+      getModuleById(moduleId)?.practiceTracking === "interactive" &&
+      moduleProgress.practice.started;
+
+    return hasLessonEvidence || hasInteractivePracticeEvidence;
+  });
 
 const createEmptyModuleProgress = (): ModuleProgress => ({
   lessons: {},
@@ -224,8 +230,17 @@ export const startPractice = (
   snapshot: ProgressSnapshot,
   moduleId: string,
   updatedAt: string,
-): ProgressTransitionResult =>
-  updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+): ProgressTransitionResult => {
+  const module = getModuleById(moduleId);
+
+  if (module?.practiceTracking === "external") {
+    return {
+      ok: false,
+      error: `modules.${moduleId}.practice: la práctica ocurre fuera de la aplicación`,
+    };
+  }
+
+  return updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
     if (progress.practice.started) {
       return progress;
     }
@@ -235,13 +250,23 @@ export const startPractice = (
       practice: { ...progress.practice, started: true },
     };
   });
+};
 
 export const verifyPractice = (
   snapshot: ProgressSnapshot,
   moduleId: string,
   updatedAt: string,
-): ProgressTransitionResult =>
-  updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+): ProgressTransitionResult => {
+  const module = getModuleById(moduleId);
+
+  if (module?.practiceTracking === "external") {
+    return {
+      ok: false,
+      error: `modules.${moduleId}.practice: la práctica ocurre fuera de la aplicación`,
+    };
+  }
+
+  return updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
     if (!progress.practice.started) {
       return {
         ok: false,
@@ -258,6 +283,7 @@ export const verifyPractice = (
       practice: { ...progress.practice, verified: true },
     };
   });
+};
 
 export const deriveModuleProgressStatus = (
   module: ModuleSummary,
@@ -269,10 +295,14 @@ export const deriveModuleProgressStatus = (
 
   const hasEvidence =
     Object.values(progress.lessons).some((status) => status !== "not_started") ||
-    progress.practice.started;
+    (module.practiceTracking === "interactive" && progress.practice.started);
   const hasCompletedLessons = getRequiredLessonIds(module).every(
     (lessonId) => progress.lessons[lessonId] === "completed",
   );
+
+  if (hasCompletedLessons && module.practiceTracking === "external") {
+    return "external_practice_pending";
+  }
 
   if (hasCompletedLessons && progress.practice.started && progress.practice.verified) {
     return "completed";

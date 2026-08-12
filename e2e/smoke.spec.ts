@@ -304,13 +304,23 @@ test("permite registrar el cierre de una lección estática y conservarlo", asyn
   await expect(persistedLessonProgress).toHaveAttribute("data-progress-ready", "true");
   await expect(persistedFirstLesson).toHaveAttribute("data-progress-status", "completed");
 
+  for (const lessonId of ["leccion-02", "leccion-03"]) {
+    const lesson = persistedLessonProgress.locator(`[data-lesson-id="${lessonId}"]`);
+
+    await lesson.getByRole("button", { name: "Marcar como completada" }).click();
+    await expect(lesson).toHaveAttribute("data-progress-status", "completed");
+  }
+
   await page.goto("http://127.0.0.1:4173/progreso");
   const overview = page.getByRole("region", { name: "Estado del recorrido" });
   const moduleCard = overview.locator('[data-module-id="orientacion-web-01"]');
 
-  await expect(moduleCard).toHaveAttribute("data-progress-status", "in_progress");
-  await expect(moduleCard).toContainText("1 de 3 lecciones");
+  await expect(moduleCard).toHaveAttribute("data-progress-status", "external_practice_pending");
+  await expect(moduleCard).toContainText("3 de 3 lecciones");
   await expect(moduleCard).toContainText("Práctica fuera de la app");
+  await expect(overview.locator(".app-progress-summary")).toContainText(
+    "Práctica externa pendiente",
+  );
 });
 
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {

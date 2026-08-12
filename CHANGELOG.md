@@ -46,6 +46,9 @@ registra en `Unreleased`.
   local disponible.
 - La vista global distingue las prácticas fuera de la app de la práctica interactiva verificable del
   Módulo 06.
+- El progreso deriva un estado específico cuando las lecciones están completas pero la práctica
+  ocurre fuera de la app y no puede verificarse localmente.
+- Las transiciones locales de práctica rechazan módulos cuya práctica está declarada como externa.
 - Alineada la página publicada del Módulo 06 con la isla React local y la persistencia ya
   implementadas.
 - Migración de la shell y las rutas principales a Astro con integración React preparada para islas.

@@ -112,6 +112,10 @@ not_started
 in_progress
 └─ existe cualquier evidencia, pero todavía no se cumple el criterio de finalización
 
+external_practice_pending
+└─ todas las lecciones obligatorias están completed
+   y la práctica integradora ocurre fuera de la aplicación
+
 completed
 └─ todas las lecciones obligatorias están completed
    y practice.started es true
@@ -121,6 +125,13 @@ completed
 Si el catálogo declara una lección obligatoria nueva, un snapshot anterior no debe marcar el módulo
 como `completed` hasta que esa lección tenga evidencia. La aplicación debe comparar el snapshot con
 el catálogo actual, no confiar en un estado guardado de una versión anterior.
+
+Cuando todas las lecciones de un módulo con práctica externa están completas, el estado se deriva
+como `external_practice_pending`. Esto indica que la aplicación no puede verificar el cierre de la
+práctica sin inventar evidencia local.
+
+Las transiciones locales de práctica solo están habilitadas para módulos con práctica interactiva.
+Un módulo externo no puede iniciar ni verificar su práctica mediante el contrato de progreso.
 
 ## Invariantes que debe validar la implementación
 
