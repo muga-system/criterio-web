@@ -1,6 +1,7 @@
 ---
 import { appRoutes } from "../app/navigation/routes";
 import { moduleCatalog } from "../app/modules/module-catalog";
+import LessonProgressNavigator from "../components/LessonProgressNavigator";
 import PracticeNavigator from "../components/PracticeNavigator";
 import AppLayout from "./AppLayout.astro";
 
@@ -8,6 +9,7 @@ const route = appRoutes[1];
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const module = moduleCatalog.find((entry) => entry.path === currentPath) ?? moduleCatalog[0];
 const hasInteractivePractice = module.id === "dom-eventos-06";
+const requiredLessons = module.lessons.filter((lesson) => lesson.id !== "practica-integradora");
 ---
 
 <AppLayout route={route} showWorkspaceHeader={false}>
@@ -29,6 +31,11 @@ const hasInteractivePractice = module.id === "dom-eventos-06";
     <article class="module-content">
       <slot />
     </article>
+    {
+      !hasInteractivePractice && (
+        <LessonProgressNavigator client:load moduleId={module.id} lessons={requiredLessons} />
+      )
+    }
     {hasInteractivePractice && <PracticeNavigator client:load />}
   </div>
 </AppLayout>

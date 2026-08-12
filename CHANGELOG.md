@@ -20,6 +20,8 @@ registra en `Unreleased`.
 - Conexión de la isla React del Módulo 06 con las transiciones de progreso en memoria.
 - Persistencia local del progreso mediante IndexedDB, con validación al cargar y limpieza al reiniciar.
 - Vista global de progreso con estados derivados y enlaces a los siete módulos publicados.
+- Registro local explícito del cierre de lecciones en los módulos sin práctica interactiva
+  específica.
 - Token portable `CRITERIO1.` con exportación, copia, validación e importación local del snapshot.
 - Confirmación contextual antes de reemplazar progreso local durante una importación; la v1 no hace
   merge automático entre snapshots.

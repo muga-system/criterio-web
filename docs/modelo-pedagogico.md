@@ -137,6 +137,8 @@ mantiene local, persiste el avance en IndexedDB, conecta las transiciones de evi
 cobertura de navegación e interacción. La aplicación también cuenta con vista global, transferencia
 portable, validación de compatibilidad y recuperación explícita ante errores de lectura.
 
-El próximo trabajo es revisar qué evidencia producen las prácticas y decidir qué capacidad necesita
-una isla React adicional. No se agregará una interacción de cliente ni persistencia específica sin
-un criterio pedagógico que la justifique.
+Los módulos sin una práctica React específica ya cuentan con una acción explícita para registrar el
+cierre de sus lecciones, sin convertir sus ejercicios en interfaces editables. El próximo trabajo es
+revisar qué evidencia producen las prácticas y decidir qué capacidad necesita una isla React
+adicional. No se agregará una interacción de cliente ni persistencia específica sin un criterio
+pedagógico que la justifique.

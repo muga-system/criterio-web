@@ -186,6 +186,35 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
   await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01#leccion-01");
 });
 
+test("permite registrar el cierre de una lección estática y conservarlo", async ({ page }) => {
+  await page.goto("http://127.0.0.1:4173/modulos/orientacion-web-01");
+
+  const lessonProgress = page.getByRole("region", { name: "Marcar lecciones recorridas" });
+  const firstLesson = lessonProgress.locator('[data-lesson-id="leccion-01"]');
+
+  await expect(lessonProgress).toHaveAttribute("data-progress-ready", "true");
+  await expect(firstLesson).toHaveAttribute("data-progress-status", "not_started");
+  await firstLesson.getByRole("button", { name: "Marcar como completada" }).click();
+  await expect(firstLesson).toHaveAttribute("data-progress-status", "completed");
+  await expect(firstLesson.getByRole("button", { name: "Lección completada" })).toBeDisabled();
+
+  await page.reload();
+  const persistedLessonProgress = page.getByRole("region", {
+    name: "Marcar lecciones recorridas",
+  });
+  const persistedFirstLesson = persistedLessonProgress.locator('[data-lesson-id="leccion-01"]');
+
+  await expect(persistedLessonProgress).toHaveAttribute("data-progress-ready", "true");
+  await expect(persistedFirstLesson).toHaveAttribute("data-progress-status", "completed");
+
+  await page.goto("http://127.0.0.1:4173/progreso");
+  const overview = page.getByRole("region", { name: "Estado del recorrido" });
+  const moduleCard = overview.locator('[data-module-id="orientacion-web-01"]');
+
+  await expect(moduleCard).toHaveAttribute("data-progress-status", "in_progress");
+  await expect(moduleCard).toContainText("1 de 3 lecciones");
+});
+
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 

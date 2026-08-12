@@ -332,6 +332,88 @@
     color: var(--color-accent);
   }
 
+  .app-lesson-progress-card {
+    margin-block: var(--space-4) 0;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+  }
+
+  .app-lesson-progress-card h2 {
+    margin-block: 0 var(--space-1);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .app-lesson-progress-intro {
+    max-width: 60ch;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .app-lesson-progress-error {
+    margin-block: var(--space-2) 0;
+    padding: var(--space-1);
+    border-inline-start: 2px solid var(--color-accent);
+    background: var(--color-background);
+  }
+
+  .app-lesson-progress-list {
+    display: grid;
+    gap: var(--space-1);
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .app-lesson-progress-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-1);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  :where(.app-lesson-progress-item a) {
+    color: var(--color-text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  :where(.app-lesson-progress-item a:hover) {
+    color: var(--color-accent);
+  }
+
+  .app-lesson-progress-item p {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+  }
+
+  :where(.app-lesson-progress-item button) {
+    flex: 0 0 auto;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-background);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  :where(.app-lesson-progress-item button:disabled) {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  :where(.app-lesson-progress-item button:hover:not(:disabled)) {
+    background: var(--color-focus);
+  }
+
   .app-progress-overview {
     width: min(100%, 48rem);
     margin-block-start: var(--space-4);

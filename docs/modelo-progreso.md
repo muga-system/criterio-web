@@ -44,9 +44,10 @@ Una lección puede tener uno de estos estados:
 - `in_progress`: la persona inició la lección, pero todavía no confirmó su cierre;
 - `completed`: la persona confirmó el cierre de la lección según la interfaz que se defina.
 
-Abrir una ruta o desplazar el workspace no marca una lección como completada. La implementación
-futura deberá ofrecer una acción reconocible para registrar el cierre, sin usar el scroll como
-medición implícita.
+Abrir una ruta o desplazar el workspace no marca una lección como completada. Los módulos sin una
+práctica interactiva específica ofrecen una acción local explícita para confirmar el cierre, sin
+usar el scroll como medición implícita. El Módulo 06 registra esos cierres dentro de su práctica
+integradora.
 
 ### Práctica integradora
 
@@ -191,8 +192,8 @@ Este documento no decide todavía:
 ## Próximo paso
 
 Las transiciones puras para registrar inicio y cierre de lecciones y práctica están definidas en
-`src/app/progress/progress-model.ts`, conectadas a acciones explícitas de la isla
-`src/components/PracticeNavigator.tsx`, persistidas por `src/app/progress/progress-store.ts` y
-transferibles desde `src/app/progress/progress-transfer.ts`. El siguiente bloque podrá revisar
-migraciones concretas cuando cambie el contrato y evaluar si una futura versión necesita merge
-explícito entre snapshots válidos.
+`src/app/progress/progress-model.ts`, conectadas al registro genérico
+`src/components/LessonProgressNavigator.tsx` y a la práctica del Módulo 06, persistidas por
+`src/app/progress/progress-store.ts` y transferibles desde `src/app/progress/progress-transfer.ts`.
+El siguiente bloque podrá revisar migraciones concretas cuando cambie el contrato y evaluar si una
+futura versión necesita merge explícito entre snapshots válidos.

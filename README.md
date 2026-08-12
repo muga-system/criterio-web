@@ -51,11 +51,11 @@ npm ci
 - `e2e/`: recorridos end-to-end.
 
 Astro renderiza las páginas y el contenido estático, incluido el contenido de los siete módulos
-publicados como Markdown. React se usa en la práctica del Módulo 06, la vista global de progreso y la
-transferencia portable, montadas como islas con estado de cliente. El avance se guarda localmente en
-IndexedDB y puede moverse mediante el token `CRITERIO1.` sin backend ni sincronización remota. Las
-futuras islas se agregarán únicamente cuando una capacidad necesite estado o comportamiento de
-cliente.
+publicados como Markdown. React se usa en el registro local de lecciones, la práctica del Módulo 06,
+la vista global de progreso y la transferencia portable, montados como islas con estado de cliente.
+El avance se guarda localmente en IndexedDB y puede moverse mediante el token `CRITERIO1.` sin
+backend ni sincronización remota. Las futuras islas se agregarán únicamente cuando una capacidad
+necesite estado o comportamiento de cliente.
 
 La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icono. Las nuevas piezas
 visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual
