@@ -161,14 +161,16 @@ snapshot validado, codificado en base64url para poder copiarlo como una sola lí
 - `CRITERIO1` identifica el producto y la versión del formato del token;
 - el snapshot conserva `schemaVersion`, `courseId`, `contentVersion`, `updatedAt` y `modules`;
 - exportar no modifica el progreso local;
-- importar valida prefijo, decodificación y snapshot antes de reemplazar el snapshot local;
+- importar valida prefijo, decodificación y snapshot antes de proponer un reemplazo local;
+- si ya existe evidencia local, la interfaz pide confirmación contextual y cancelar conserva el
+  snapshot actual;
+- la v1 no hace merge automático: confirmar reemplaza el snapshot local completo por el importado;
 - el token no está cifrado ni firmado y no debe tratarse como un secreto.
 
 ## Límites de este contrato
 
 Este documento no decide todavía:
 
-- la resolución de conflictos entre dos snapshots válidos;
 - cómo se registra la evidencia específica de cada futura práctica interactiva.
 
 ## Próximo paso
@@ -177,4 +179,4 @@ Las transiciones puras para registrar inicio y cierre de lecciones y práctica e
 `src/app/progress/progress-model.ts`, conectadas a acciones explícitas de la isla
 `src/components/PracticeNavigator.tsx`, persistidas por `src/app/progress/progress-store.ts` y
 transferibles desde `src/app/progress/progress-transfer.ts`. El siguiente bloque podrá revisar
-migraciones y conflictos entre snapshots válidos.
+migraciones y evaluar si una futura versión necesita merge explícito entre snapshots válidos.

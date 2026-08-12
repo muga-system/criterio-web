@@ -1,12 +1,16 @@
 import { useEffect, useState, type ReactElement } from "react";
-import { createEmptyProgressSnapshot, type ProgressSnapshot } from "../app/progress/progress-model";
+import {
+  createEmptyProgressSnapshot,
+  hasProgressEvidence,
+  type ProgressSnapshot,
+} from "../app/progress/progress-model";
 import { loadProgressSnapshot, saveProgressSnapshot } from "../app/progress/progress-store";
 import { decodeProgressToken, encodeProgressToken } from "../app/progress/progress-transfer";
 
 const initialUpdatedAt = "1970-01-01T00:00:00.000Z";
 
 type TransferMessage = {
-  kind: "error" | "success";
+  kind: "error" | "success" | "warning";
   text: string;
 } | null;
 
@@ -30,6 +34,7 @@ export default function ProgressTransfer(): ReactElement {
   const [snapshot, setSnapshot] = useState<ProgressSnapshot>(createInitialSnapshot);
   const [exportedToken, setExportedToken] = useState("");
   const [importToken, setImportToken] = useState("");
+  const [pendingImport, setPendingImport] = useState<ProgressSnapshot | null>(null);
   const [message, setMessage] = useState<TransferMessage>(null);
 
   useEffect((): (() => void) => {
@@ -124,8 +129,45 @@ export default function ProgressTransfer(): ReactElement {
     setIsBusy(true);
 
     try {
+      const latestSnapshot = (await loadProgressSnapshot()) ?? createInitialSnapshot();
+
+      setSnapshot(latestSnapshot);
+
+      if (hasProgressEvidence(latestSnapshot)) {
+        setPendingImport(result.snapshot);
+        setMessage({
+          kind: "warning",
+          text: "Ya existe avance local. Confirmá si querés reemplazarlo por el token importado.",
+        });
+        return;
+      }
+
       await saveProgressSnapshot(result.snapshot);
       setSnapshot(result.snapshot);
+      setExportedToken("");
+      setImportToken("");
+      setMessage({ kind: "success", text: "Progreso importado en este navegador." });
+    } catch (importError: unknown) {
+      setMessage({
+        kind: "error",
+        text: getErrorMessage(importError, "No se pudo guardar el progreso importado."),
+      });
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  async function confirmImport(): Promise<void> {
+    if (!isReady || isBusy || pendingImport === null) {
+      return;
+    }
+
+    setIsBusy(true);
+
+    try {
+      await saveProgressSnapshot(pendingImport);
+      setSnapshot(pendingImport);
+      setPendingImport(null);
       setExportedToken("");
       setImportToken("");
       setMessage({
@@ -140,6 +182,15 @@ export default function ProgressTransfer(): ReactElement {
     } finally {
       setIsBusy(false);
     }
+  }
+
+  function cancelImport(): void {
+    if (isBusy) {
+      return;
+    }
+
+    setPendingImport(null);
+    setMessage({ kind: "success", text: "No se modificó el progreso local." });
   }
 
   return (
@@ -181,7 +232,7 @@ export default function ProgressTransfer(): ReactElement {
         <article className="app-transfer-panel">
           <p className="app-placeholder-label">Importar</p>
           <h3>Reemplazar el progreso local</h3>
-          <p>La importación reemplaza el snapshot actual después de validar el token.</p>
+          <p>La importación valida el token y pide confirmación si ya existe avance local.</p>
           <label htmlFor="import-progress-token">Token para importar</label>
           <textarea
             id="import-progress-token"
@@ -195,6 +246,34 @@ export default function ProgressTransfer(): ReactElement {
           </button>
         </article>
       </div>
+      {pendingImport !== null && (
+        <dialog
+          className="app-transfer-confirmation"
+          open
+          aria-labelledby="transfer-confirmation-title"
+          aria-describedby="transfer-confirmation-description"
+        >
+          <p className="app-placeholder-label">Conflicto de progreso local</p>
+          <h3 id="transfer-confirmation-title">¿Reemplazar el snapshot de este navegador?</h3>
+          <p id="transfer-confirmation-description">
+            Ya existe evidencia de avance en este navegador. La versión actual no hace merge
+            automático: si confirmás, el token importado reemplazará ese snapshot.
+          </p>
+          <div className="app-transfer-confirmation-actions">
+            <button type="button" onClick={confirmImport} disabled={isBusy ? true : undefined}>
+              Reemplazar progreso local
+            </button>
+            <button
+              type="button"
+              className="app-transfer-secondary"
+              onClick={cancelImport}
+              disabled={isBusy ? true : undefined}
+            >
+              Cancelar
+            </button>
+          </div>
+        </dialog>
+      )}
       {message !== null && (
         <p
           className={`app-transfer-message is-${message.kind}`}

@@ -561,6 +561,67 @@
     border-inline-start-color: var(--color-focus);
   }
 
+  .app-transfer-message.is-warning {
+    border-inline-start-color: var(--color-text);
+  }
+
+  .app-transfer-confirmation {
+    width: min(calc(100% - (var(--space-3) * 2)), 38rem);
+    margin: auto;
+    padding: var(--space-3);
+    border: 1px solid var(--color-accent);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .app-transfer-confirmation::backdrop {
+    background: rgb(5 8 15 / 72%);
+  }
+
+  .app-transfer-confirmation h3 {
+    margin: 0 0 var(--space-1);
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    line-height: 1.1;
+  }
+
+  :where(.app-transfer-confirmation p:not(.app-placeholder-label)) {
+    max-width: 58ch;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .app-transfer-confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-block-start: var(--space-3);
+  }
+
+  :where(.app-transfer-confirmation-actions button) {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-background);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  :where(.app-transfer-confirmation-actions button:hover:not(:disabled)) {
+    background: var(--color-focus);
+  }
+
+  :where(.app-transfer-confirmation-actions button:disabled) {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  :where(.app-transfer-confirmation-actions .app-transfer-secondary) {
+    border-color: var(--color-border-strong);
+    background: transparent;
+    color: var(--color-text);
+  }
+
   .module-content {
     width: 100%;
     margin-block-start: var(--space-3);

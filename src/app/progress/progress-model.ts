@@ -68,6 +68,13 @@ export const createEmptyProgressSnapshot = (updatedAt: string): ProgressSnapshot
   modules: {},
 });
 
+export const hasProgressEvidence = (snapshot: ProgressSnapshot): boolean =>
+  Object.values(snapshot.modules).some(
+    (moduleProgress) =>
+      Object.values(moduleProgress.lessons).some((status) => status !== "not_started") ||
+      moduleProgress.practice.started,
+  );
+
 const createEmptyModuleProgress = (): ModuleProgress => ({
   lessons: {},
   practice: { started: false, verified: false },

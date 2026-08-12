@@ -337,6 +337,20 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   );
   const token = await exportedToken.inputValue();
 
+  await transfer.locator("#import-progress-token").fill(token);
+  await transfer.getByRole("button", { name: "Importar y reemplazar" }).click();
+  const conflictDialog = transfer.getByRole("dialog", {
+    name: "¿Reemplazar el snapshot de este navegador?",
+  });
+
+  await expect(conflictDialog).toBeVisible();
+  await expect(transfer.getByRole("status")).toHaveText(
+    "Ya existe avance local. Confirmá si querés reemplazarlo por el token importado.",
+  );
+  await conflictDialog.getByRole("button", { name: "Cancelar" }).click();
+  await expect(conflictDialog).toBeHidden();
+  await expect(transfer.getByRole("status")).toHaveText("No se modificó el progreso local.");
+
   await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
   const resetPractice = page.getByRole("region", {
     name: "Práctica local: avanzar por lecciones",
@@ -365,7 +379,7 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await transferAfterReset.locator("#import-progress-token").fill(token);
   await transferAfterReset.getByRole("button", { name: "Importar y reemplazar" }).click();
   await expect(transferAfterReset.getByRole("status")).toHaveText(
-    "Progreso importado. Reemplazó el snapshot local de este navegador.",
+    "Progreso importado en este navegador.",
   );
 
   await page.goto("http://127.0.0.1:4173/progreso");

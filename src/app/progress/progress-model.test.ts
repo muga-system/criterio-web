@@ -7,6 +7,7 @@ import {
   createEmptyProgressSnapshot,
   deriveModuleProgressStatus,
   getRequiredLessonIds,
+  hasProgressEvidence,
   startLesson,
   startPractice,
   validateProgressSnapshot,
@@ -54,6 +55,30 @@ describe("progress-model", () => {
   it("deriva not_started cuando todavía no existe evidencia", () => {
     expect(deriveModuleProgressStatus(domModule, undefined)).toBe("not_started");
     expect(deriveModuleProgressStatus(domModule, createModuleProgress())).toBe("not_started");
+  });
+
+  it("detecta evidencia local sin contar estados todavía no iniciados", () => {
+    expect(hasProgressEvidence(createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z"))).toBe(
+      false,
+    );
+    expect(
+      hasProgressEvidence(
+        validSnapshot(
+          createModuleProgress({
+            lessons: { "leccion-01": "not_started" },
+          }),
+        ),
+      ),
+    ).toBe(false);
+    expect(
+      hasProgressEvidence(
+        validSnapshot(
+          createModuleProgress({
+            lessons: { "leccion-01": "in_progress" },
+          }),
+        ),
+      ),
+    ).toBe(true);
   });
 
   it("deriva in_progress cuando existe avance sin cumplir el cierre", () => {
