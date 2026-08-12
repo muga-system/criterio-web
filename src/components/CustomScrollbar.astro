@@ -15,37 +15,43 @@ const { class: className = "", id, label, viewportClass = "" } = Astro.props;
   <div class:list={["app-scroll-viewport", viewportClass]} data-scroll-viewport id={id}>
     <slot />
   </div>
-  <div class="app-scrollbar" data-scrollbar>
-    <button
-      aria-controls={id}
-      aria-label={`Desplazar ${label} hacia arriba`}
-      data-scroll-step="-1"
-      type="button"
-    >
-      <ChevronUp aria-hidden="true" class="app-scroll-icon" />
-    </button>
-    <div
-      aria-controls={id}
-      aria-label={label}
-      aria-orientation="vertical"
-      aria-valuemax="0"
-      aria-valuemin="0"
-      aria-valuenow="0"
-      class="app-scroll-track"
-      data-scroll-track
-      role="scrollbar"
-      tabindex="0"
-    >
-      <span class="app-scroll-thumb" data-scroll-thumb></span>
+  <div
+    aria-label={`Control de desplazamiento: ${label}`}
+    class="app-scrollbar-region"
+    role="region"
+  >
+    <div class="app-scrollbar" data-scrollbar>
+      <button
+        aria-controls={id}
+        aria-label={`Desplazar ${label} hacia arriba`}
+        data-scroll-step="-1"
+        type="button"
+      >
+        <ChevronUp aria-hidden="true" class="app-scroll-icon" />
+      </button>
+      <div
+        aria-controls={id}
+        aria-label={label}
+        aria-orientation="vertical"
+        aria-valuemax="0"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        class="app-scroll-track"
+        data-scroll-track
+        role="scrollbar"
+        tabindex="0"
+      >
+        <span class="app-scroll-thumb" data-scroll-thumb></span>
+      </div>
+      <button
+        aria-controls={id}
+        aria-label={`Desplazar ${label} hacia abajo`}
+        data-scroll-step="1"
+        type="button"
+      >
+        <ChevronDown aria-hidden="true" class="app-scroll-icon" />
+      </button>
     </div>
-    <button
-      aria-controls={id}
-      aria-label={`Desplazar ${label} hacia abajo`}
-      data-scroll-step="1"
-      type="button"
-    >
-      <ChevronDown aria-hidden="true" class="app-scroll-icon" />
-    </button>
   </div>
 </div>
 

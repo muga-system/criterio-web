@@ -1,3 +1,4 @@
+import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const seedProgressSnapshot = async (page: Page, snapshot: unknown): Promise<void> => {
@@ -53,6 +54,19 @@ test("muestra la shell inicial de Criterio Web", async ({ page }) => {
     "aria-current",
     "page",
   );
+});
+
+test("mantiene las rutas principales sin violaciones de accesibilidad", async ({ page }) => {
+  test.setTimeout(90_000);
+
+  const routes = ["/", "/modulos", "/progreso", "/transferencia", "/modulos/dom-eventos-06"];
+
+  for (const route of routes) {
+    await page.goto(route);
+    const results = await new AxeBuilder({ page }).analyze();
+
+    expect(results.violations, `Se detectaron violaciones en ${route}`).toEqual([]);
+  }
 });
 
 test("permite recorrer las secciones principales y conserva el estado activo", async ({ page }) => {
@@ -122,7 +136,7 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   await expect(scrollbar).toBeVisible();
   await expect(page.locator(".app-sidebar-frame .app-scrollbar")).toBeHidden();
   await expect(page.locator(".app-workspace-frame .app-scroll-icon")).toHaveCount(2);
-  await expect(page.locator(".app-workspace-frame .app-scrollbar")).toHaveCSS(
+  await expect(page.locator(".app-workspace-frame .app-scrollbar-region")).toHaveCSS(
     "border-left-width",
     "1px",
   );
