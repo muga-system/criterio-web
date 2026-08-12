@@ -142,5 +142,7 @@ Este contrato no decide todavía:
 
 ## Próximo paso
 
-Revisar la evidencia que produzcan las prácticas antes de ampliar la persistencia y definir cómo
-verificar migraciones y conflictos entre snapshots transferibles.
+Revisar la evidencia que produzcan las prácticas y decidir qué capacidad interactiva merece una isla
+React adicional. Las migraciones, los conflictos de reemplazo y la recuperación ante errores de
+lectura ya están definidos en el contrato global de progreso, sin formar parte del objetivo
+pedagógico de este módulo.

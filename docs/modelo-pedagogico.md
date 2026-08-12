@@ -134,7 +134,9 @@ de código.
 El contrato pedagógico v0 y el contenido inicial del Módulo 07 sobre pruebas están publicados en
 [`docs/modulo-07-pruebas.md`](./modulo-07-pruebas.md). La isla React experimental del Módulo 06 se
 mantiene local, persiste el avance en IndexedDB, conecta las transiciones de evidencia y ya tiene
-cobertura de navegación e interacción.
+cobertura de navegación e interacción. La aplicación también cuenta con vista global, transferencia
+portable, validación de compatibilidad y recuperación explícita ante errores de lectura.
 
-El próximo trabajo es revisar migraciones y conflictos entre snapshots válidos sobre esa evidencia
-persistida y transferible.
+El próximo trabajo es revisar qué evidencia producen las prácticas y decidir qué capacidad necesita
+una isla React adicional. No se agregará una interacción de cliente ni persistencia específica sin
+un criterio pedagógico que la justifique.

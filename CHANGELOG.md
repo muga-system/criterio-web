@@ -78,6 +78,8 @@ registra en `Unreleased`.
   Módulo 07.
 - Actualización del modelo pedagógico para reflejar los siete módulos publicados y el próximo límite
   de revisión de evidencia.
+- Actualización de la hoja de ruta pedagógica para reflejar el contrato de progreso, transferencia y
+  recuperación ya implementado.
 - Contrato v0 del modelo de evidencia y progreso local, previo a IndexedDB y la transferencia
   portable.
 
