@@ -1,6 +1,6 @@
 # Modelo de evidencia y progreso local
 
-Estado: contrato de datos v0, sin implementación de persistencia.
+Estado: contrato de datos v0 e implementación pura de validación/derivación, sin persistencia.
 
 Este documento define qué evidencia mínima debe conservar Criterio Web para reconstruir el estado
 del recorrido sin convertir la lectura en una falsa señal de aprendizaje. IndexedDB, la interfaz de
@@ -165,6 +165,6 @@ Este documento no decide todavía:
 
 ## Próximo paso
 
-Convertir este contrato en tipos estrictos y funciones puras de derivación/validación, con pruebas
-unitarias, antes de conectar cualquier almacenamiento. IndexedDB y la transferencia portable quedan
-después de esa frontera.
+Definir las transiciones puras que registrarán inicio y cierre de lecciones y práctica, y conectarlas
+a acciones explícitas de la interfaz en un bloque separado. IndexedDB y la transferencia portable
+quedan después de esa frontera.
