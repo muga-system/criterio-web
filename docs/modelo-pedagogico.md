@@ -132,7 +132,8 @@ de código.
 
 El contrato pedagógico v0 y el contenido inicial del Módulo 07 sobre pruebas están publicados en
 [`docs/modulo-07-pruebas.md`](./modulo-07-pruebas.md). La isla React experimental del Módulo 06 se
-mantiene local, sin persistencia, y ya tiene cobertura de navegación e interacción.
+mantiene local, sin persistencia, conecta las transiciones de evidencia y ya tiene cobertura de
+navegación e interacción.
 
 El próximo trabajo es revisar qué evidencia de las prácticas debe conservarse antes de diseñar la
 persistencia y la transferencia portable.

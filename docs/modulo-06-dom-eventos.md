@@ -112,10 +112,10 @@ representación y no introduce persistencia.
 El contenido explicativo permanece estático en Astro. La práctica integradora se implementa en
 `src/components/PracticeNavigator.tsx` y se monta con `client:load` desde
 `src/layouts/ModuleLayout.astro`. Usa estado local de React para avanzar entre tres lecciones,
-actualiza la representación desde ese estado y se reinicia al recargar la página. No persiste datos,
-no exporta progreso y no produce todavía un estado de finalización del producto. Esta decisión queda
-abierta a revisión después de observar la práctica y definir la evidencia pedagógica que deberá
-conservarse.
+actualiza la representación desde ese estado y se reinicia al recargar la página. Conecta las
+transiciones de evidencia del progreso en memoria y expone una señal local de finalización para
+verificar la integración, pero no persiste datos ni exporta progreso. Esta decisión queda abierta a
+revisión después de observar la práctica y definir la evidencia pedagógica que deberá conservarse.
 
 ## Límites de esta definición
 

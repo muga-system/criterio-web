@@ -289,6 +289,7 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   });
 
   await expect(practice).toBeVisible();
+  await expect(practice).toHaveAttribute("data-practice-completed", "false");
   await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
 
   const advance = practice.getByRole("button", { name: "Siguiente lección" });
@@ -296,10 +297,14 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await advance.click();
   await expect(practice.getByRole("status")).toHaveText("Lección 2 de 3");
   await advance.click();
+  await expect(practice.getByRole("status")).toHaveText("Lección 3 de 3");
+  await advance.click();
   await expect(practice.getByRole("status")).toHaveText("Lección 3 de 3 · Completada");
+  await expect(practice).toHaveAttribute("data-practice-completed", "true");
   await expect(practice.getByRole("button", { name: "Práctica completada" })).toBeDisabled();
   await practice.getByRole("button", { name: "Reiniciar" }).click();
   await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(practice).toHaveAttribute("data-practice-completed", "false");
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {

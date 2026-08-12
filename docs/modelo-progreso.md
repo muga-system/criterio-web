@@ -1,10 +1,11 @@
 # Modelo de evidencia y progreso local
 
-Estado: contrato de datos v0 e implementación pura de validación/derivación, sin persistencia.
+Estado: contrato de datos v0 con validación, derivación y transiciones puras conectadas a la
+práctica local del Módulo 06, sin persistencia.
 
 Este documento define qué evidencia mínima debe conservar Criterio Web para reconstruir el estado
-del recorrido sin convertir la lectura en una falsa señal de aprendizaje. IndexedDB, la interfaz de
-progreso y el token portable se implementarán después de validar este contrato.
+del recorrido sin convertir la lectura en una falsa señal de aprendizaje. IndexedDB, la vista global
+de progreso y el token portable se implementarán después de validar este contrato.
 
 ## Objetivo
 
@@ -165,6 +166,7 @@ Este documento no decide todavía:
 
 ## Próximo paso
 
-Las transiciones puras para registrar inicio y cierre de lecciones y práctica ya están definidas en
-`src/app/progress/progress-model.ts`. El siguiente bloque deberá conectarlas a acciones explícitas de
-la interfaz; IndexedDB y la transferencia portable quedan después de esa frontera.
+Las transiciones puras para registrar inicio y cierre de lecciones y práctica están definidas en
+`src/app/progress/progress-model.ts` y conectadas a acciones explícitas de la isla
+`src/components/PracticeNavigator.tsx`. El siguiente bloque podrá extraer esta evidencia a
+persistencia local; IndexedDB y la transferencia portable quedan después de esa frontera.

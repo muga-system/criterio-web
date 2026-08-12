@@ -17,6 +17,7 @@ registra en `Unreleased`.
 - Integración de `@lucide/astro` para la iconografía de interfaz.
 - Tipos estrictos y funciones puras para validar snapshots y derivar el estado de progreso.
 - Transiciones puras e idempotentes para iniciar y completar lecciones y prácticas.
+- Conexión de la isla React del Módulo 06 con las transiciones de progreso en memoria.
 
 ### Cambiado
 
