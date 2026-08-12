@@ -217,7 +217,7 @@ export default function ProgressTransfer(): ReactElement {
     >
       <p className="app-placeholder-label">Token portable · CRITERIO1</p>
       <h2 id="transfer-overview-title">Mover el progreso entre navegadores</h2>
-      <figure className="app-section-visual">
+      <figure className="app-section-visual cw-panel">
         <img
           src="/assets/pixeles/transferencia-publicacion.png"
           alt="Escena pixel-art de publicación y traslado de un proyecto web"
