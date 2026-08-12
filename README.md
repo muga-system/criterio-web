@@ -61,6 +61,17 @@ La iconografía de interfaz usa `@lucide/astro` con imports explícitos por icon
 visuales deben reutilizar Lucide cuando exista un icono adecuado, manteniendo el sistema visual
 sobrio y evitando SVG manuales duplicados.
 
+## Recorrido inicial
+
+La pantalla de Inicio presenta el recorrido recomendado: elegir un módulo, leer y cerrar sus
+lecciones, revisar la evidencia local y transferir el snapshot si hace falta cambiar de entorno.
+El catálogo y las páginas de los siete módulos contienen el material publicado; Progreso muestra el
+estado derivado y Importar / Exportar permite moverlo sin backend.
+
+La primera versión no califica respuestas ni transforma las prácticas externas en formularios. La
+interfaz registra cierres explícitos de lecciones y reserva la interacción local para la práctica del
+Módulo 06, donde el criterio pedagógico necesita observar estado, eventos y representación.
+
 ## Versionado y releases
 
 El proyecto se encuentra en desarrollo previo a su primera release y mantiene la versión `0.0.0`

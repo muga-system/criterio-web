@@ -36,6 +36,8 @@ registra en `Unreleased`.
 
 ### Cambiado
 
+- Inicio ahora funciona como entrada del recorrido, con acciones claras hacia Módulos, Progreso y
+  Transferencia, y explicita los límites de la primera versión.
 - Actualizada la composición de la configuración plana de ESLint para usar la API vigente de
   `eslint/config`.
 - Inicio ahora ofrece un enlace directo al catálogo de módulos publicados.
