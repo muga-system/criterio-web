@@ -177,6 +177,8 @@ snapshot validado, codificado en base64url para poder copiarlo como una sola lí
 - importar valida prefijo, decodificación y snapshot antes de proponer un reemplazo local;
 - si ya existe evidencia local, la interfaz pide confirmación contextual y cancelar conserva el
   snapshot actual;
+- si el snapshot local no se puede leer, una importación válida puede recuperarlo solo después de
+  una confirmación contextual;
 - la v1 no hace merge automático: confirmar reemplaza el snapshot local completo por el importado;
 - el token no está cifrado ni firmado y no debe tratarse como un secreto.
 

@@ -1,4 +1,36 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const seedProgressSnapshot = async (page: Page, snapshot: unknown): Promise<void> => {
+  await page.evaluate(
+    (value) =>
+      new Promise<void>((resolve, reject) => {
+        const request = indexedDB.open("criterio-web-progress", 1);
+
+        request.onupgradeneeded = (): void => {
+          const database = request.result;
+
+          if (!database.objectStoreNames.contains("snapshots")) {
+            database.createObjectStore("snapshots");
+          }
+        };
+        request.onerror = (): void =>
+          reject(request.error ?? new Error("No se pudo abrir IndexedDB."));
+        request.onsuccess = (): void => {
+          const database = request.result;
+          const transaction = database.transaction("snapshots", "readwrite");
+
+          transaction.objectStore("snapshots").put(value, "criterio-web");
+          transaction.oncomplete = (): void => {
+            database.close();
+            resolve();
+          };
+          transaction.onerror = (): void =>
+            reject(transaction.error ?? new Error("Error de IndexedDB."));
+        };
+      }),
+    snapshot,
+  );
+};
 
 test("muestra la shell inicial de Criterio Web", async ({ page }) => {
   await page.goto("/");
@@ -394,35 +426,7 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
 
 test("bloquea la práctica si el snapshot local requiere migración", async ({ page }) => {
   await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
-
-  await page.evaluate(
-    () =>
-      new Promise<void>((resolve, reject) => {
-        const request = indexedDB.open("criterio-web-progress", 1);
-
-        request.onupgradeneeded = (): void => {
-          const database = request.result;
-
-          if (!database.objectStoreNames.contains("snapshots")) {
-            database.createObjectStore("snapshots");
-          }
-        };
-        request.onerror = (): void =>
-          reject(request.error ?? new Error("No se pudo abrir IndexedDB."));
-        request.onsuccess = (): void => {
-          const database = request.result;
-          const transaction = database.transaction("snapshots", "readwrite");
-
-          transaction.objectStore("snapshots").put({ schemaVersion: 2 }, "criterio-web");
-          transaction.oncomplete = (): void => {
-            database.close();
-            resolve();
-          };
-          transaction.onerror = (): void =>
-            reject(transaction.error ?? new Error("Error de IndexedDB."));
-        };
-      }),
-  );
+  await seedProgressSnapshot(page, { schemaVersion: 2 });
   await page.reload();
 
   const practice = page.getByRole("region", {
@@ -459,6 +463,56 @@ test("bloquea la práctica si el snapshot local requiere migración", async ({ p
   await expect(
     recoverablePractice.getByRole("button", { name: "Siguiente lección" }),
   ).toBeEnabled();
+});
+
+test("permite recuperar un snapshot ilegible desde transferencia", async ({ page }) => {
+  await page.goto("http://127.0.0.1:4173/transferencia");
+  await seedProgressSnapshot(page, { schemaVersion: 2 });
+  await page.reload();
+
+  const transfer = page.getByRole("region", { name: "Mover el progreso entre navegadores" });
+
+  await expect(transfer).toHaveAttribute("data-transfer-ready", "true");
+  await expect(transfer.getByRole("alert")).toHaveText(/requiere migración/);
+
+  const token = await page.evaluate(() => {
+    const snapshot = {
+      schemaVersion: 1,
+      courseId: "criterio-web",
+      contentVersion: 1,
+      updatedAt: "1970-01-01T00:00:00.000Z",
+      modules: {},
+    };
+    const payload = btoa(JSON.stringify(snapshot))
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/u, "");
+
+    return `CRITERIO1.${payload}`;
+  });
+
+  await transfer.locator("#import-progress-token").fill(token);
+  await transfer.getByRole("button", { name: "Importar y reemplazar" }).click();
+
+  const recoveryDialog = transfer.getByRole("dialog", {
+    name: "¿Reemplazar el snapshot que no se pudo leer?",
+  });
+
+  await expect(recoveryDialog).toBeVisible();
+  await expect(transfer.getByRole("status")).toHaveText(
+    "No se pudo leer el snapshot local. Confirmá si querés reemplazarlo por el token importado.",
+  );
+  await recoveryDialog.getByRole("button", { name: "Reemplazar progreso local" }).click();
+  await expect(transfer.getByRole("status")).toHaveText(
+    "Progreso importado. Reemplazó el snapshot local de este navegador.",
+  );
+
+  await page.goto("http://127.0.0.1:4173/progreso");
+  const overview = page.getByRole("region", { name: "Estado del recorrido" });
+
+  await expect(overview).toHaveAttribute("data-progress-ready", "true");
+  await expect(overview.getByRole("alert")).toHaveCount(0);
+  await expect(overview.locator(".app-progress-card")).toHaveCount(7);
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {

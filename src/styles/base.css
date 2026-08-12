@@ -566,12 +566,17 @@
   }
 
   .app-transfer-confirmation {
+    position: fixed;
+    inset: 50% auto auto 50%;
     width: min(calc(100% - (var(--space-3) * 2)), 38rem);
     margin: auto;
     padding: var(--space-3);
     border: 1px solid var(--color-accent);
     background: var(--color-surface);
     color: var(--color-text);
+    max-height: calc(100dvh - (var(--space-3) * 2));
+    overflow: auto;
+    transform: translate(-50%, -50%);
   }
 
   .app-transfer-confirmation::backdrop {

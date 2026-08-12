@@ -14,6 +14,11 @@ type TransferMessage = {
   text: string;
 } | null;
 
+type PendingImport = {
+  snapshot: ProgressSnapshot;
+  reason: "existing_progress" | "unreadable_snapshot";
+};
+
 const createInitialSnapshot = (): ProgressSnapshot => createEmptyProgressSnapshot(initialUpdatedAt);
 
 const getErrorMessage = (error: unknown, fallback: string): string =>
@@ -34,7 +39,7 @@ export default function ProgressTransfer(): ReactElement {
   const [snapshot, setSnapshot] = useState<ProgressSnapshot>(createInitialSnapshot);
   const [exportedToken, setExportedToken] = useState("");
   const [importToken, setImportToken] = useState("");
-  const [pendingImport, setPendingImport] = useState<ProgressSnapshot | null>(null);
+  const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
   const [message, setMessage] = useState<TransferMessage>(null);
 
   useEffect((): (() => void) => {
@@ -129,12 +134,23 @@ export default function ProgressTransfer(): ReactElement {
     setIsBusy(true);
 
     try {
-      const latestSnapshot = (await loadProgressSnapshot()) ?? createInitialSnapshot();
+      let latestSnapshot: ProgressSnapshot;
+
+      try {
+        latestSnapshot = (await loadProgressSnapshot()) ?? createInitialSnapshot();
+      } catch {
+        setPendingImport({ reason: "unreadable_snapshot", snapshot: result.snapshot });
+        setMessage({
+          kind: "warning",
+          text: "No se pudo leer el snapshot local. Confirmá si querés reemplazarlo por el token importado.",
+        });
+        return;
+      }
 
       setSnapshot(latestSnapshot);
 
       if (hasProgressEvidence(latestSnapshot)) {
-        setPendingImport(result.snapshot);
+        setPendingImport({ reason: "existing_progress", snapshot: result.snapshot });
         setMessage({
           kind: "warning",
           text: "Ya existe avance local. Confirmá si querés reemplazarlo por el token importado.",
@@ -165,8 +181,8 @@ export default function ProgressTransfer(): ReactElement {
     setIsBusy(true);
 
     try {
-      await saveProgressSnapshot(pendingImport);
-      setSnapshot(pendingImport);
+      await saveProgressSnapshot(pendingImport.snapshot);
+      setSnapshot(pendingImport.snapshot);
       setPendingImport(null);
       setExportedToken("");
       setImportToken("");
@@ -253,11 +269,20 @@ export default function ProgressTransfer(): ReactElement {
           aria-labelledby="transfer-confirmation-title"
           aria-describedby="transfer-confirmation-description"
         >
-          <p className="app-placeholder-label">Conflicto de progreso local</p>
-          <h3 id="transfer-confirmation-title">¿Reemplazar el snapshot de este navegador?</h3>
+          <p className="app-placeholder-label">
+            {pendingImport.reason === "unreadable_snapshot"
+              ? "Recuperación del progreso local"
+              : "Conflicto de progreso local"}
+          </p>
+          <h3 id="transfer-confirmation-title">
+            {pendingImport.reason === "unreadable_snapshot"
+              ? "¿Reemplazar el snapshot que no se pudo leer?"
+              : "¿Reemplazar el snapshot de este navegador?"}
+          </h3>
           <p id="transfer-confirmation-description">
-            Ya existe evidencia de avance en este navegador. La versión actual no hace merge
-            automático: si confirmás, el token importado reemplazará ese snapshot.
+            {pendingImport.reason === "unreadable_snapshot"
+              ? "No se pudo interpretar el snapshot local. Si confirmás, el token validado reemplazará ese contenido."
+              : "Ya existe evidencia de avance en este navegador. La versión actual no hace merge automático: si confirmás, el token importado reemplazará ese snapshot."}
           </p>
           <div className="app-transfer-confirmation-actions">
             <button type="button" onClick={confirmImport} disabled={isBusy ? true : undefined}>
