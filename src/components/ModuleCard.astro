@@ -6,9 +6,13 @@ interface Props {
 }
 
 const { module } = Astro.props;
+const practiceLabels = {
+  external: "Práctica fuera de la app",
+  interactive: "Práctica interactiva",
+} as const;
 ---
 
-<article class="app-module-card">
+<article class="app-module-card" data-practice-tracking={module.practiceTracking}>
   <div class="app-module-card-header">
     <p class="app-module-card-status">{module.status}</p>
     <p class="app-module-card-index">{module.id}</p>
@@ -16,7 +20,10 @@ const { module } = Astro.props;
   <h2>{module.title}</h2>
   <p>{module.summary}</p>
   <div class="app-module-card-footer">
-    <span>{module.lessonCount} lecciones</span>
+    <div class="app-module-card-meta">
+      <span>{module.lessonCount} lecciones</span>
+      <span>{practiceLabels[module.practiceTracking]}</span>
+    </div>
     <a href={module.path} aria-label={`Abrir ${module.title}`}>
       Abrir módulo <span aria-hidden="true">→</span>
     </a>

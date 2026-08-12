@@ -317,6 +317,16 @@ test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 
   await expect(page.locator(".app-module-card")).toHaveCount(7);
+  await expect(page.locator('.app-module-card[data-practice-tracking="external"]')).toHaveCount(6);
+  await expect(page.locator('.app-module-card[data-practice-tracking="interactive"]')).toHaveCount(
+    1,
+  );
+  await expect(
+    page.locator('.app-module-card[data-practice-tracking="external"]').first(),
+  ).toContainText("Práctica fuera de la app");
+  await expect(
+    page.locator('.app-module-card[data-practice-tracking="interactive"]'),
+  ).toContainText("Práctica interactiva");
   await page
     .getByRole("link", { name: "Abrir Módulo 02 · Estructurar antes de decorar", exact: true })
     .click();
