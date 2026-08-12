@@ -3,10 +3,14 @@ import {
   CONTENT_VERSION,
   COURSE_ID,
   PROGRESS_SCHEMA_VERSION,
+  completeLesson,
   createEmptyProgressSnapshot,
   deriveModuleProgressStatus,
   getRequiredLessonIds,
+  startLesson,
+  startPractice,
   validateProgressSnapshot,
+  verifyPractice,
   type ModuleProgress,
   type ProgressSnapshot,
 } from "./progress-model";
@@ -100,6 +104,110 @@ describe("progress-model", () => {
     ).toBe("in_progress");
   });
 
+  it("inicia una lección sin mutar el snapshot original", () => {
+    const snapshot = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+    const result = startLesson(snapshot, domModule.id, "leccion-01", "2026-08-12T00:01:00.000Z");
+
+    expect(result).toEqual({
+      ok: true,
+      snapshot: {
+        ...snapshot,
+        updatedAt: "2026-08-12T00:01:00.000Z",
+        modules: {
+          [domModule.id]: {
+            lessons: { "leccion-01": "in_progress" },
+            practice: { started: false, verified: false },
+          },
+        },
+      },
+    });
+    expect(snapshot.modules).toEqual({});
+  });
+
+  it("mantiene idempotentes las transiciones repetidas", () => {
+    const snapshot = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+    const started = startPractice(snapshot, domModule.id, "2026-08-12T00:01:00.000Z");
+
+    expect(started.ok).toBe(true);
+
+    if (started.ok) {
+      const repeated = startPractice(started.snapshot, domModule.id, "2026-08-12T00:02:00.000Z");
+
+      expect(repeated).toEqual({ ok: true, snapshot: started.snapshot });
+    }
+  });
+
+  it("exige iniciar antes de completar una lección o verificar la práctica", () => {
+    const snapshot = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+    const lessonResult = completeLesson(
+      snapshot,
+      domModule.id,
+      "leccion-01",
+      "2026-08-12T00:01:00.000Z",
+    );
+    const practiceResult = verifyPractice(snapshot, domModule.id, "2026-08-12T00:01:00.000Z");
+
+    expect(lessonResult).toEqual({
+      ok: false,
+      error: "modules.dom-eventos-06.lessons.leccion-01: completar requiere iniciar la lección",
+    });
+    expect(practiceResult).toEqual({
+      ok: false,
+      error: "modules.dom-eventos-06.practice: verificar requiere iniciar la práctica",
+    });
+  });
+
+  it("completa la lección y verifica la práctica después de sus transiciones previas", () => {
+    const empty = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+    const lessonStarted = startLesson(
+      empty,
+      domModule.id,
+      "leccion-01",
+      "2026-08-12T00:01:00.000Z",
+    );
+
+    expect(lessonStarted.ok).toBe(true);
+
+    if (lessonStarted.ok) {
+      const lessonCompleted = completeLesson(
+        lessonStarted.snapshot,
+        domModule.id,
+        "leccion-01",
+        "2026-08-12T00:02:00.000Z",
+      );
+
+      expect(lessonCompleted.ok).toBe(true);
+
+      if (lessonCompleted.ok) {
+        const practiceStarted = startPractice(
+          lessonCompleted.snapshot,
+          domModule.id,
+          "2026-08-12T00:03:00.000Z",
+        );
+
+        expect(practiceStarted.ok).toBe(true);
+
+        if (practiceStarted.ok) {
+          expect(
+            verifyPractice(practiceStarted.snapshot, domModule.id, "2026-08-12T00:04:00.000Z"),
+          ).toEqual({
+            ok: true,
+            snapshot: {
+              ...practiceStarted.snapshot,
+              updatedAt: "2026-08-12T00:04:00.000Z",
+              modules: {
+                [domModule.id]: {
+                  lessons: { "leccion-01": "completed" },
+                  practice: { started: true, verified: true },
+                },
+              },
+            },
+          });
+        }
+      }
+    }
+  });
+
   it("valida un snapshot compatible con el catálogo actual", () => {
     const snapshot = validSnapshot({
       lessons: { "leccion-01": "in_progress" },
@@ -146,5 +254,24 @@ describe("progress-model", () => {
     if (!result.valid) {
       expect(result.errors).toContain("modules.dom-eventos-06.practice: verified requiere started");
     }
+  });
+
+  it("rechaza módulos, lecciones y fechas desconocidas en las transiciones", () => {
+    const snapshot = createEmptyProgressSnapshot("2026-08-12T00:00:00.000Z");
+
+    expect(startPractice(snapshot, "modulo-inexistente", "2026-08-12T00:01:00.000Z")).toEqual({
+      ok: false,
+      error: "modules.modulo-inexistente: módulo desconocido",
+    });
+    expect(
+      startLesson(snapshot, domModule.id, "leccion-inexistente", "2026-08-12T00:01:00.000Z"),
+    ).toEqual({
+      ok: false,
+      error: "modules.dom-eventos-06.lessons.leccion-inexistente: lección desconocida",
+    });
+    expect(startPractice(snapshot, domModule.id, "fecha-inválida")).toEqual({
+      ok: false,
+      error: "updatedAt: debe ser una fecha ISO canónica",
+    });
   });
 });

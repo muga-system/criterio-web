@@ -32,6 +32,9 @@ export type ProgressSnapshot = {
 export type ProgressValidationResult =
   { valid: true; snapshot: ProgressSnapshot } | { valid: false; errors: string[] };
 
+export type ProgressTransitionResult =
+  { ok: true; snapshot: ProgressSnapshot } | { ok: false; error: string };
+
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -64,6 +67,163 @@ export const createEmptyProgressSnapshot = (updatedAt: string): ProgressSnapshot
   updatedAt,
   modules: {},
 });
+
+const createEmptyModuleProgress = (): ModuleProgress => ({
+  lessons: {},
+  practice: { started: false, verified: false },
+});
+
+type ModuleProgressUpdateError = { ok: false; error: string };
+type ModuleProgressUpdater = (
+  progress: ModuleProgress,
+) => ModuleProgress | ModuleProgressUpdateError;
+
+const updateModuleProgress = (
+  snapshot: ProgressSnapshot,
+  moduleId: string,
+  updatedAt: string,
+  updater: ModuleProgressUpdater,
+): ProgressTransitionResult => {
+  if (getModuleById(moduleId) === undefined) {
+    return { ok: false, error: `modules.${moduleId}: módulo desconocido` };
+  }
+
+  if (!isIsoDate(updatedAt)) {
+    return { ok: false, error: "updatedAt: debe ser una fecha ISO canónica" };
+  }
+
+  const currentProgress = snapshot.modules[moduleId] ?? createEmptyModuleProgress();
+  const nextProgress = updater(currentProgress);
+
+  if ("ok" in nextProgress) {
+    return nextProgress;
+  }
+
+  if (nextProgress === currentProgress) {
+    return { ok: true, snapshot };
+  }
+
+  return {
+    ok: true,
+    snapshot: {
+      ...snapshot,
+      updatedAt,
+      modules: { ...snapshot.modules, [moduleId]: nextProgress },
+    },
+  };
+};
+
+const validateLessonId = (moduleId: string, lessonId: string): string | undefined => {
+  const module = getModuleById(moduleId);
+
+  if (module === undefined) {
+    return `modules.${moduleId}: módulo desconocido`;
+  }
+
+  if (!getRequiredLessonIds(module).includes(lessonId)) {
+    return `modules.${moduleId}.lessons.${lessonId}: lección desconocida`;
+  }
+
+  return undefined;
+};
+
+export const startLesson = (
+  snapshot: ProgressSnapshot,
+  moduleId: string,
+  lessonId: string,
+  updatedAt: string,
+): ProgressTransitionResult => {
+  const lessonError = validateLessonId(moduleId, lessonId);
+
+  if (lessonError !== undefined) {
+    return { ok: false, error: lessonError };
+  }
+
+  return updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+    const currentStatus = progress.lessons[lessonId] ?? "not_started";
+
+    if (currentStatus !== "not_started") {
+      return progress;
+    }
+
+    return {
+      ...progress,
+      lessons: { ...progress.lessons, [lessonId]: "in_progress" },
+    };
+  });
+};
+
+export const completeLesson = (
+  snapshot: ProgressSnapshot,
+  moduleId: string,
+  lessonId: string,
+  updatedAt: string,
+): ProgressTransitionResult => {
+  const lessonError = validateLessonId(moduleId, lessonId);
+
+  if (lessonError !== undefined) {
+    return { ok: false, error: lessonError };
+  }
+
+  return updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+    const currentStatus = progress.lessons[lessonId] ?? "not_started";
+
+    if (currentStatus === "completed") {
+      return progress;
+    }
+
+    if (currentStatus !== "in_progress") {
+      return {
+        ok: false,
+        error: `modules.${moduleId}.lessons.${lessonId}: completar requiere iniciar la lección`,
+      };
+    }
+
+    return {
+      ...progress,
+      lessons: { ...progress.lessons, [lessonId]: "completed" },
+    };
+  });
+};
+
+export const startPractice = (
+  snapshot: ProgressSnapshot,
+  moduleId: string,
+  updatedAt: string,
+): ProgressTransitionResult =>
+  updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+    if (progress.practice.started) {
+      return progress;
+    }
+
+    return {
+      ...progress,
+      practice: { ...progress.practice, started: true },
+    };
+  });
+
+export const verifyPractice = (
+  snapshot: ProgressSnapshot,
+  moduleId: string,
+  updatedAt: string,
+): ProgressTransitionResult =>
+  updateModuleProgress(snapshot, moduleId, updatedAt, (progress) => {
+    if (!progress.practice.started) {
+      return {
+        ok: false,
+        error: `modules.${moduleId}.practice: verificar requiere iniciar la práctica`,
+      };
+    }
+
+    if (progress.practice.verified) {
+      return progress;
+    }
+
+    return {
+      ...progress,
+      practice: { ...progress.practice, verified: true },
+    };
+  });
 
 export const deriveModuleProgressStatus = (
   module: ModuleSummary,

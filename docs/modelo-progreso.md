@@ -165,6 +165,6 @@ Este documento no decide todavía:
 
 ## Próximo paso
 
-Definir las transiciones puras que registrarán inicio y cierre de lecciones y práctica, y conectarlas
-a acciones explícitas de la interfaz en un bloque separado. IndexedDB y la transferencia portable
-quedan después de esa frontera.
+Las transiciones puras para registrar inicio y cierre de lecciones y práctica ya están definidas en
+`src/app/progress/progress-model.ts`. El siguiente bloque deberá conectarlas a acciones explícitas de
+la interfaz; IndexedDB y la transferencia portable quedan después de esa frontera.
