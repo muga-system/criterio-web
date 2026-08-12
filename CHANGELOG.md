@@ -14,6 +14,7 @@ registra en `Unreleased`.
 - Prettier, Stylelint y scripts de validación.
 - Vitest, Vitest Browser Mode y Playwright.
 - Smoke E2E inicial para Chromium, Firefox y WebKit.
+- Smoke E2E responsive para proteger la shell fija y el scroll interno en viewport angosto.
 - Integración de `@lucide/astro` para la iconografía de interfaz.
 - Tipos estrictos y funciones puras para validar snapshots y derivar el estado de progreso.
 - Transiciones puras e idempotentes para iniciar y completar lecciones y prácticas.

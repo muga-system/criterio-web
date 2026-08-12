@@ -225,6 +225,31 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
     .toBeGreaterThanOrEqual(maxScroll - 2);
 });
 
+test("mantiene la shell usable en un viewport angosto", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/modulos");
+
+  const metrics = await page.locator("#workspace-scroll-viewport").evaluate((workspace) => ({
+    bodyScrollWidth: document.body.scrollWidth,
+    bodyClientWidth: document.body.clientWidth,
+    documentScrollWidth: document.documentElement.scrollWidth,
+    documentClientWidth: document.documentElement.clientWidth,
+    viewportHeight: window.innerHeight,
+    shellHeight:
+      document.querySelector<HTMLElement>(".app-shell")?.getBoundingClientRect().height ?? 0,
+    workspaceClientHeight: workspace.clientHeight,
+    workspaceScrollHeight: workspace.scrollHeight,
+  }));
+
+  expect(metrics.bodyScrollWidth).toBe(metrics.bodyClientWidth);
+  expect(metrics.documentScrollWidth).toBe(metrics.documentClientWidth);
+  expect(Math.abs(metrics.shellHeight - metrics.viewportHeight)).toBeLessThan(1);
+  expect(metrics.workspaceScrollHeight).toBeGreaterThan(metrics.workspaceClientHeight);
+  await expect(page.getByRole("link", { name: "Importar / Exportar", exact: true })).toBeVisible();
+  await expect(page.locator(".app-sidebar-frame .app-scrollbar")).toBeHidden();
+  await expect(page.getByRole("scrollbar", { name: "Área de trabajo" })).toBeVisible();
+});
+
 test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {
   await page.goto("/modulos");
 
