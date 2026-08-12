@@ -181,6 +181,22 @@ test("mantiene la shell fija y desplaza el workspace", async ({ page }) => {
   await expect
     .poll(() => workspace.evaluate((element) => element.scrollTop))
     .toBeGreaterThan(scrollTopBeforeDrag);
+
+  await scrollbar.focus();
+  await scrollbar.press("Home");
+  await expect.poll(() => workspace.evaluate((element) => element.scrollTop)).toBe(0);
+
+  await scrollbar.press("ArrowDown");
+  await expect.poll(() => workspace.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+
+  const maxScroll = await workspace.evaluate(
+    (element) => element.scrollHeight - element.clientHeight,
+  );
+
+  await scrollbar.press("End");
+  await expect
+    .poll(() => workspace.evaluate((element) => element.scrollTop))
+    .toBeGreaterThanOrEqual(maxScroll - 2);
 });
 
 test("abre el primer módulo y conserva Módulos como sección activa", async ({ page }) => {
