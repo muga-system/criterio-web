@@ -142,5 +142,5 @@ Este contrato no decide todavía:
 
 ## Próximo paso
 
-Revisar la evidencia que produzcan las prácticas antes de ampliar la persistencia del progreso y
-diseñar la transferencia portable.
+Revisar la evidencia que produzcan las prácticas antes de ampliar la persistencia y definir cómo
+verificar migraciones y conflictos entre snapshots transferibles.

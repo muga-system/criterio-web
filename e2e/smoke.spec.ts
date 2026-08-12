@@ -323,6 +323,20 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
     "completed",
   );
 
+  await page.goto("http://127.0.0.1:4173/transferencia");
+  const transfer = page.getByRole("region", { name: "Mover el progreso entre navegadores" });
+
+  await expect(transfer).toHaveAttribute("data-transfer-ready", "true");
+  await transfer.getByRole("button", { name: "Generar token" }).click();
+  const exportedToken = transfer.locator("#exported-progress-token");
+
+  await expect(exportedToken).toHaveValue(/CRITERIO1\./);
+  await transfer.getByRole("button", { name: "Copiar token" }).click();
+  await expect(transfer.getByRole("status")).toHaveText(
+    /Token (copiado al portapapeles|seleccionado\. Presioná Ctrl\+C para copiarlo\.)/,
+  );
+  const token = await exportedToken.inputValue();
+
   await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
   const resetPractice = page.getByRole("region", {
     name: "Práctica local: avanzar por lecciones",
@@ -341,6 +355,27 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await expect(clearedPractice).toHaveAttribute("data-progress-ready", "true");
   await expect(clearedPractice.getByRole("status")).toHaveText("Lección 1 de 3");
   await expect(clearedPractice).toHaveAttribute("data-practice-completed", "false");
+
+  await page.goto("http://127.0.0.1:4173/transferencia");
+  const transferAfterReset = page.getByRole("region", {
+    name: "Mover el progreso entre navegadores",
+  });
+
+  await expect(transferAfterReset).toHaveAttribute("data-transfer-ready", "true");
+  await transferAfterReset.locator("#import-progress-token").fill(token);
+  await transferAfterReset.getByRole("button", { name: "Importar y reemplazar" }).click();
+  await expect(transferAfterReset.getByRole("status")).toHaveText(
+    "Progreso importado. Reemplazó el snapshot local de este navegador.",
+  );
+
+  await page.goto("http://127.0.0.1:4173/progreso");
+  const importedOverview = page.getByRole("region", { name: "Estado del recorrido" });
+
+  await expect(importedOverview).toHaveAttribute("data-progress-ready", "true");
+  await expect(importedOverview.locator('[data-module-id="dom-eventos-06"]')).toHaveAttribute(
+    "data-progress-status",
+    "completed",
+  );
 });
 
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {

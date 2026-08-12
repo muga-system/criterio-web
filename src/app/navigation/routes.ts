@@ -41,10 +41,10 @@ export const appRoutes = [
     eyebrow: "Transferencia portable",
     title: "Importar / Exportar",
     description:
-      "Transferí tu progreso entre entornos mediante un token portable cuando se implemente esa capacidad.",
-    placeholderTitle: "La transferencia todavía no está disponible",
+      "Transferí tu progreso entre entornos mediante un token portable validado localmente.",
+    placeholderTitle: "Transferencia portable",
     placeholderDescription:
-      "Esta vista reservará el espacio para importar o exportar el progreso sin conectarse todavía a ningún servicio externo.",
+      "Exportá o importá tu snapshot local sin conectarte a ningún servicio externo.",
   },
 ] as const;
 

@@ -1,11 +1,11 @@
 # Modelo de evidencia y progreso local
 
-Estado: contrato de datos v0 con validación, derivación, transiciones puras y persistencia local en
-IndexedDB para la práctica del Módulo 06; la transferencia portable todavía no está implementada.
+Estado: contrato de datos v0 con validación, derivación, transiciones puras, persistencia local en
+IndexedDB y token portable v1 para la práctica del Módulo 06.
 
 Este documento define qué evidencia mínima debe conservar Criterio Web para reconstruir el estado
 del recorrido sin convertir la lectura en una falsa señal de aprendizaje. La vista global de progreso
-y el token portable se implementarán después de validar este contrato y su persistencia local.
+y la transferencia portable se apoyan en este contrato y su persistencia local.
 
 ## Objetivo
 
@@ -153,14 +153,21 @@ que una evidencia quedó obsoleta. La futura interfaz deberá distinguir entre:
 La migración debe ser una transformación explícita y comprobable. No se resolverá descartando campos
 desconocidos de forma silenciosa.
 
+## Token portable v1
+
+El formato textual actual es `CRITERIO1.<payload-base64url>`. El payload es el JSON UTF-8 del
+snapshot validado, codificado en base64url para poder copiarlo como una sola línea.
+
+- `CRITERIO1` identifica el producto y la versión del formato del token;
+- el snapshot conserva `schemaVersion`, `courseId`, `contentVersion`, `updatedAt` y `modules`;
+- exportar no modifica el progreso local;
+- importar valida prefijo, decodificación y snapshot antes de reemplazar el snapshot local;
+- el token no está cifrado ni firmado y no debe tratarse como un secreto.
+
 ## Límites de este contrato
 
 Este documento no decide todavía:
 
-- si IndexedDB tendrá una sola colección o varias stores;
-- cuándo se escribe automáticamente y cuándo se confirma una acción;
-- el diseño visual de la vista Progreso;
-- la codificación, firma o formato textual del token portable;
 - la resolución de conflictos entre dos snapshots válidos;
 - cómo se registra la evidencia específica de cada futura práctica interactiva.
 
@@ -168,5 +175,6 @@ Este documento no decide todavía:
 
 Las transiciones puras para registrar inicio y cierre de lecciones y práctica están definidas en
 `src/app/progress/progress-model.ts`, conectadas a acciones explícitas de la isla
-`src/components/PracticeNavigator.tsx` y persistidas por `src/app/progress/progress-store.ts`. El
-siguiente bloque podrá diseñar la vista global de progreso y la transferencia portable.
+`src/components/PracticeNavigator.tsx`, persistidas por `src/app/progress/progress-store.ts` y
+transferibles desde `src/app/progress/progress-transfer.ts`. El siguiente bloque podrá revisar
+migraciones y conflictos entre snapshots válidos.

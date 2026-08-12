@@ -95,8 +95,8 @@ El futuro modelo de progreso comenzará con tres estados simples:
 
 El estado se reconstruye desde datos locales y deberá poder exportarse junto con una versión del
 modelo de contenidos. El contrato mínimo de evidencia está definido en
-[`docs/modelo-progreso.md`](./modelo-progreso.md); la persistencia local ya se implementó para la
-práctica del Módulo 06 y la transferencia portable queda pendiente.
+[`docs/modelo-progreso.md`](./modelo-progreso.md); la persistencia local y el token portable v1 ya
+se implementaron para la práctica del Módulo 06.
 
 ## Orden curricular inicial
 
@@ -136,5 +136,5 @@ El contrato pedagógico v0 y el contenido inicial del Módulo 07 sobre pruebas e
 mantiene local, persiste el avance en IndexedDB, conecta las transiciones de evidencia y ya tiene
 cobertura de navegación e interacción.
 
-El próximo trabajo es diseñar la vista global de progreso y la transferencia portable sobre esa
-evidencia persistida.
+El próximo trabajo es revisar migraciones y conflictos entre snapshots válidos sobre esa evidencia
+persistida y transferible.
