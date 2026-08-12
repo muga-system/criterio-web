@@ -148,8 +148,8 @@ export default function ProgressOverview(): ReactElement {
       <h2 id="progress-overview-title">Estado del recorrido</h2>
       <figure className="app-section-visual cw-panel">
         <img
-          src="/assets/pixeles/progreso-validaciones.png"
-          alt="Escena pixel-art de validaciones y señales de progreso"
+          src="/assets/pixeles/progreso-validacion-persistencia.png"
+          alt="Escena pixel-art de validación, persistencia y resultado"
           decoding="async"
         />
         <figcaption>La evidencia orienta el siguiente paso</figcaption>
