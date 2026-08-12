@@ -6,9 +6,9 @@ export const appRoutes = [
     eyebrow: "Punto de partida",
     title: "Inicio",
     description: "Un espacio de práctica guiada para aprender a tomar mejores decisiones web.",
-    placeholderTitle: "La ruta de aprendizaje empieza acá",
+    placeholderTitle: "Elegí un módulo para comenzar",
     placeholderDescription:
-      "Más adelante vas a encontrar la orientación inicial, el contexto del sistema y el próximo paso sugerido.",
+      "Recorré los siete módulos publicados, registrá el cierre de tus lecciones en este navegador y revisá tu avance desde Progreso.",
   },
   {
     id: "modules",
@@ -17,10 +17,10 @@ export const appRoutes = [
     eyebrow: "Recorrido educativo",
     title: "Módulos",
     description:
-      "Explorá los contenidos educativos disponibles cuando la estructura pedagógica esté definida.",
-    placeholderTitle: "Todavía no hay módulos publicados",
+      "Explorá los siete módulos publicados para practicar cómo observar, construir y verificar decisiones web.",
+    placeholderTitle: "Módulos publicados",
     placeholderDescription:
-      "Esta vista queda preparada para recibir el listado de módulos sin anticipar rutas ni contenidos específicos.",
+      "Elegí un módulo para leer sus lecciones y registrar el cierre explícito de cada una.",
   },
   {
     id: "progress",

@@ -37,6 +37,7 @@ test("muestra la shell inicial de Criterio Web", async ({ page }) => {
 
   await expect(page).toHaveTitle("Inicio · Criterio Web");
   await expect(page.getByRole("heading", { name: "Inicio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Elegí un módulo para comenzar" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Navegación principal" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Inicio", exact: true })).toHaveAttribute(
     "aria-current",
@@ -48,9 +49,27 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
   await page.goto("/");
 
   const routes = [
-    { name: "Módulos", path: "/modulos", heading: "Módulos" },
-    { name: "Progreso", path: "/progreso", heading: "Progreso" },
-    { name: "Importar / Exportar", path: "/transferencia", heading: "Importar / Exportar" },
+    {
+      name: "Módulos",
+      path: "/modulos",
+      heading: "Módulos",
+      description:
+        "Explorá los siete módulos publicados para practicar cómo observar, construir y verificar decisiones web.",
+    },
+    {
+      name: "Progreso",
+      path: "/progreso",
+      heading: "Progreso",
+      description:
+        "Consultá el estado de avance local de tu recorrido y la evidencia registrada por cada módulo.",
+    },
+    {
+      name: "Importar / Exportar",
+      path: "/transferencia",
+      heading: "Importar / Exportar",
+      description:
+        "Transferí tu progreso entre entornos mediante un token portable validado localmente.",
+    },
   ];
 
   for (const route of routes) {
@@ -59,6 +78,7 @@ test("permite recorrer las secciones principales y conserva el estado activo", a
     await link.click();
     await expect(page).toHaveURL(`http://127.0.0.1:4173${route.path}`);
     await expect(page.getByRole("heading", { name: route.heading, exact: true })).toBeVisible();
+    await expect(page.locator(".app-workspace-description")).toHaveText(route.description);
     await expect(link).toHaveAttribute("aria-current", "page");
   }
 
