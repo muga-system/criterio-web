@@ -60,6 +60,10 @@ registra en `Unreleased`.
 - Primera isla React experimental para la práctica local del Módulo 06, con estado efímero y
   navegación verificable entre sus tres lecciones.
 - Contrato pedagógico preliminar del Módulo 07: Verificar antes de cerrar.
+- Publicación estática del contenido inicial para las tres lecciones y la práctica integradora del
+  Módulo 07.
+- Actualización del modelo pedagógico para reflejar los siete módulos publicados y el próximo límite
+  de revisión de evidencia.
 
 ### Eliminado
 

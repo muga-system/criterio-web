@@ -1,6 +1,6 @@
 # Módulo 07 · Verificar antes de cerrar
 
-Estado: contrato pedagógico v0, pendiente de revisión y publicación en el catálogo.
+Estado: contenido inicial publicado como versión pedagógica v0.
 
 Este documento define la unidad curricular que continúa el recorrido después de conectar estado,
 eventos y representación. El módulo enseña a convertir un criterio de terminado en una verificación
@@ -125,10 +125,10 @@ necesita conservarse.
 
 ## Decisión de implementación v0
 
-Este bloque define el contrato y no publica todavía una ruta nueva ni agrega el Módulo 07 al catálogo.
-Primero se revisará la secuencia, los criterios de finalización y la evidencia propuesta. La
-publicación inicial deberá agregar el contenido estático y sus pruebas de navegación como una unidad
-separada.
+El contenido se publica como Markdown estático de Astro en
+`src/pages/modulos/pruebas-07.md` y se incorpora al catálogo como el séptimo módulo. No agrega una
+isla React, persistencia ni transferencia portable: primero se observa si la secuencia y la
+evidencia propuesta son útiles.
 
 ## Límites de esta definición
 
@@ -142,5 +142,5 @@ Este contrato no decide todavía:
 
 ## Próximo paso
 
-Revisar este contrato con el contenido de los primeros seis módulos y, si la progresión es coherente,
-publicar el contenido inicial del Módulo 07 junto con su entrada en el catálogo y sus recorridos E2E.
+Revisar la evidencia que produzcan las prácticas antes de diseñar la persistencia del progreso y la
+transferencia portable.

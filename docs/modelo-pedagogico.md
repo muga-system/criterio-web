@@ -110,7 +110,7 @@ cuando se escriban los primeros contenidos:
 7. **Pruebas.** Verificación de comportamiento, regresiones y criterios de terminado.
 
 El orden podrá cambiar si las prácticas demuestran que un prerrequisito está mal ubicado. Los
-primeros seis módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
+primeros siete módulos se publican como prueba del modelo; las rutas siguientes esperan la revisión
 de estas unidades.
 
 ## Límites de esta definición
@@ -129,10 +129,9 @@ de código.
 
 ## Siguiente bloque
 
-El contrato pedagógico v0 del Módulo 07 sobre pruebas quedó definido en
+El contrato pedagógico v0 y el contenido inicial del Módulo 07 sobre pruebas están publicados en
 [`docs/modulo-07-pruebas.md`](./modulo-07-pruebas.md). La isla React experimental del Módulo 06 se
 mantiene local, sin persistencia, y ya tiene cobertura de navegación e interacción.
 
-El próximo trabajo es revisar la progresión del contrato y, si resulta coherente, publicar el
-contenido inicial del Módulo 07. La persistencia y la transferencia portable quedan fuera hasta que
-la práctica demuestre qué evidencia necesita guardar.
+El próximo trabajo es revisar qué evidencia de las prácticas debe conservarse antes de diseñar la
+persistencia y la transferencia portable.

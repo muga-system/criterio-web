@@ -157,7 +157,7 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 
-  await expect(page.locator(".app-module-card")).toHaveCount(6);
+  await expect(page.locator(".app-module-card")).toHaveCount(7);
   await page
     .getByRole("link", { name: "Abrir Módulo 02 · Estructurar antes de decorar", exact: true })
     .click();
@@ -300,4 +300,39 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   await expect(practice.getByRole("button", { name: "Práctica completada" })).toBeDisabled();
   await practice.getByRole("button", { name: "Reiniciar" }).click();
   await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
+});
+
+test("abre el séptimo módulo desde el catálogo", async ({ page }) => {
+  await page.goto("/modulos");
+
+  await expect(page.locator(".app-module-card")).toHaveCount(7);
+  await page
+    .getByRole("link", {
+      name: "Abrir Módulo 07 · Verificar antes de cerrar",
+      exact: true,
+    })
+    .click();
+
+  await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/pruebas-07");
+  await expect(
+    page.getByRole("heading", {
+      name: "Módulo 07 · Verificar antes de cerrar",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Módulos", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  await expect(
+    page.getByRole("heading", {
+      name: "Lección 01 · Del criterio a una afirmación verificable",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("navigation", { name: "En este módulo" }).getByRole("link", {
+      name: "Lección 03 · Recorrer la experiencia completa",
+    }),
+  ).toHaveAttribute("href", "#leccion-03");
 });
