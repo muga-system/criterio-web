@@ -159,6 +159,10 @@ e `invalid` cuando no cumple la forma o las invariantes del contrato. La v1 no r
 porque todavía no existe una versión histórica que transformar: los snapshots de versión futura se
 rechazan sin modificar el almacenamiento local.
 
+Una práctica con un error de progreso bloquea nuevas transiciones para no sobrescribir evidencia
+incompatible por accidente. `Reiniciar` funciona como recuperación explícita y elimina el snapshot
+local solo después de una acción intencional.
+
 ## Token portable v1
 
 El formato textual actual es `CRITERIO1.<payload-base64url>`. El payload es el JSON UTF-8 del

@@ -70,7 +70,7 @@ export default function PracticeNavigator(): ReactElement {
   const [progress, setProgress] = useState<ProgressSnapshot>(createInitialSnapshot);
   const [error, setError] = useState<string | null>(null);
   const isComplete = progress.modules[moduleId]?.practice.verified === true;
-  const isAdvanceDisabled = isReady && (isBusy || isComplete);
+  const isAdvanceDisabled = !isReady || isBusy || isComplete || error !== null;
 
   useEffect((): (() => void) => {
     let isCancelled = false;
@@ -88,12 +88,7 @@ export default function PracticeNavigator(): ReactElement {
       })
       .catch((loadError: unknown) => {
         if (!isCancelled) {
-          setError(
-            getErrorMessage(
-              loadError,
-              "No se pudo cargar el progreso local. La práctica no está disponible.",
-            ),
-          );
+          setError(getErrorMessage(loadError, "No se pudo cargar el progreso local."));
         }
       })
       .finally(() => {
@@ -108,7 +103,7 @@ export default function PracticeNavigator(): ReactElement {
   }, []);
 
   async function advance(): Promise<void> {
-    if (!isReady || isBusy || isComplete) {
+    if (!isReady || isBusy || isComplete || error !== null) {
       return;
     }
 
@@ -162,7 +157,9 @@ export default function PracticeNavigator(): ReactElement {
     <section
       className="app-practice-card"
       aria-labelledby="practice-navigator-title"
+      data-progress-advance-disabled={isAdvanceDisabled ? "true" : "false"}
       data-practice-completed={isComplete ? "true" : "false"}
+      data-progress-error={error !== null ? "true" : "false"}
       data-progress-ready={isReady ? "true" : "false"}
     >
       <p className="app-placeholder-label">Isla React · estado local</p>
@@ -189,9 +186,10 @@ export default function PracticeNavigator(): ReactElement {
       )}
       <div className="app-practice-actions">
         <button
+          key={isAdvanceDisabled ? "advance-blocked" : "advance-available"}
           type="button"
           onClick={advance}
-          disabled={isAdvanceDisabled ? true : undefined}
+          disabled={isAdvanceDisabled}
           aria-describedby="practice-navigator-description"
         >
           {isBusy ? "Guardando…" : isComplete ? "Práctica completada" : "Siguiente lección"}

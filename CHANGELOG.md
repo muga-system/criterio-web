@@ -25,6 +25,8 @@ registra en `Unreleased`.
   merge automático entre snapshots.
 - Clasificación explícita de snapshots compatibles, pendientes de migración o inválidos antes de
   cargarlos o importarlos.
+- Bloqueo de nuevas transiciones cuando la práctica no puede cargar su snapshot local y recuperación
+  mediante reinicio explícito.
 
 ### Cambiado
 

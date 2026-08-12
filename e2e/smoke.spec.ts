@@ -392,6 +392,58 @@ test("abre el sexto módulo desde el catálogo", async ({ page }) => {
   );
 });
 
+test("bloquea la práctica si el snapshot local requiere migración", async ({ page }) => {
+  await page.goto("http://127.0.0.1:4173/modulos/dom-eventos-06");
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const request = indexedDB.open("criterio-web-progress", 1);
+
+        request.onupgradeneeded = (): void => {
+          const database = request.result;
+
+          if (!database.objectStoreNames.contains("snapshots")) {
+            database.createObjectStore("snapshots");
+          }
+        };
+        request.onerror = (): void =>
+          reject(request.error ?? new Error("No se pudo abrir IndexedDB."));
+        request.onsuccess = (): void => {
+          const database = request.result;
+          const transaction = database.transaction("snapshots", "readwrite");
+
+          transaction.objectStore("snapshots").put({ schemaVersion: 2 }, "criterio-web");
+          transaction.oncomplete = (): void => {
+            database.close();
+            resolve();
+          };
+          transaction.onerror = (): void =>
+            reject(transaction.error ?? new Error("Error de IndexedDB."));
+        };
+      }),
+  );
+  await page.reload();
+
+  const practice = page.getByRole("region", {
+    name: "Práctica local: avanzar por lecciones",
+  });
+
+  await expect(practice).toHaveAttribute("data-progress-ready", "true");
+  await expect(practice.getByRole("alert")).toHaveText(/requiere migración/);
+  await expect(practice).toHaveAttribute("data-progress-error", "true");
+  await expect(practice).toHaveAttribute("data-progress-advance-disabled", "true");
+  await expect(practice.getByRole("button", { name: "Siguiente lección" })).toBeDisabled();
+
+  const reset = practice.getByRole("button", { name: "Reiniciar" });
+
+  await expect(reset).toBeEnabled();
+  await reset.click();
+  await expect(practice.getByRole("alert")).toHaveCount(0);
+  await expect(practice.getByRole("status")).toHaveText("Lección 1 de 3");
+  await expect(practice.getByRole("button", { name: "Siguiente lección" })).toBeEnabled();
+});
+
 test("abre el séptimo módulo desde el catálogo", async ({ page }) => {
   await page.goto("/modulos");
 
