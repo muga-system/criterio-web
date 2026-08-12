@@ -1,6 +1,6 @@
 # Modelo pedagógico inicial
 
-Estado: definición base con el Módulo 01 publicado como primera prueba del modelo.
+Estado: definición base con siete módulos publicados como primera prueba del modelo.
 
 Este documento define la estructura de aprendizaje que guía el contenido publicado y las unidades
 futuras. El código y los contenidos deben respetar este límite hasta que una decisión posterior lo
@@ -94,7 +94,8 @@ El futuro modelo de progreso comenzará con tres estados simples:
 - `completed`: el criterio de cierre fue verificado.
 
 El estado deberá poder reconstruirse desde datos locales y exportarse junto con una versión del
-modelo de contenidos. No se implementa persistencia en este bloque.
+modelo de contenidos. El contrato mínimo de evidencia está definido en
+[`docs/modelo-progreso.md`](./modelo-progreso.md); todavía no se implementa persistencia.
 
 ## Orden curricular inicial
 
