@@ -9,6 +9,9 @@ registra en `Unreleased`.
 
 - Integración gradual de Tailwind CSS 4 mediante el plugin oficial de Vite, sin reemplazar el CSS
   estructural de la shell.
+- Incorporación inicial de assets pixel-art en Inicio y en las tarjetas de los siete módulos.
+- Documentación de la dirección visual y del criterio para reemplazar posteriormente los PNG por
+  versiones sin fondo.
 
 ## [0.1.0] - 2026-08-12
 

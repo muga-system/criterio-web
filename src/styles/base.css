@@ -240,9 +240,37 @@
   }
 
   .app-home-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.85fr);
+    gap: var(--space-3);
     padding: clamp(var(--space-2), 5vw, var(--space-4));
     border: 1px solid var(--color-accent);
     background: var(--color-surface);
+  }
+
+  .app-home-visual {
+    align-self: center;
+    margin: 0;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-background);
+  }
+
+  .app-home-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .app-home-visual figcaption {
+    padding: 0.55rem 0.7rem;
+    border-block-start: 1px solid var(--color-border-strong);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .app-home-lead h2,
@@ -377,6 +405,19 @@
     padding: var(--space-2);
     border: 1px solid var(--color-border-strong);
     background: var(--color-surface);
+  }
+
+  .app-module-card-visual {
+    margin-block-end: var(--space-2);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-background);
+  }
+
+  .app-module-card-visual img {
+    display: block;
+    width: 100%;
+    height: clamp(9rem, 24vw, 13rem);
+    object-fit: cover;
   }
 
   .app-module-card-header,
@@ -1186,6 +1227,10 @@
 
     .app-workspace {
       padding: var(--space-3) var(--space-2) var(--space-4);
+    }
+
+    .app-home-lead {
+      grid-template-columns: 1fr;
     }
 
     .app-progress-summary {

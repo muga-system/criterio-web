@@ -3,6 +3,8 @@ export const moduleCatalog = [
     id: "orientacion-web-01",
     path: "/modulos/orientacion-web-01",
     title: "Módulo 01 · Observar antes de construir",
+    image: "/assets/pixeles/modulo-01-documentacion.png",
+    imageAlt: "Escena pixel-art de documentación, criterios y verificación",
     summary:
       "Aprender a separar pedido, problema, evidencia, criterio, decisión y verificación antes de escribir código.",
     lessonCount: 3,
@@ -19,6 +21,8 @@ export const moduleCatalog = [
     id: "html-semantico-02",
     path: "/modulos/html-semantico-02",
     title: "Módulo 02 · Estructurar antes de decorar",
+    image: "/assets/pixeles/modulo-02-html.png",
+    imageAlt: "Escena pixel-art de una estructura HTML en un navegador",
     summary:
       "Aprender a expresar regiones, jerarquías y relaciones del contenido con HTML semántico antes de aplicar estilos.",
     lessonCount: 3,
@@ -35,6 +39,8 @@ export const moduleCatalog = [
     id: "css-composicion-03",
     path: "/modulos/css-composicion-03",
     title: "Módulo 03 · Componer sin pelear con la estructura",
+    image: "/assets/pixeles/modulo-03-css.png",
+    imageAlt: "Escena pixel-art de composición visual y reglas CSS",
     summary:
       "Aprender a aplicar cascada, layout y responsive sin trasladar al CSS las responsabilidades del HTML.",
     lessonCount: 3,
@@ -51,6 +57,8 @@ export const moduleCatalog = [
     id: "javascript-navegador-04",
     path: "/modulos/javascript-navegador-04",
     title: "Módulo 04 · Hacer explícito el comportamiento",
+    image: "/assets/pixeles/modulo-04-javascript.png",
+    imageAlt: "Escena pixel-art de interacción y JavaScript en el navegador",
     summary:
       "Aprender a representar datos, tomar decisiones y organizar funciones antes de conectar JavaScript con la interfaz.",
     lessonCount: 3,
@@ -67,6 +75,8 @@ export const moduleCatalog = [
     id: "typescript-05",
     path: "/modulos/typescript-05",
     title: "Módulo 05 · Hacer visibles los contratos",
+    image: "/assets/pixeles/modulo-05-typescript.png",
+    imageAlt: "Escena pixel-art de contratos y tipos conectados",
     summary:
       "Aprender a expresar datos y estados válidos con TypeScript para detectar errores antes de ejecutar.",
     lessonCount: 3,
@@ -83,6 +93,8 @@ export const moduleCatalog = [
     id: "dom-eventos-06",
     path: "/modulos/dom-eventos-06",
     title: "Módulo 06 · Conectar estado y representación",
+    image: "/assets/pixeles/modulo-06-dom.png",
+    imageAlt: "Escena pixel-art de una interfaz conectada al DOM y sus eventos",
     summary:
       "Aprender a conectar un modelo explícito con el DOM y eventos nativos sin perder el control del estado.",
     lessonCount: 3,
@@ -99,6 +111,8 @@ export const moduleCatalog = [
     id: "pruebas-07",
     path: "/modulos/pruebas-07",
     title: "Módulo 07 · Verificar antes de cerrar",
+    image: "/assets/pixeles/modulo-07-pruebas.png",
+    imageAlt: "Escena pixel-art de pruebas, consola y verificación",
     summary:
       "Aprender a convertir un criterio de terminado en pruebas observables, estables y proporcionales al riesgo.",
     lessonCount: 3,

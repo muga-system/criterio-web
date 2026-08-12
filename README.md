@@ -50,6 +50,7 @@ npm ci
 - `src/styles/`: capas CSS, tokens y estilos base.
 - `src/styles/tailwind.css`: utilidades Tailwind 4 y puente con los tokens visuales del proyecto.
 - `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
+- `docs/direccion-visual.md`: criterios de uso de la estética pixel-art y mapa de assets.
 - `e2e/`: recorridos end-to-end.
 
 Astro renderiza las páginas y el contenido estático, incluido el contenido de los siete módulos
@@ -66,6 +67,8 @@ sobrio y evitando SVG manuales duplicados.
 Tailwind 4 se usa de forma gradual mediante el plugin oficial de Vite. La shell, el reset, el
 scrollbar custom y las reglas estructurales permanecen en CSS propio; las nuevas composiciones
 visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI.
+Las muestras pixel-art de `PIXELES` se incorporan en `public/assets/pixeles/` tal como están, con
+fondos originales y rutas estables para permitir reemplazos posteriores.
 
 ## Recorrido inicial
 

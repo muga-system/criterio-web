@@ -13,6 +13,9 @@ const practiceLabels = {
 ---
 
 <article class="app-module-card" data-practice-tracking={module.practiceTracking}>
+  <div class="app-module-card-visual">
+    <img src={module.image} alt={module.imageAlt} loading="lazy" decoding="async" />
+  </div>
   <div class="app-module-card-header">
     <p class="app-module-card-status">{module.status}</p>
     <p class="app-module-card-index">{module.id}</p>
