@@ -38,6 +38,10 @@ test("muestra la shell inicial de Criterio Web", async ({ page }) => {
   await expect(page).toHaveTitle("Inicio · Criterio Web");
   await expect(page.getByRole("heading", { name: "Inicio" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Elegí un módulo para comenzar" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Ver módulos publicados" })).toHaveAttribute(
+    "href",
+    "/modulos",
+  );
   await expect(page.getByRole("navigation", { name: "Navegación principal" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Inicio", exact: true })).toHaveAttribute(
     "aria-current",

@@ -203,6 +203,20 @@
     line-height: 1.1;
   }
 
+  .app-placeholder-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-block-start: var(--space-2);
+    color: var(--color-text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  :where(.app-placeholder-link:hover, .app-placeholder-link:focus-visible) {
+    color: var(--color-accent);
+  }
+
   .app-module-list,
   .module-page {
     width: min(100%, 48rem);
