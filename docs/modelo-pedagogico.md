@@ -72,6 +72,16 @@ No todas las lecciones necesitarán una interfaz React. El contenido explicativo
 estáticos deben permanecer en Astro; React se reservará para prácticas que necesiten estado,
 interacción o validación en el navegador.
 
+La revisión de evidencia de los siete módulos fija esta frontera para la fase actual:
+
+- los Módulos 01, 02, 03, 04, 05 y 07 mantienen sus prácticas como actividades guiadas de análisis,
+  escritura, código o diseño de pruebas fuera de la aplicación; la interfaz solo registra el cierre
+  explícito de sus lecciones;
+- el Módulo 06 conserva la única práctica interactiva porque su criterio exige conectar estado,
+  evento, representación y un caso límite repetible dentro del navegador;
+- la práctica del Módulo 06 guarda únicamente la evidencia mínima del recorrido. No guarda respuestas,
+  calificaciones ni una interpretación automática de comprensión.
+
 ## Criterio de finalización
 
 La lectura de una lección no marca por sí sola un módulo como completado.
@@ -82,12 +92,12 @@ De forma inicial, un módulo podrá considerarse completado cuando:
 2. la práctica integradora de cierre haya sido realizada;
 3. la verificación de cierre haya sido superada.
 
-El sistema no definirá todavía puntos, ranking ni recompensas. Primero se debe probar que el modelo
-de aprendizaje y la evidencia de comprensión son útiles.
+El sistema no define puntos, ranking ni recompensas. Primero se debe probar que el modelo de
+aprendizaje y la evidencia de comprensión son útiles.
 
 ## Estado de avance
 
-El futuro modelo de progreso comenzará con tres estados simples:
+El modelo de progreso v0 usa tres estados simples:
 
 - `not_started`: el estudiante todavía no inició el módulo;
 - `in_progress`: existe avance, pero falta completar el criterio de cierre;
