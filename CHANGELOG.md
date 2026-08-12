@@ -41,6 +41,8 @@ registra en `Unreleased`.
 - La shell incorpora un enlace de salto accesible hacia el workspace principal.
 - Actualizado el copy de Inicio y Módulos para reflejar los contenidos publicados y el progreso
   local disponible.
+- La vista global distingue las prácticas fuera de la app de la práctica interactiva verificable del
+  Módulo 06.
 - Alineada la página publicada del Módulo 06 con la isla React local y la persistencia ya
   implementadas.
 - Migración de la shell y las rutas principales a Astro con integración React preparada para islas.

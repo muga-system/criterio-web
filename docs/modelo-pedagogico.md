@@ -76,7 +76,7 @@ La revisión de evidencia de los siete módulos fija esta frontera para la fase 
 
 - los Módulos 01, 02, 03, 04, 05 y 07 mantienen sus prácticas como actividades guiadas de análisis,
   escritura, código o diseño de pruebas fuera de la aplicación; la interfaz solo registra el cierre
-  explícito de sus lecciones;
+  explícito de sus lecciones y la vista global las identifica como prácticas fuera de la app;
 - el Módulo 06 conserva la única práctica interactiva porque su criterio exige conectar estado,
   evento, representación y un caso límite repetible dentro del navegador;
 - la práctica del Módulo 06 guarda únicamente la evidencia mínima del recorrido. No guarda respuestas,

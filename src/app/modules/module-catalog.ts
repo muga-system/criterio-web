@@ -6,6 +6,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a separar pedido, problema, evidencia, criterio, decisión y verificación antes de escribir código.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Del pedido al problema" },
@@ -21,6 +22,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a expresar regiones, jerarquías y relaciones del contenido con HTML semántico antes de aplicar estilos.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Significado antes que apariencia" },
@@ -36,6 +38,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a aplicar cascada, layout y responsive sin trasladar al CSS las responsabilidades del HTML.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Cascada y conflictos" },
@@ -51,6 +54,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a representar datos, tomar decisiones y organizar funciones antes de conectar JavaScript con la interfaz.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Datos que representan una situación" },
@@ -66,6 +70,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a expresar datos y estados válidos con TypeScript para detectar errores antes de ejecutar.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Tipos como contratos" },
@@ -81,6 +86,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a conectar un modelo explícito con el DOM y eventos nativos sin perder el control del estado.",
     lessonCount: 3,
+    practiceTracking: "interactive",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · El DOM como representación" },
@@ -96,6 +102,7 @@ export const moduleCatalog = [
     summary:
       "Aprender a convertir un criterio de terminado en pruebas observables, estables y proporcionales al riesgo.",
     lessonCount: 3,
+    practiceTracking: "external",
     status: "Contenido inicial",
     lessons: [
       { id: "leccion-01", title: "Lección 01 · Del criterio a una afirmación verificable" },

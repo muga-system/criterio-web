@@ -38,6 +38,10 @@ const getCompletedLessonCount = (module: ModuleSummary, snapshot: ProgressSnapsh
 };
 
 const getPracticeLabel = (module: ModuleSummary, snapshot: ProgressSnapshot): string => {
+  if (module.practiceTracking === "external") {
+    return "Práctica fuera de la app";
+  }
+
   const practice = snapshot.modules[module.id]?.practice;
 
   if (practice?.verified === true) {

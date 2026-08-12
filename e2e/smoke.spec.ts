@@ -273,6 +273,7 @@ test("permite registrar el cierre de una lección estática y conservarlo", asyn
 
   await expect(moduleCard).toHaveAttribute("data-progress-status", "in_progress");
   await expect(moduleCard).toContainText("1 de 3 lecciones");
+  await expect(moduleCard).toContainText("Práctica fuera de la app");
 });
 
 test("abre el segundo módulo desde el catálogo", async ({ page }) => {
