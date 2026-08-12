@@ -24,6 +24,8 @@ registra en `Unreleased`.
 - Registro local explícito del cierre de lecciones en los módulos sin práctica interactiva
   específica.
 - Token portable `CRITERIO1.` con exportación, copia, validación e importación local del snapshot.
+- Comando `npm run verify` para ejecutar el gate completo junto con la guía de prueba manual de la
+  primera versión.
 - Confirmación contextual antes de reemplazar progreso local durante una importación; la v1 no hace
   merge automático entre snapshots.
 - Clasificación explícita de snapshots compatibles, pendientes de migración o inválidos antes de

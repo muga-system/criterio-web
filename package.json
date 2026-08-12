@@ -21,6 +21,7 @@
     "test:coverage": "vitest run --coverage",
     "test:browser": "vitest run --config vitest.browser.config.ts",
     "test:e2e": "playwright test",
+    "verify": "npm run check && npm run test:e2e",
     "check": "prettier --check . && eslint . && stylelint \"src/**/*.css\" && astro check && vitest run && astro build"
   },
   "devDependencies": {

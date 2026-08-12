@@ -37,6 +37,7 @@ npm ci
 | `npm run test:e2e`      | Ejecutar el smoke E2E en Chromium, Firefox y WebKit. |
 | `npm run test:browser`  | Ejecutar el proyecto de Vitest Browser Mode.         |
 | `npm run test:coverage` | Ejecutar tests unitarios con cobertura.              |
+| `npm run verify`        | Ejecutar el gate completo, incluido el smoke E2E.    |
 
 ## Estructura actual
 
@@ -73,6 +74,10 @@ interfaz registra cierres explícitos de lecciones y reserva la interacción loc
 Módulo 06, donde el criterio pedagógico necesita observar estado, eventos y representación.
 Desde Progreso también se puede reiniciar de forma explícita el snapshot local para repetir el
 recorrido de prueba.
+
+La guía de prueba manual está en [`docs/prueba-manual.md`](./docs/prueba-manual.md). Para verificar
+todo el repositorio en una máquina con los navegadores de Playwright disponibles, ejecutá
+`npm run verify`.
 
 ## Versionado y releases
 
