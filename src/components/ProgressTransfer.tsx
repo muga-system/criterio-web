@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
+import { ArrowRight } from "lucide-react";
 import {
   createEmptyProgressSnapshot,
   hasProgressEvidence,
@@ -215,7 +216,7 @@ export default function ProgressTransfer(): ReactElement {
       aria-labelledby="transfer-overview-title"
       data-transfer-ready={isReady ? "true" : "false"}
     >
-      <p className="app-placeholder-label">Token portable · CRITERIO1</p>
+      <p className="app-placeholder-label">Portal de transferencia · CRITERIO1</p>
       <h2 id="transfer-overview-title">Mover el progreso entre navegadores</h2>
       <figure className="app-section-visual cw-panel">
         <img
@@ -231,7 +232,7 @@ export default function ProgressTransfer(): ReactElement {
       </p>
       <div className="app-transfer-grid">
         <article className="app-transfer-panel">
-          <p className="app-placeholder-label">Exportar</p>
+          <p className="app-placeholder-label">Salida · exportar</p>
           <h3>Generar un token</h3>
           <p>El token representa el progreso local disponible en este navegador.</p>
           <button type="button" onClick={generateToken} disabled={isBusy ? true : undefined}>
@@ -248,13 +249,13 @@ export default function ProgressTransfer(): ReactElement {
                 spellCheck={false}
               />
               <button type="button" className="app-transfer-secondary" onClick={copyToken}>
-                Copiar token
+                Copiar token <ArrowRight aria-hidden="true" className="app-inline-icon" />
               </button>
             </>
           )}
         </article>
         <article className="app-transfer-panel">
-          <p className="app-placeholder-label">Importar</p>
+          <p className="app-placeholder-label">Entrada · importar</p>
           <h3>Reemplazar el progreso local</h3>
           <p>La importación valida el token y pide confirmación si ya existe avance local.</p>
           <label htmlFor="import-progress-token">Token para importar</label>
@@ -266,7 +267,7 @@ export default function ProgressTransfer(): ReactElement {
             spellCheck={false}
           />
           <button type="button" onClick={importProgress} disabled={isBusy ? true : undefined}>
-            Importar y reemplazar
+            Importar y reemplazar <ArrowRight aria-hidden="true" className="app-inline-icon" />
           </button>
         </article>
       </div>

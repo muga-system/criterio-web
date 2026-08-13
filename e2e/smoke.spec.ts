@@ -57,6 +57,9 @@ test("muestra la shell inicial de Criterio Web", async ({ page }) => {
   );
   await expect(page.locator("[data-home-view]")).toContainText("Un recorrido explícito");
   await expect(page.getByRole("navigation", { name: "Navegación principal" })).toBeVisible();
+  await expect(page.getByText("Mapa de aprendizaje", { exact: true })).toBeVisible();
+  await expect(page.getByText("SECTOR 01", { exact: true })).toBeVisible();
+  await expect(page.getByText("RUN LOCAL", { exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Inicio", exact: true })).toHaveAttribute(
     "aria-current",
     "page",
@@ -266,6 +269,7 @@ test("abre el primer módulo y conserva Módulos como sección activa", async ({
   });
 
   await expect(moduleLink).toBeVisible();
+  await expect(page.locator(".app-module-card-checkpoints").first()).toBeVisible();
   await moduleLink.click();
 
   await expect(page).toHaveURL("http://127.0.0.1:4173/modulos/orientacion-web-01");

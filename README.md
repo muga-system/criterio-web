@@ -67,10 +67,11 @@ pixel-art y evitando SVG manuales duplicados.
 Tailwind 4 se usa de forma gradual mediante el plugin oficial de Vite. La shell, el reset, el
 scrollbar custom y las reglas estructurales permanecen en CSS propio; las nuevas composiciones
 visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI. La
-dirección visual global se apoya en superficies rectangulares, esquinas recortadas, sombras duras,
-retícula técnica y una paleta de estados consistente. Las muestras pixel-art de `PIXELES` se
-incorporan en `public/assets/pixeles/` tal como están, con fondos originales y rutas estables para
-permitir reemplazos posteriores.
+dirección visual global se apoya en superficies rectangulares, marcos por capas, doble borde con
+rayado exterior, escalones de píxel, sombras duras, HUD de estado y una paleta de niveles consistente.
+Las muestras pixel-art de `PIXELES` se incorporan en `public/assets/pixeles/` tal como están, con
+fondos originales y rutas estables para permitir reemplazos posteriores. Las referencias externas de
+composición no sustituyen la paleta ni la identidad de Criterio Web.
 
 ## Recorrido inicial
 

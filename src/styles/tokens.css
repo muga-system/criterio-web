@@ -17,17 +17,19 @@
     --color-warning: #f2c96b;
     --color-shell: #080f1b;
     --color-pixel-shadow: #010309;
+    --color-hard-shadow: #010309;
     --color-pixel-highlight: #647594;
+    --color-on-accent: #050a12;
     --font-sans: inter, ui-sans-serif, system-ui, sans-serif;
-    --font-display: "Arial Black", "Trebuchet MS", inter, ui-sans-serif, system-ui, sans-serif;
+    --font-display: inter, ui-sans-serif, system-ui, sans-serif;
     --font-mono: "SFMono-Regular", consolas, "Liberation Mono", monospace;
     --space-1: 0.5rem;
     --space-2: 1rem;
     --space-3: 1.5rem;
     --space-4: 2rem;
-    --content-width: 48rem;
+    --content-width: 72rem;
+    --content-compact-width: 48rem;
     --pixel-unit: 4px;
-    --pixel-cut: 8px;
     --pixel-shadow-size: 4px;
   }
 }

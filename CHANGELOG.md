@@ -9,8 +9,13 @@ registra en `Unreleased`.
 
 - Integración gradual de Tailwind CSS 4 mediante el plugin oficial de Vite, sin reemplazar el CSS
   estructural de la shell.
+- Ajuste de la gramática visual retro-terminal a partir de una referencia externa: se conserva la
+  paleta de Criterio Web y se incorporan marcos rectos con doble borde, rayado exterior y sombras
+  duras en los paneles y controles.
 - Revisión global del sistema visual para llevar la estética pixel-art a la shell, la navegación,
   las superficies, los controles, los estados y el scrollbar custom.
+- Corrección de dirección visual: se eliminan los biseles diagonales y se incorporan marcos
+  ortogonales, HUD de estado, selección de niveles y puntos de control de práctica.
 - Incorporación inicial de assets pixel-art en Inicio y en las tarjetas de los siete módulos.
 - Documentación de la dirección visual y del criterio para reemplazar posteriormente los PNG por
   versiones sin fondo.

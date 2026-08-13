@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
+import { ArrowRight } from "lucide-react";
 import {
   createEmptyProgressSnapshot,
   deriveModuleProgressStatus,
@@ -144,7 +145,7 @@ export default function ProgressOverview(): ReactElement {
       data-progress-error={error !== null ? "true" : "false"}
       data-progress-ready={isReady ? "true" : "false"}
     >
-      <p className="app-placeholder-label">Snapshot local</p>
+      <p className="app-placeholder-label">Panel de control · snapshot local</p>
       <h2 id="progress-overview-title">Estado del recorrido</h2>
       <figure className="app-section-visual cw-panel">
         <img
@@ -229,7 +230,7 @@ export default function ProgressOverview(): ReactElement {
                     aria-label={`${module.title}: ${completedLessons} de ${module.lessonCount} lecciones`}
                   />
                   <a className="app-progress-card-link" href={module.path}>
-                    Ver módulo <span aria-hidden="true">→</span>
+                    Ver módulo <ArrowRight aria-hidden="true" className="app-inline-icon" />
                   </a>
                 </li>
               );

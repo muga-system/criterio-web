@@ -1,3 +1,7 @@
+---
+import { ArrowRight } from "@lucide/astro";
+---
+
 <section class="app-home-overview" aria-labelledby="home-overview-title" data-home-view>
   <div class="app-home-lead cw-panel-accent">
     <div>
@@ -10,10 +14,10 @@
       </p>
       <div class="app-home-actions">
         <a class="app-home-primary-link" href="/modulos">
-          Explorar módulos <span aria-hidden="true">→</span>
+          Explorar módulos <ArrowRight aria-hidden="true" class="app-inline-icon" />
         </a>
         <a class="app-home-secondary-link" href="/progreso">
-          Ver mi progreso <span aria-hidden="true">→</span>
+          Ver mi progreso <ArrowRight aria-hidden="true" class="app-inline-icon" />
         </a>
       </div>
     </div>
@@ -31,6 +35,15 @@
     <section class="app-home-path cw-panel p-4" aria-labelledby="home-path-title">
       <p class="app-placeholder-label">Cómo usarlo</p>
       <h2 id="home-path-title">Un recorrido explícito</h2>
+      <figure class="app-home-path-visual cw-media">
+        <img
+          src="/assets/pixeles/mapa-ruta.png"
+          alt="Mapa pixel-art de nodos conectados para recorrer los niveles"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Elegí una ruta · activá un checkpoint</figcaption>
+      </figure>
       <ol>
         <li>
           <span class="app-home-step-index">01</span>
@@ -71,7 +84,7 @@
         local para observar estado, eventos y representación.
       </p>
       <a class="app-home-secondary-link" href="/transferencia">
-        Conocer la transferencia <span aria-hidden="true">→</span>
+        Conocer la transferencia <ArrowRight aria-hidden="true" class="app-inline-icon" />
       </a>
     </aside>
   </div>

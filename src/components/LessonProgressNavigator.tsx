@@ -108,7 +108,7 @@ export default function LessonProgressNavigator({ lessons, moduleId }: Props): R
       data-progress-error={error !== null ? "true" : "false"}
       data-progress-ready={isReady ? "true" : "false"}
     >
-      <p className="app-placeholder-label">Registro local</p>
+      <p className="app-placeholder-label">Punto de control · registro local</p>
       <h2 id="lesson-progress-title">Marcar lecciones recorridas</h2>
       <p className="app-lesson-progress-intro">
         El cierre se registra solo cuando confirmás cada lección. Leer la ruta o desplazar el

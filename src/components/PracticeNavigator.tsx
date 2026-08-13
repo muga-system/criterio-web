@@ -162,7 +162,7 @@ export default function PracticeNavigator(): ReactElement {
       data-progress-error={error !== null ? "true" : "false"}
       data-progress-ready={isReady ? "true" : "false"}
     >
-      <p className="app-placeholder-label">Isla React · estado local</p>
+      <p className="app-placeholder-label">Punto de control · estado local</p>
       <h2 id="practice-navigator-title">Práctica local: avanzar por lecciones</h2>
       <p id="practice-navigator-description">
         Esta interacción registra el inicio, el cierre de cada lección y la verificación final. El

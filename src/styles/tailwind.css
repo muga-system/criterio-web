@@ -23,39 +23,25 @@
 @utility cw-panel {
   border: 2px solid var(--color-border-strong);
   background: var(--color-surface);
-  box-shadow: 4px 4px 0 var(--color-pixel-shadow);
-  clip-path: polygon(
-    var(--pixel-cut) 0,
-    calc(100% - var(--pixel-cut)) 0,
-    100% var(--pixel-cut),
-    100% calc(100% - var(--pixel-cut)),
-    calc(100% - var(--pixel-cut)) 100%,
-    var(--pixel-cut) 100%,
-    0 calc(100% - var(--pixel-cut)),
-    0 var(--pixel-cut)
-  );
+  box-shadow: 6px 6px 0 var(--color-pixel-shadow);
+  isolation: isolate;
+  position: relative;
 }
 
 @utility cw-panel-accent {
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-border-strong);
   background: var(--color-surface);
-  box-shadow: 4px 4px 0 var(--color-pixel-shadow);
-  clip-path: polygon(
-    var(--pixel-cut) 0,
-    calc(100% - var(--pixel-cut)) 0,
-    100% var(--pixel-cut),
-    100% calc(100% - var(--pixel-cut)),
-    calc(100% - var(--pixel-cut)) 100%,
-    var(--pixel-cut) 100%,
-    0 calc(100% - var(--pixel-cut)),
-    0 var(--pixel-cut)
-  );
+  box-shadow: 6px 6px 0 var(--color-pixel-shadow);
+  isolation: isolate;
+  position: relative;
 }
 
 @utility cw-media {
   border: 2px solid var(--color-border-strong);
-  background: var(--color-background);
-  box-shadow: 3px 3px 0 var(--color-pixel-shadow);
+  background: var(--color-surface-deep);
+  box-shadow: 4px 4px 0 var(--color-pixel-shadow);
+  isolation: isolate;
+  position: relative;
 }
 
 @utility cw-eyebrow {

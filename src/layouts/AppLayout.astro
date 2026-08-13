@@ -33,7 +33,9 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
           <span class="app-brand-mark" aria-hidden="true">CW</span>
           <span>Criterio Web</span>
         </a>
-        <p class="app-topbar-context"><span>Entorno local</span><span>Fase 1</span></p>
+        <p class="app-topbar-context">
+          <span><small>mundo</small> local</span><span><small>fase</small> 01</span>
+        </p>
       </header>
       <div class="app-layout">
         <CustomScrollbar
@@ -43,7 +45,7 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
         >
           <aside class="app-sidebar">
             <div>
-              <p class="app-sidebar-label">Navegación principal</p>
+              <p class="app-sidebar-label">Mapa de aprendizaje</p>
               <nav aria-label="Navegación principal">
                 <ul class="app-nav-list">
                   {
@@ -69,7 +71,9 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
                 </ul>
               </nav>
             </div>
-            <p class="app-sidebar-note">Aprender criterio web mediante práctica guiada.</p>
+            <p class="app-sidebar-note">
+              Elegí un nivel y desbloqueá criterio web mediante práctica.
+            </p>
           </aside>
         </CustomScrollbar>
         <CustomScrollbar
@@ -90,6 +94,11 @@ const activeNavigationPath = currentPath.startsWith("/modulos/") ? "/modulos" : 
                   <p class="app-workspace-kicker">{route.eyebrow}</p>
                   <h1 id="workspace-title">{route.title}</h1>
                   <p class="app-workspace-description">{route.description}</p>
+                  <div class="app-workspace-hud" aria-hidden="true">
+                    <span>SECTOR 01</span>
+                    <span>RUN LOCAL</span>
+                    <span class="is-ready">● LISTO</span>
+                  </div>
                 </header>
               )
             }

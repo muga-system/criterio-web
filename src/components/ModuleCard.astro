@@ -1,4 +1,6 @@
 ---
+import { ArrowRight } from "@lucide/astro";
+
 import type { ModuleSummary } from "../app/modules/module-catalog";
 
 interface Props {
@@ -6,6 +8,7 @@ interface Props {
 }
 
 const { module } = Astro.props;
+const levelNumber = module.id.slice(-2);
 const practiceLabels = {
   external: "Práctica fuera de la app",
   interactive: "Práctica interactiva",
@@ -13,22 +16,29 @@ const practiceLabels = {
 ---
 
 <article class="app-module-card cw-panel p-4" data-practice-tracking={module.practiceTracking}>
-  <div class="app-module-card-visual cw-media mb-4">
+  <div class="app-module-card-visual cw-media">
     <img src={module.image} alt={module.imageAlt} loading="lazy" decoding="async" />
   </div>
   <div class="app-module-card-header">
-    <p class="app-module-card-status">{module.status}</p>
+    <p class="app-module-card-status">Nivel {levelNumber} · {module.status}</p>
     <p class="app-module-card-index">{module.id}</p>
   </div>
   <h2>{module.title}</h2>
   <p>{module.summary}</p>
+  <div class="app-module-card-checkpoints">
+    {
+      Array.from({ length: module.lessonCount }, (_, index) => (
+        <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+      ))
+    }
+  </div>
   <div class="app-module-card-footer">
     <div class="app-module-card-meta">
       <span>{module.lessonCount} lecciones</span>
       <span>{practiceLabels[module.practiceTracking]}</span>
     </div>
     <a href={module.path} aria-label={`Abrir ${module.title}`}>
-      Abrir módulo <span aria-hidden="true">→</span>
+      Abrir módulo <ArrowRight aria-hidden="true" class="app-inline-icon" />
     </a>
   </div>
 </article>
