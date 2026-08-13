@@ -28,6 +28,12 @@ rayado exterior, etiquetas y sombras duras, pero no su paleta ni su temática.
 - Las líneas de separación, los badges de HUD, los puntos de control, los botones con sombra dura y
   la tipografía monoespaciada para labels construyen ambiente de juego/terminal sin competir con el
   contenido.
+- Los títulos usan Silkscreen autoalojada para darles una textura pixel-art reconocible. El texto
+  corrido conserva una sans legible y los metadatos usan una mono de sistema de terminal.
+- La navegación ocupa todo el ancho útil del sidebar con padding interno uniforme. El workspace
+  también ocupa todo su ancho útil; los límites de lectura se resuelven en el padding y la
+  composición de cada bloque, no en márgenes laterales arbitrarios.
+- El pie del sidebar comunica el estado del sistema local, no una instrucción pedagógica repetida.
 - No se aplican degradados, sombras brillantes, bordes redondeados ni filtros para compensar el
   fondo original de los PNG.
 - Las imágenes decorativas deben tener `alt` descriptivo cuando aportan contexto; nunca se usan
@@ -52,6 +58,9 @@ rayado exterior, etiquetas y sombras duras, pero no su paleta ni su temática.
 | `modulo-07-pruebas.png`                | Módulo 07                             |
 | `progreso-validacion-persistencia.png` | Vista Progreso                        |
 | `transferencia-publicacion.png`        | Vista Importar / Exportar             |
+
+La fuente pixel se sirve desde `public/fonts/` bajo la licencia SIL Open Font License incluida junto
+a los archivos. No depende de una conexión con Google Fonts en runtime.
 
 El resto de las muestras queda reservado para futuras vistas, lecciones y estados donde su
 contenido visual aporte información específica.

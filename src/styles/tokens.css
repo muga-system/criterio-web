@@ -21,7 +21,7 @@
     --color-pixel-highlight: #647594;
     --color-on-accent: #050a12;
     --font-sans: inter, ui-sans-serif, system-ui, sans-serif;
-    --font-display: inter, ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Silkscreen", "Cascadia Mono", consolas, monospace;
     --font-mono: "SFMono-Regular", consolas, "Liberation Mono", monospace;
     --space-1: 0.5rem;
     --space-2: 1rem;

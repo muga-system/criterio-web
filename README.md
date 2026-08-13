@@ -49,6 +49,7 @@ npm ci
 - `src/pages/`: páginas Astro de la shell y contenido publicado de los módulos.
 - `src/styles/`: capas CSS, tokens y estilos base.
 - `src/styles/tailwind.css`: utilidades Tailwind 4 y puente con los tokens visuales del proyecto.
+- `public/fonts/`: tipografía pixel autoalojada y licencia de la fuente.
 - `docs/`: decisiones pedagógicas y documentación que no resulta evidente leyendo el código.
 - `docs/direccion-visual.md`: criterios de uso de la estética pixel-art y mapa de assets.
 - `e2e/`: recorridos end-to-end.
@@ -69,7 +70,8 @@ scrollbar custom y las reglas estructurales permanecen en CSS propio; las nuevas
 visuales pueden usar utilidades Tailwind y los tokens `cw-*` sin introducir un framework de UI. La
 dirección visual global se apoya en superficies rectangulares, marcos por capas, doble borde con
 rayado exterior, escalones de píxel, sombras duras, HUD de estado y una paleta de niveles consistente.
-Las muestras pixel-art de `PIXELES` se incorporan en `public/assets/pixeles/` tal como están, con
+Los títulos usan Silkscreen autoalojada; el texto corrido mantiene una tipografía legible y los
+metadatos usan una mono de terminal. Las muestras pixel-art de `PIXELES` se incorporan en `public/assets/pixeles/` tal como están, con
 fondos originales y rutas estables para permitir reemplazos posteriores. Las referencias externas de
 composición no sustituyen la paleta ni la identidad de Criterio Web.
 

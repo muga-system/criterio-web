@@ -12,6 +12,11 @@ registra en `Unreleased`.
 - Ajuste de la gramática visual retro-terminal a partir de una referencia externa: se conserva la
   paleta de Criterio Web y se incorporan marcos rectos con doble borde, rayado exterior y sombras
   duras en los paneles y controles.
+- Limpieza de la shell: se retiran las barras decorativas de color del borde del sidebar, se
+  reemplaza su texto inferior por estado del sistema local y se llevan navegación y workspace al
+  ancho útil completo con padding interno.
+- Incorporación de Silkscreen autoalojada para títulos pixel-art, con licencia incluida en
+  `public/fonts/OFL.txt`.
 - Revisión global del sistema visual para llevar la estética pixel-art a la shell, la navegación,
   las superficies, los controles, los estados y el scrollbar custom.
 - Corrección de dirección visual: se eliminan los biseles diagonales y se incorporan marcos
